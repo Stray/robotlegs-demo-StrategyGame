@@ -44,6 +44,7 @@ package strategy.controller.events {
 		   	assertTrue("ResourceStatusEvent.HEALTH_AND_SAFETY_UPDATED has correct string", ResourceStatusEvent.HEALTH_AND_SAFETY_UPDATED == 'ResourceStatusEvent.healthAndSafetyUpdated');
 		   	assertTrue("ResourceStatusEvent.ENVIRONMENTAL_IMPACT_UPDATED has correct string", ResourceStatusEvent.ENVIRONMENTAL_IMPACT_UPDATED == 'ResourceStatusEvent.environmentalImpactUpdated');
 		   	assertTrue("ResourceStatusEvent.CALENDAR_UPDATED has correct string", ResourceStatusEvent.CALENDAR_UPDATED == 'ResourceStatusEvent.calendarUpdated');
+		   	assertTrue("ResourceStatusEvent.STONE_SUPPLY_UPDATED has correct string", ResourceStatusEvent.STONE_SUPPLY_UPDATED == 'ResourceStatusEvent.stoneSupplyUpdated');
 		}
 
 		public function testFailure():void {

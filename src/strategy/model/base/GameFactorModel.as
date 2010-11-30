@@ -1,6 +1,7 @@
 package strategy.model.base {
 		
-import strategy.controller.events.ResourceStatusEvent;
+	import strategy.controller.events.ResourceStatusEvent;
+	
 	public class GameFactorModel extends GameMetricBaseModel implements IGameFactorModel {
 		
 		protected var updateType:String = ' ';

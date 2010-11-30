@@ -23,6 +23,7 @@ package {
 	import strategy.model.resources.HealthAndSafetyModelTest;
 	import strategy.model.resources.LabourModelTest;
 	import strategy.model.resources.StoneSupplyModelTest;
+	import strategy.model.resources.WorkerTest;
 
 	public class AllTests extends TestSuite {
 
@@ -43,6 +44,7 @@ package {
 			addTest(new strategy.model.resources.HealthAndSafetyModelTest());
 			addTest(new strategy.model.resources.LabourModelTest());
 			addTest(new strategy.model.resources.StoneSupplyModelTest());
+			addTest(new strategy.model.resources.WorkerTest());
 		}
 	}
 }

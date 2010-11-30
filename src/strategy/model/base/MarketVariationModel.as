@@ -1,6 +1,6 @@
 package strategy.model.base {
 		
-	public class MarketVariationModel extends GameMetricBaseModel {
+	public class MarketVariationModel extends GameMetricBaseModel implements IMarketVariationModel {
 		
 		protected var _volatility:Number;
 		protected var _pointAverage:Number;

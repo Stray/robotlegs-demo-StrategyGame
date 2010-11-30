@@ -13,6 +13,7 @@ package strategy.controller.events {
 		public static const HEALTH_AND_SAFETY_UPDATED:String = "ResourceStatusEvent.healthAndSafetyUpdated"
 		public static const ENVIRONMENTAL_IMPACT_UPDATED:String = "ResourceStatusEvent.environmentalImpactUpdated"
 		public static const CALENDAR_UPDATED:String = "ResourceStatusEvent.calendarUpdated"
+		public static const STONE_SUPPLY_UPDATED:String = "ResourceStatusEvent.stoneSupplyUpdated"
 		
 		
 		//--------------------------------------

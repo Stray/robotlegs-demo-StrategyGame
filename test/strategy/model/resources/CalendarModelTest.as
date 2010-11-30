@@ -76,7 +76,6 @@ package strategy.model.resources {
 
 		private function check_reducing_to_the_minimum_dispatches_boundary_breached_event(e:ResourceBoundaryEvent):void {
 			assertEquals('event is correct type', ResourceBoundaryEvent.BOUNDARY_BREACHED, e.type);
-			
 		}
 		
 	}
