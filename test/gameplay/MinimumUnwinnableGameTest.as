@@ -115,7 +115,6 @@ package gameplay {
 			assertEquals("cash reduced by labour", (gameConfig.startingBudget - (3*((gameConfig.maximumLabourCost + gameConfig.minimumLabourCost)/2))), cash.currentValue);
 		}
 		
-		
 		private function handle_calendar_boundary_breached(e:ResourceBoundaryEvent):void
 		{
 			try {

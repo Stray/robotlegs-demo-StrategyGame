@@ -1,8 +1,8 @@
 package strategy.model.markets {
 	
-	import org.robotlegs.mvcs.Actor;
+	import strategy.model.base.MarketVariationModel;
 	
-	public class StoneAvailabilityMarket extends Actor {
+	public class StoneAvailabilityMarket extends MarketVariationModel implements IStoneAvailabilityMarket {
 		
 		public function StoneAvailabilityMarket() {
 		}

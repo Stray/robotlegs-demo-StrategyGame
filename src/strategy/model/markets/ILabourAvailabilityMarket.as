@@ -1,8 +1,8 @@
 package strategy.model.markets {
 		
-	public interface ILabourAvailabilityMarket {
-		
-		function ILabourAvailabilityMarket():void;
-		
+	import strategy.model.base.IMarketVariationModel;
+	
+	public interface ILabourAvailabilityMarket extends IMarketVariationModel {
+				
 	}
 }

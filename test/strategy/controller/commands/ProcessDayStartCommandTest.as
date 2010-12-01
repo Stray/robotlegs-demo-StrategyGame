@@ -3,10 +3,11 @@ package strategy.controller.commands {
 	import asunit.framework.TestCase;
 	
 	import org.robotlegs.mvcs.Command;
-	import strategy.model.resources.IBuildingProgressModel;
-	import strategy.model.resources.ICalendarModel;
-	import strategy.model.resources.ICashModel;
 	import strategy.model.resources.ILabourModel;
+	import strategy.model.markets.ILabourAvailabilityMarket;
+	import strategy.model.markets.ILabourPriceMarket;
+	import strategy.model.markets.IStoneAvailabilityMarket;
+	import strategy.model.markets.IStonePriceMarket;
 
 	import asunit.errors.AssertionFailedError;     
 
@@ -26,15 +27,15 @@ package strategy.controller.commands {
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 
-	public class ProcessDayEndCommandTest extends TestCase {
-		private var instance:ProcessDayEndCommand;
+	public class ProcessDayStartCommandTest extends TestCase {
+		private var instance:ProcessDayStartCommand;
 
-		public function ProcessDayEndCommandTest(methodName:String=null) {
+		public function ProcessDayStartCommandTest(methodName:String=null) {
 			super(methodName)
 		}
 
 		override public function run():void{
-			var mockolateMaker:IEventDispatcher = prepare(IBuildingProgressModel, ICashModel, ICalendarModel, ILabourModel);
+			var mockolateMaker:IEventDispatcher = prepare(ILabourModel, ILabourAvailabilityMarket, ILabourPriceMarket, IStonePriceMarket, IStoneAvailabilityMarket);
 			mockolateMaker.addEventListener(Event.COMPLETE, prepareCompleteHandler);
 		}
 
@@ -45,11 +46,12 @@ package strategy.controller.commands {
 
 		override protected function setUp():void {
 			super.setUp();
-			instance = new ProcessDayEndCommand();
-			instance.buildingProgress = nice(IBuildingProgressModel);
-			instance.calendar = nice(ICalendarModel);
-			instance.cash = nice(ICashModel);
+			instance = new ProcessDayStartCommand();
 			instance.labour = nice(ILabourModel);
+			instance.labourAvailabilityMarket = nice(ILabourAvailabilityMarket);
+			instance.labourPriceMarket = nice(ILabourPriceMarket);
+			instance.stoneAvailabilityMarket = nice(IStoneAvailabilityMarket);
+			instance.stonePriceMarket = nice(IStonePriceMarket);
 		}
 
 		override protected function tearDown():void {
@@ -58,7 +60,7 @@ package strategy.controller.commands {
 		}
 
 		public function testInstantiated():void {
-			assertTrue("instance is ProcessDayEndCommand", instance is ProcessDayEndCommand);
+			assertTrue("instance is ProcessDayStartCommand", instance is ProcessDayStartCommand);
 		}
 		
 		public function testIsCommand():void{

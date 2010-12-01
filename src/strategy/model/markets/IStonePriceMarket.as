@@ -1,6 +1,8 @@
 package strategy.model.markets {
 		
-	public interface IStonePriceMarket {
+	import strategy.model.base.IMarketVariationModel;
+	
+	public interface IStonePriceMarket extends IMarketVariationModel {
 		
 		function IStonePriceMarket():void;
 		

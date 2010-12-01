@@ -1,12 +1,11 @@
-package strategy.controller.commands {
+package strategy.controller.surprises {
 
 	import asunit.framework.TestCase;
 	
-	import org.robotlegs.mvcs.Command;
-	import strategy.model.resources.IBuildingProgressModel;
-	import strategy.model.resources.ICalendarModel;
-	import strategy.model.resources.ICashModel;
-	import strategy.model.resources.ILabourModel;
+	import org.robotlegs.mvcs.Actor;
+	import flash.events.EventDispatcher;
+	import strategy.model.markets.IStoneAvailabilityMarket;
+	import strategy.model.markets.IStonePriceMarket;
 
 	import asunit.errors.AssertionFailedError;     
 
@@ -25,16 +24,18 @@ package strategy.controller.commands {
 	
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
+	import strategy.model.markets.StonePriceMarket;
+	import strategy.model.markets.StoneAvailabilityMarket;
 
-	public class ProcessDayEndCommandTest extends TestCase {
-		private var instance:ProcessDayEndCommand;
+	public class StoneSurpriseEventCasterTest extends TestCase {
+		private var instance:StoneSurpriseEventCaster;
 
-		public function ProcessDayEndCommandTest(methodName:String=null) {
+		public function StoneSurpriseEventCasterTest(methodName:String=null) {
 			super(methodName)
 		}
 
 		override public function run():void{
-			var mockolateMaker:IEventDispatcher = prepare(IBuildingProgressModel, ICashModel, ICalendarModel, ILabourModel);
+			var mockolateMaker:IEventDispatcher = prepare(IStonePriceMarket, IStoneAvailabilityMarket);
 			mockolateMaker.addEventListener(Event.COMPLETE, prepareCompleteHandler);
 		}
 
@@ -45,11 +46,11 @@ package strategy.controller.commands {
 
 		override protected function setUp():void {
 			super.setUp();
-			instance = new ProcessDayEndCommand();
-			instance.buildingProgress = nice(IBuildingProgressModel);
-			instance.calendar = nice(ICalendarModel);
-			instance.cash = nice(ICashModel);
-			instance.labour = nice(ILabourModel);
+			instance = new StoneSurpriseEventCaster();
+			instance.eventDispatcher = new EventDispatcher();
+			instance.stoneAvailabilityMarket = new StoneAvailabilityMarket();
+			instance.stonePriceMarket = new StonePriceMarket();
+			instance.surprisePercentageProbability = 0.5;
 		}
 
 		override protected function tearDown():void {
@@ -58,19 +59,16 @@ package strategy.controller.commands {
 		}
 
 		public function testInstantiated():void {
-			assertTrue("instance is ProcessDayEndCommand", instance is ProcessDayEndCommand);
+			assertTrue("instance is StoneSurpriseEventCaster", instance is StoneSurpriseEventCaster);
 		}
 		
-		public function testIsCommand():void{
-			assertTrue("instance is robotlegs Command", instance is Command);
+		public function testIsModel():void{
+			assertTrue("instance is robotlegs Actor", instance is Actor);
 		}
 
 		public function testFailure():void {
 			assertTrue("Failing test", false);
 		}
 		
-		public function testExecute():void {
-			assertTrue("Execute returns void", (instance.execute() == void));
-		}
 	}
 }
