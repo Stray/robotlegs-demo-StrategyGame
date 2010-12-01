@@ -16,6 +16,7 @@ package strategy.model.resources {
 		{
 			if(Math.round(currentValue) >= max)
 			{
+				trace("building complete: ", currentValue, max);
 				var evt:ResourceBoundaryEvent = new ResourceBoundaryEvent(ResourceBoundaryEvent.TARGET_REACHED);
 				dispatch(evt);
 			}

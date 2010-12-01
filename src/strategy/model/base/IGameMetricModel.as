@@ -1,5 +1,6 @@
 package strategy.model.base
 {
+import flash.events.IEventDispatcher;
 
 	public interface IGameMetricModel
 	{
@@ -17,8 +18,11 @@ package strategy.model.base
 		function set currentValue(value:Number):void;
 		
 		function get history():Vector.<Number>;
+		
+		function get eventDispatcher():IEventDispatcher;
+		
+		function set eventDispatcher(value:IEventDispatcher):void;
 	                       
 	}
 
 }
-
