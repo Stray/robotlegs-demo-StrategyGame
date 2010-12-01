@@ -14,6 +14,7 @@ package gameplay {
 	import strategy.model.resources.ILabourModel;
 	import strategy.model.resources.LabourModel;
 	import flash.events.Event;
+	import strategy.controller.commands.ProcessDayEndCommand;
 
 	public class MinimumUnwinnableGameTest extends TestCase {
 		private var eventDispatcher:IEventDispatcher; 
@@ -22,10 +23,8 @@ package gameplay {
 		
 		private var unwinnableGameConfig:IGameConfig;
 		
-		private var buildingProgress:IBuildingProgressModel;
-		private var calendar:ICalendarModel;
-		private var labour:ILabourModel;
-
+		private var processDayEndCommand:ProcessDayEndCommand;
+		
 		public function MinimumUnwinnableGameTest(methodName:String=null) {
 			super(methodName);
 		}
@@ -36,11 +35,13 @@ package gameplay {
 			eventDispatcher = new EventDispatcher();
 			unwinnableGameConfig = new MinimumUnwinnableGameConfigSupport();
 			
-			buildingProgress = new BuildingProgressModel();
-			calendar = new CalendarModel(); 
-			labour = new LabourModel();
+			processDayEndCommand = new ProcessDayEndCommand();
 			
-			configureModels();
+			processDayEndCommand.buildingProgress = new BuildingProgressModel();
+			processDayEndCommand.calendar = new CalendarModel(); 
+			processDayEndCommand.labour = new LabourModel();
+			
+			configureModels(); 
 		}
 
 		override protected function tearDown():void {
@@ -63,10 +64,8 @@ package gameplay {
 			for (var i:int = 0; i < iLength; i++)
 			{
 				cycles++;
-				var blocksBuilt:Number = labour.currentValue;
-				buildingProgress.adjustByValue(blocksBuilt);
-				calendar.adjustByValue(-1);
-			}
+				processDayEndCommand.execute();
+			}  
 			
 		}
 		
@@ -97,16 +96,16 @@ package gameplay {
 		
 		private function configureModels():void
 		{
-			buildingProgress.eventDispatcher = eventDispatcher;
-			buildingProgress.max = unwinnableGameConfig.targetBuildTotal;
-			buildingProgress.currentValue = 0;
+			processDayEndCommand.buildingProgress.eventDispatcher = eventDispatcher;
+			processDayEndCommand.buildingProgress.max = unwinnableGameConfig.targetBuildTotal;
+			processDayEndCommand.buildingProgress.currentValue = 0;
 
-			calendar.eventDispatcher = eventDispatcher;
-			calendar.currentValue = unwinnableGameConfig.calendarDays;
-			calendar.min = 0;  
+			processDayEndCommand.calendar.eventDispatcher = eventDispatcher;
+			processDayEndCommand.calendar.currentValue = unwinnableGameConfig.calendarDays;
+			processDayEndCommand.calendar.min = 0;  
 
-			labour.eventDispatcher = eventDispatcher;
-			labour.currentValue = unwinnableGameConfig.minimumTeamSize * unwinnableGameConfig.minimumWorkerProductivity; 
+			processDayEndCommand.labour.eventDispatcher = eventDispatcher;
+			processDayEndCommand.labour.currentValue = unwinnableGameConfig.minimumTeamSize * unwinnableGameConfig.minimumWorkerProductivity; 
 		}
 		
 	}
