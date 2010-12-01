@@ -18,6 +18,9 @@ package gameplay {
 	import strategy.controller.commands.ConfigureModelsCommand;
 	import strategy.model.resources.CashModel;
 	import strategy.model.resources.ICashModel;
+	import strategy.model.markets.ILabourPriceMarket;
+	import strategy.model.base.IMarketVariationModel;
+	import strategy.model.markets.LabourPriceMarket;
 
 	public class MinimumUnwinnableGameTest extends TestCase {
 		private var eventDispatcher:IEventDispatcher; 
@@ -32,6 +35,7 @@ package gameplay {
 		private var calendar:ICalendarModel;
 		private var labour:ILabourModel;
 		private var cash:ICashModel;
+		private var labourPriceMarket:ILabourPriceMarket;
 		
 		public function MinimumUnwinnableGameTest(methodName:String=null) {
 			super(methodName);
@@ -48,10 +52,12 @@ package gameplay {
 			calendar = new CalendarModel(); 
 			labour = new LabourModel();
 			cash = new CashModel();
+			labourPriceMarket = new LabourPriceMarket();
 			                                                
 			processDayEndCommand.buildingProgress = buildingProgress;
 			processDayEndCommand.calendar = calendar; 
-			processDayEndCommand.labour = labour;
+			processDayEndCommand.labour = labour;   
+			                     
 		}
 
 		override protected function tearDown():void {
@@ -105,12 +111,11 @@ package gameplay {
 			labour.teamSize = 3;
 			processDayEndCommand.execute();
 			
-			var costOfLabour:Number = labour.teamSize * gameConfig.standardLabourCost;
+			var costOfLabour:Number = labour.teamCost;
 			cash.adjustByValue(-costOfLabour);
 			
-			assertEquals("cash reduced by labour", (gameConfig.startingBudget - (3*gameConfig.standardLabourCost)), cash.currentValue);
+			assertEquals("cash reduced by labour", (gameConfig.startingBudget - (3*((gameConfig.maximumLabourCost + gameConfig.minimumLabourCost)/2))), cash.currentValue);
 		}
-		
 		
 		
 		private function handle_calendar_boundary_breached(e:ResourceBoundaryEvent):void
@@ -143,18 +148,22 @@ package gameplay {
 			buildingProgress.eventDispatcher = eventDispatcher;
 			calendar.eventDispatcher = eventDispatcher;
 			labour.eventDispatcher = eventDispatcher;
-			cash.eventDispatcher = eventDispatcher;
+			cash.eventDispatcher = eventDispatcher;           
+			
+			labour.labourPriceMarket = labourPriceMarket;
+			
+			labourPriceMarket.min = gameConfig.minimumLabourCost;
+			labourPriceMarket.max = gameConfig.maximumLabourCost;   
 			
 			var configurationCommand:ConfigureModelsCommand = new ConfigureModelsCommand();
 			configurationCommand.buildingProgress = buildingProgress;
 			configurationCommand.calendar = calendar;
-			configurationCommand.labour = labour;
+			configurationCommand.labour = labour;        
+			configurationCommand.cash = cash;
 			configurationCommand.gameConfig = gameConfig; 
 			
 			configurationCommand.execute();
-		
-			cash.min = 0;
-			cash.currentValue = gameConfig.startingBudget;
+		    
 		}
 		
 	}

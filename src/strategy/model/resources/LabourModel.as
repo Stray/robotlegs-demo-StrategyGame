@@ -5,10 +5,13 @@ package strategy.model.resources {
 	import strategy.model.resources.IWorker;
 	import strategy.model.base.IMarketVariationModel;
 	import strategy.model.base.MarketVariationModel;
+	import strategy.model.markets.ILabourPriceMarket;
 	
 	public class LabourModel extends MarketVariationModel implements ILabourModel {
 		
-		protected var _team:Vector.<IWorker>; 
+		protected var _team:Vector.<IWorker>;
+		
+		protected var _labourPriceMarket:ILabourPriceMarket;
 		
 		public function LabourModel() {
 		}            
@@ -57,6 +60,26 @@ package strategy.model.resources {
 			return _team ||= new Vector.<IWorker>();
 		}
 		
+		public function get teamCost():Number
+		{
+			var totalCost:Number = 0;
+			var iLength:uint = team.length;
+			for (var i:int = 0; i < iLength; i++)
+			{
+			    var nextWorker:IWorker = team[i];
+		   		totalCost += nextWorker.pay;
+			}
+			
+			return totalCost;
+		}
+		                                                          
+		[Inject]
+		public function set labourPriceMarket(value:ILabourPriceMarket):void
+		{
+			_labourPriceMarket = value;
+		}
+		
+		
 		protected function adjustTeamSize(requiredTeamSize:uint):void
 		{
 			while(team.length > requiredTeamSize)
@@ -73,6 +96,7 @@ package strategy.model.resources {
 		{
 			var worker:IWorker = new Worker();
 			configureWorker(worker);
+			worker.pay = _labourPriceMarket.currentValue;
 			worker.energyLevel = 100; 
 			
 			return worker;

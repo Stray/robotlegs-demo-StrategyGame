@@ -14,5 +14,9 @@ package strategy.model.resources {
 	 
 		function adjustEnergyLevel(value:Number):void;
 		
+		function get pay():Number;
+		
+		function set pay(value:Number):void;
+		
 	}
 }

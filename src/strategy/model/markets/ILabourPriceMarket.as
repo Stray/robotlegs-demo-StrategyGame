@@ -1,6 +1,8 @@
 package strategy.model.markets {
 		
-	public interface ILabourPriceMarket extends IMarketVariationMdoel {
+	import strategy.model.base.IMarketVariationModel;
+	
+	public interface ILabourPriceMarket extends IMarketVariationModel {
 		
 		function ILabourPriceMarket():void;
 		

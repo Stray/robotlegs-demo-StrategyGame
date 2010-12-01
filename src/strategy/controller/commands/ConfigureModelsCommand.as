@@ -6,6 +6,7 @@ package strategy.controller.commands
 	import strategy.model.resources.ICalendarModel;
 	import strategy.model.resources.ILabourModel;
 	import strategy.model.IGameConfig;
+	import strategy.model.resources.ICashModel;
 	
 	public class ConfigureModelsCommand extends Command
 	{
@@ -16,7 +17,10 @@ package strategy.controller.commands
 		public var calendar:ICalendarModel;
 		
 		[Inject]
-		public var labour:ILabourModel; 
+		public var labour:ILabourModel;
+		
+		[Inject]
+		public var cash:ICashModel; 
 		
 		[Inject]
 		public var gameConfig:IGameConfig;
@@ -31,7 +35,12 @@ package strategy.controller.commands
 
 			labour.min = gameConfig.minimumWorkerProductivity;
 			labour.max = gameConfig.maximumWorkerProductivity;
-			labour.teamSize = gameConfig.minimumTeamSize;
+			labour.teamSize = gameConfig.minimumTeamSize; 
+		    
+		
+			
+			cash.min = 0;
+			cash.currentValue = gameConfig.startingBudget;
 		} 
 	}
 }

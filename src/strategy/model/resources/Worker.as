@@ -6,6 +6,7 @@ package strategy.model.resources {
 	public class Worker extends MarketVariationModel implements IWorker {
 		
 		protected var _energyModel:IMarketVariationModel;
+		protected var _pay:Number = 0;
 		
 		protected const DEFAULT_ENERGY_LEVEL:Number = 100;
 		
@@ -66,6 +67,15 @@ package strategy.model.resources {
 			newEnergyValue = Math.max(_energyModel.min, newEnergyValue);
 			_energyModel.currentValue = newEnergyValue;
 		}
-
+        
+		public function get pay():Number
+		{
+			return _pay;
+		}
+		
+		public function set pay(value:Number):void
+		{
+			_pay = value;
+		}
 	}
 }

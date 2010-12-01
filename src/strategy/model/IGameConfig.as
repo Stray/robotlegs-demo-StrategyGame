@@ -20,7 +20,9 @@ package strategy.model
 		
 		function get maximumWorkerProductivity():Number;
 	    
-		function get standardLabourCost():Number;
+		function get minimumLabourCost():Number;
+
+		function get maximumLabourCost():Number;
 		
 		function get startingBudget():Number;
 	}

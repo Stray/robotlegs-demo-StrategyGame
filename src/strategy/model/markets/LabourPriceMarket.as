@@ -1,6 +1,6 @@
 package strategy.model.markets {
 	
-	import org.robotlegs.mvcs.Actor;
+	import strategy.model.base.MarketVariationModel;
 	
 	public class LabourPriceMarket extends MarketVariationModel implements ILabourPriceMarket {
 		

@@ -32,7 +32,8 @@ package strategy.model {
 			_maximumTeamSize = 1;
 			_minimumWorkerProductivity = 10;
 			_maximumWorkerProductivity = 10;
-			_standardLabourCost = 100;
+			_minimumLabourCost = 80;
+			_maximumLabourCost = 120;
 			_startingBudget = 1000;
 		}
 		
