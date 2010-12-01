@@ -12,6 +12,8 @@ package strategy.model
 		protected var _maximumTeamSize:Number;
 		protected var _minimumWorkerProductivity:Number;
 		protected var _maximumWorkerProductivity:Number;
+		protected var _standardLabourCost:Number;
+		protected var _startingBudget:Number;
 		
 		public function GameConfigVO()
 		{
@@ -60,6 +62,16 @@ package strategy.model
 		public function get maximumWorkerProductivity():Number
 		{
 			return _maximumWorkerProductivity;
+		}
+		
+		public function get standardLabourCost():Number
+		{
+			return _standardLabourCost;
+		}
+		
+		public function get startingBudget():Number
+		{
+			return _startingBudget;
 		}
 
 	}

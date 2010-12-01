@@ -16,6 +16,8 @@ package gameplay {
 	import flash.events.Event;
 	import strategy.controller.commands.ProcessDayEndCommand;
 	import strategy.controller.commands.ConfigureModelsCommand;
+	import strategy.model.resources.CashModel;
+	import strategy.model.resources.ICashModel;
 
 	public class MinimumUnwinnableGameTest extends TestCase {
 		private var eventDispatcher:IEventDispatcher; 
@@ -29,6 +31,7 @@ package gameplay {
 		private var buildingProgress:IBuildingProgressModel;
 		private var calendar:ICalendarModel;
 		private var labour:ILabourModel;
+		private var cash:ICashModel;
 		
 		public function MinimumUnwinnableGameTest(methodName:String=null) {
 			super(methodName);
@@ -44,6 +47,7 @@ package gameplay {
 			buildingProgress = new BuildingProgressModel();
 			calendar = new CalendarModel(); 
 			labour = new LabourModel();
+			cash = new CashModel();
 			                                                
 			processDayEndCommand.buildingProgress = buildingProgress;
 			processDayEndCommand.calendar = calendar; 
@@ -84,13 +88,27 @@ package gameplay {
 			configureModels();
 		 
 			processDayEndCommand.execute();
-			var buildingBlocksWithOneWorker:Number = processDayEndCommand.buildingProgress.currentValue;
-			processDayEndCommand.buildingProgress.currentValue = 0;
-			processDayEndCommand.labour.teamSize = 3; 
+			var buildingBlocksWithOneWorker:Number = buildingProgress.currentValue;
+			buildingProgress.currentValue = 0;
+			labour.teamSize = 3; 
 			processDayEndCommand.execute();
-			var buildingBlocksWith3Workers:Number = processDayEndCommand.buildingProgress.currentValue;
+			var buildingBlocksWith3Workers:Number = buildingProgress.currentValue;
 			
 			assertEquals("3 workers build 3 times as many blocks", buildingBlocksWithOneWorker*3, buildingBlocksWith3Workers);
+		}
+
+		public function test_cash_reduced_by_labour():void {
+			
+			gameConfig = new MinimumUnwinnableGameConfigSupport();
+			configureModels();   
+			
+			labour.teamSize = 3;
+			processDayEndCommand.execute();
+			
+			var costOfLabour:Number = labour.teamSize * gameConfig.standardLabourCost;
+			cash.adjustByValue(-costOfLabour);
+			
+			assertEquals("cash reduced by labour", (gameConfig.startingBudget - (3*gameConfig.standardLabourCost)), cash.currentValue);
 		}
 		
 		
@@ -125,14 +143,18 @@ package gameplay {
 			buildingProgress.eventDispatcher = eventDispatcher;
 			calendar.eventDispatcher = eventDispatcher;
 			labour.eventDispatcher = eventDispatcher;
+			cash.eventDispatcher = eventDispatcher;
 			
 			var configurationCommand:ConfigureModelsCommand = new ConfigureModelsCommand();
 			configurationCommand.buildingProgress = buildingProgress;
 			configurationCommand.calendar = calendar;
 			configurationCommand.labour = labour;
-			configurationCommand.gameConfig = gameConfig;
+			configurationCommand.gameConfig = gameConfig; 
 			
 			configurationCommand.execute();
+		
+			cash.min = 0;
+			cash.currentValue = gameConfig.startingBudget;
 		}
 		
 	}
