@@ -56,7 +56,8 @@ package gameplay {
 			                                                
 			processDayEndCommand.buildingProgress = buildingProgress;
 			processDayEndCommand.calendar = calendar; 
-			processDayEndCommand.labour = labour;   
+			processDayEndCommand.labour = labour;
+			processDayEndCommand.cash = cash;   
 			                     
 		}
 
@@ -111,9 +112,6 @@ package gameplay {
 			labour.teamSize = 3;
 			processDayEndCommand.execute();
 			
-			var costOfLabour:Number = labour.teamCost;
-			cash.adjustByValue(-costOfLabour);
-			
 			assertEquals("cash reduced by labour", (gameConfig.startingBudget - (3*((gameConfig.maximumLabourCost + gameConfig.minimumLabourCost)/2))), cash.currentValue);
 		}
 		
@@ -152,14 +150,12 @@ package gameplay {
 			
 			labour.labourPriceMarket = labourPriceMarket;
 			
-			labourPriceMarket.min = gameConfig.minimumLabourCost;
-			labourPriceMarket.max = gameConfig.maximumLabourCost;   
-			
 			var configurationCommand:ConfigureModelsCommand = new ConfigureModelsCommand();
 			configurationCommand.buildingProgress = buildingProgress;
 			configurationCommand.calendar = calendar;
 			configurationCommand.labour = labour;        
 			configurationCommand.cash = cash;
+			configurationCommand.labourPriceMarket = labourPriceMarket;
 			configurationCommand.gameConfig = gameConfig; 
 			
 			configurationCommand.execute();
