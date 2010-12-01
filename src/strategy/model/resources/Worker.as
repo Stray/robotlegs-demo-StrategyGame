@@ -3,7 +3,7 @@ package strategy.model.resources {
 	import strategy.model.base.MarketVariationModel;
 	import strategy.model.base.IMarketVariationModel;
 	
-	public class Worker extends MarketVariationModel {
+	public class Worker extends MarketVariationModel implements IWorker {
 		
 		protected var _energyModel:IMarketVariationModel;
 		

@@ -8,6 +8,7 @@ package {
 
 	import asunit.framework.TestSuite;
 	import gameplay.MinimumUnwinnableGameTest;
+//	import strategy.controller.commands.ConfigureModelsCommandTest;
 //	import strategy.controller.commands.ProcessDayEndCommandTest;
 //	import strategy.controller.events.MarketEventTest;
 //	import strategy.controller.events.ResourceBoundaryEventTest;
@@ -31,6 +32,7 @@ package {
 
 		public function AllTests() {
 			addTest(new gameplay.MinimumUnwinnableGameTest());
+//			addTest(new strategy.controller.commands.ConfigureModelsCommandTest());
 //			addTest(new strategy.controller.commands.ProcessDayEndCommandTest());
 //			addTest(new strategy.controller.events.MarketEventTest());
 //			addTest(new strategy.controller.events.ResourceBoundaryEventTest());

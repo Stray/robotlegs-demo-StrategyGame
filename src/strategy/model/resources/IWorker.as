@@ -1,5 +1,7 @@
 package strategy.model.resources {
 		
+	import strategy.model.base.IMarketVariationModel;
+	
 	public interface IWorker extends IMarketVariationModel {
 		
 		function get energyLevel():Number;
