@@ -33,7 +33,12 @@ package strategy.model.base {
 
 		public function get pointAverage():uint
 		{
-			return _pointAverage ||= DEFAULT_POINT_AVERAGE;
+			if(isNaN(_pointAverage))
+			{
+				_pointAverage = DEFAULT_POINT_AVERAGE;
+			}
+			
+			return _pointAverage;
 		}
 
 		public function set pointAverage(value:uint):void

@@ -19,6 +19,17 @@ package strategy.controller.surprises {
 		public var stonePriceMarket:IStonePriceMarket;
 		
 		public function StoneSurpriseEventCaster() {
+			
+		}
+		
+		[PostConstruct]
+		public function primeSurpriseEvents():void
+		{
+			if(_possibleEvents != null)
+			{
+				return;
+			}         
+			
 			createSurpriseEvents();
 		}
 		
@@ -49,6 +60,7 @@ package strategy.controller.surprises {
 		{
 			var stoneTransactionVO:StoneTransactionVO = new StoneTransactionVO(stoneAvailabilityMarket.currentValue, stonePriceMarket.currentValue);
 			var evt:StoneSupplyEvent = new StoneSupplyEvent(StoneSupplyEvent.STONE_OFFERED, "How much stone would you like to buy today?", stoneTransactionVO);
+			dispatch(evt);
 		}
 		
 		protected function dispatchSurpriseEvent():void

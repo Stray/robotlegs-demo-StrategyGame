@@ -31,6 +31,20 @@ package {
 	import strategy.model.resources.LabourModelTest;
 	import strategy.model.resources.StoneSupplyModelTest;
 	import strategy.model.resources.WorkerTest;
+	import strategy.view.status.CalendarStatusViewMediatorTest;
+	import strategy.view.status.CalendarStatusViewTest;
+	import strategy.view.status.CashStatusViewMediatorTest;
+	import strategy.view.status.CashStatusViewTest;
+	import strategy.view.status.EnvironmentStatusViewMediatorTest;
+	import strategy.view.status.EnvironmentStatusViewTest;
+	import strategy.view.status.ProgressStatusViewMediatorTest;
+	import strategy.view.status.ProgressStatusViewTest;
+	import strategy.view.status.SafetyStatusViewMediatorTest;
+	import strategy.view.status.SafetyStatusViewTest;
+	import strategy.view.status.StoneStockStatusViewMediatorTest;
+	import strategy.view.status.StoneStockStatusViewTest;
+	import strategy.view.status.TeamStatusViewMediatorTest;
+	import strategy.view.status.TeamStatusViewTest;
 
 	public class AllTests extends TestSuite {
 
@@ -59,6 +73,20 @@ package {
 			addTest(new strategy.model.resources.LabourModelTest());
 			addTest(new strategy.model.resources.StoneSupplyModelTest());
 			addTest(new strategy.model.resources.WorkerTest());
+			addTest(new strategy.view.status.CalendarStatusViewMediatorTest());
+			addTest(new strategy.view.status.CalendarStatusViewTest());
+			addTest(new strategy.view.status.CashStatusViewMediatorTest());
+			addTest(new strategy.view.status.CashStatusViewTest());
+			addTest(new strategy.view.status.EnvironmentStatusViewMediatorTest());
+			addTest(new strategy.view.status.EnvironmentStatusViewTest());
+			addTest(new strategy.view.status.ProgressStatusViewMediatorTest());
+			addTest(new strategy.view.status.ProgressStatusViewTest());
+			addTest(new strategy.view.status.SafetyStatusViewMediatorTest());
+			addTest(new strategy.view.status.SafetyStatusViewTest());
+			addTest(new strategy.view.status.StoneStockStatusViewMediatorTest());
+			addTest(new strategy.view.status.StoneStockStatusViewTest());
+			addTest(new strategy.view.status.TeamStatusViewMediatorTest());
+			addTest(new strategy.view.status.TeamStatusViewTest());
 		}
 	}
 }

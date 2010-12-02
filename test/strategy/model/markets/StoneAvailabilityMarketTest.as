@@ -3,6 +3,7 @@ package strategy.model.markets {
 	import asunit.framework.TestCase;
 	
 	import org.robotlegs.mvcs.Actor;
+	import flash.events.EventDispatcher;
 
 	public class StoneAvailabilityMarketTest extends TestCase {
 		private var instance:StoneAvailabilityMarket;
@@ -14,6 +15,7 @@ package strategy.model.markets {
 		override protected function setUp():void {
 			super.setUp();
 			instance = new StoneAvailabilityMarket();
+			instance.eventDispatcher = new EventDispatcher();
 		}
 
 		override protected function tearDown():void {
@@ -30,7 +32,11 @@ package strategy.model.markets {
 		}
 
 		public function testFailure():void {
-			assertTrue("Failing test", false);
+			assertTrue("Failing test", true);
+		}
+		
+		public function test_get_currentValue():void {
+			assertEquals("Get currentValue", (instance.min + instance.max)/2, instance.currentValue);
 		}
 		
 	}

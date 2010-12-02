@@ -9,23 +9,12 @@ package strategy.controller.surprises {
 
 	import asunit.errors.AssertionFailedError;     
 
-	import mockolate.prepare;
-	import mockolate.nice;
-	import mockolate.stub;
-   	import mockolate.verify;
-	import mockolate.errors.VerificationError;
-	
-	import org.hamcrest.core.anything;
-	import org.hamcrest.core.not;
-	import org.hamcrest.object.equalTo;
-	import org.hamcrest.object.nullValue;
-	import org.hamcrest.object.strictlyEqualTo;
-	import org.hamcrest.object.hasPropertyWithValue;
-	
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	import strategy.model.markets.StonePriceMarket;
 	import strategy.model.markets.StoneAvailabilityMarket;
+	import strategy.controller.events.StoneSupplyEvent;
+	import strategy.model.transactions.StoneTransactionVO;
 
 	public class StoneSurpriseEventCasterTest extends TestCase {
 		private var instance:StoneSurpriseEventCaster;
@@ -34,23 +23,17 @@ package strategy.controller.surprises {
 			super(methodName)
 		}
 
-		override public function run():void{
-			var mockolateMaker:IEventDispatcher = prepare(IStonePriceMarket, IStoneAvailabilityMarket);
-			mockolateMaker.addEventListener(Event.COMPLETE, prepareCompleteHandler);
-		}
-
-		private function prepareCompleteHandler(e:Event):void{
-			IEventDispatcher(e.target).removeEventListener(Event.COMPLETE, prepareCompleteHandler);
-			super.run();
-		}
-
 		override protected function setUp():void {
 			super.setUp();
-			instance = new StoneSurpriseEventCaster();
-			instance.eventDispatcher = new EventDispatcher();
+			instance = new StoneSurpriseEventCaster(); 
+			var eventDispatcher:EventDispatcher = new EventDispatcher();
+			instance.eventDispatcher = eventDispatcher;
 			instance.stoneAvailabilityMarket = new StoneAvailabilityMarket();
 			instance.stonePriceMarket = new StonePriceMarket();
-			instance.surprisePercentageProbability = 0.5;
+			instance.stonePriceMarket.eventDispatcher = eventDispatcher;
+			instance.stoneAvailabilityMarket.eventDispatcher = eventDispatcher;
+			instance.surprisePercentageProbability = 50;  
+			instance.primeSurpriseEvents();
 		}
 
 		override protected function tearDown():void {
@@ -67,8 +50,60 @@ package strategy.controller.surprises {
 		}
 
 		public function testFailure():void {
-			assertTrue("Failing test", false);
+			assertTrue("Failing test", true);
 		}
+		
+		public function test_castSurpriseEvent_fires_all_normal_events_for_p_0():void {
+			instance.surprisePercentageProbability = 0;
+			
+			var handler:Function = addAsync(check_castSurpriseEvent_fires_all_normal_events_for_p_0, 50);
+			instance.eventDispatcher.addEventListener(StoneSupplyEvent.STONE_OFFERED, handler);
+			
+			instance.castSurpriseEvent();
+		}
+
+		private function check_castSurpriseEvent_fires_all_normal_events_for_p_0(e:StoneSupplyEvent):void {
+			assertEquals('event is correct type', StoneSupplyEvent.STONE_OFFERED, e.type);
+			var transactionVO:StoneTransactionVO = e.transactionVO;
+			assertEquals("price correct", instance.stonePriceMarket.currentValue, transactionVO.price);
+			assertEquals("availability set correctly", instance.stoneAvailabilityMarket.currentValue, transactionVO.quantity);
+		}
+		
+		public function test_castSurpriseEvent_fires_all_special_events_for_p_1():void {
+			instance.surprisePercentageProbability = 100;
+			
+			var failHandler:Function = addAsync(fail_if_stone_offered_fired, 50, handle_stone_offered_fail);
+			instance.eventDispatcher.addEventListener(StoneSupplyEvent.STONE_OFFERED, failHandler);
+			
+			var handler:Function = addAsync(check_surprise_event, 50);
+			instance.eventDispatcher.addEventListener(StoneSupplyEvent.NO_STONE_OFFERED, handler);
+			instance.eventDispatcher.addEventListener(StoneSupplyEvent.STONE_DILEMMA, handler);
+			
+			instance.castSurpriseEvent();
+		}
+		
+	    private function check_surprise_event(e:StoneSupplyEvent):void {
+	    	var transactionVO:StoneTransactionVO = e.transactionVO;
+			if(e.type == StoneSupplyEvent.NO_STONE_OFFERED)
+			{
+				assertEquals("No stone offered", 0, transactionVO.quantity);
+				assertEquals("No stone price", 0, transactionVO.price);
+			}
+		}
+		
+		private function fail_if_stone_offered_fired(e:StoneSupplyEvent):void {
+			try {
+            	assertTrue("this handler shouldn't have been called", false);
+			}
+			catch(assertionFailedError:AssertionFailedError) {
+				getResult().addFailure(this, assertionFailedError);
+			}
+		}
+		
+		private function handle_stone_offered_fail(e:Event = null):void {
+			// that's ok
+		}
+		
 		
 	}
 }
