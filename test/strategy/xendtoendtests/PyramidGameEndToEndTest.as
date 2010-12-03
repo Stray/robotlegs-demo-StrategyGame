@@ -21,6 +21,7 @@ package strategy.xendtoendtests {
 	import strategy.model.IGameConfig;
 	import strategy.view.status.StoneStockStatusView;
 	import strategy.model.FirstGameConfig;
+	import strategy.view.status.CashStatusView;
 
 	public class PyramidGameEndToEndTest extends TestCase {
 		private var robotEyes:RobotEyes;  
@@ -81,6 +82,12 @@ package strategy.xendtoendtests {
 			var stoneStockCapacityTextDriver:TextFieldDriver = inViewOf(StoneStockStatusView).getA(TextField).named('capacity_txt') as TextFieldDriver;
 			var capacityText:String = config.stoneStockCapacity.toString();
 			assertTrue("Starting values on stone stock capacity set to config", stoneStockCapacityTextDriver.checkText(capacityText));
+		}
+		
+		public function test_starting_values_on_cash_set():void {
+			var cashStatusTextDriver:TextFieldDriver = inViewOf(CashStatusView).getAny(TextField) as TextFieldDriver; 
+			var cashText:String = config.startingBudget.toString();
+			assertTrue("Starting values on cash set to budget", cashStatusTextDriver.checkText(cashText));
 		}
 		
 	}
