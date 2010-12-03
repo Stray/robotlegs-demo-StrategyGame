@@ -32,6 +32,8 @@ package strategy {
 	import strategy.view.status.CashStatusViewMediator;
 	import strategy.view.status.TeamStatusView;
 	import strategy.view.status.TeamStatusViewMediator;
+	import strategy.view.status.CalendarStatusView;
+	import strategy.view.status.CalendarStatusViewMediator;
 	
 	public class PyramidGameContext extends Context {
 		
@@ -98,6 +100,7 @@ package strategy {
 			mediatorMap.mapView(StoneStockStatusView, StoneStockStatusViewMediator);
 		    mediatorMap.mapView(CashStatusView, CashStatusViewMediator);
 			mediatorMap.mapView(TeamStatusView, TeamStatusViewMediator);
+			mediatorMap.mapView(CalendarStatusView, CalendarStatusViewMediator);
 			// or - if your view is already on stage
 			// mediatorMap.createMediator(viewObject);
 			

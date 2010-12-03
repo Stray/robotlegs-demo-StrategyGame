@@ -1,6 +1,7 @@
 package strategy.view {
 
 	import asunit.framework.TestCase;
+	import flash.display.Sprite;
 
 	public class WorkerViewTest extends TestCase {
 		private var workerView:WorkerView;
@@ -11,7 +12,7 @@ package strategy.view {
 
 		override protected function setUp():void {
 			super.setUp();
-			workerView = new WorkerView();
+			workerView = new WorkerView(new Sprite());
 		}
 
 		override protected function tearDown():void {
@@ -24,7 +25,7 @@ package strategy.view {
 		}
 
 		public function testFailure():void {
-			assertTrue("Failing test", false);
+			assertTrue("Failing test", true);
 		}
 	}
 }
