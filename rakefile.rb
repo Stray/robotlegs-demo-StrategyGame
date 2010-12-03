@@ -37,7 +37,7 @@ project_model :model do |m|
   m.library_path          << 'lib/hamcrest.swc'
   m.library_path          << 'lib/FLoxy.swc'
   m.library_path          << 'lib/as3-signals.swc'
-  m.endtoend_test_dir     = 'test/com/jpk/academy/xendtoendtests'
+  m.endtoend_test_dir     = 'test/strategy/xendtoendtests'
   m.support_dir           = 'support'  
     
 end
