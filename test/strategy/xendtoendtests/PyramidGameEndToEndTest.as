@@ -18,15 +18,22 @@ package strategy.xendtoendtests {
 	import com.newloop.roboteyes.drivers.TextFieldDriver;
 	import com.newloop.roboteyes.drivers.InteractiveObjectDriver;
 	import strategy.view.status.ProgressStatusView;
+	import strategy.model.IGameConfig;
+	import strategy.view.status.StoneStockStatusView;
+	import strategy.model.FirstGameConfig;
 
 	public class PyramidGameEndToEndTest extends TestCase {
-		private var robotEyes:RobotEyes;
+		private var robotEyes:RobotEyes;  
+		
+		private var config:IGameConfig;
 
 		public function  PyramidGameEndToEndTest (methodName:String=null) {
 			super(methodName)
 		}
 
 		override public function run():void{
+			config = new FirstGameConfig();
+
 			if(robotEyes==null){
 				robotEyes = new RobotEyes(PyramidGame);
 				addChild(robotEyes);
@@ -63,10 +70,20 @@ package strategy.xendtoendtests {
 		public function test_starting_values_on_progress_set():void {
 			
 			var progressStatusTextDriver:TextFieldDriver = inViewOf(ProgressStatusView).getAny(TextField) as TextFieldDriver;
-			trace(progressStatusTextDriver);
-			assertNotNull("Found the textfield", progressStatusTextDriver);
 			assertTrue("Starting values on progress set to zero", progressStatusTextDriver.checkText('0'));
 		}
+		
+		public function test_starting_values_on_stone_stock_set():void {
+			var stoneStockStatusTextDriver:TextFieldDriver = inViewOf(StoneStockStatusView).getA(TextField).named('status_txt') as TextFieldDriver;
+			assertTrue("Starting values on stone stock set to zero", stoneStockStatusTextDriver.checkText('0'));
+		}
+		
+		public function test_starting_values_on_stone_capacity_set():void {
+			var stoneStockCapacityTextDriver:TextFieldDriver = inViewOf(StoneStockStatusView).getA(TextField).named('capacity_txt') as TextFieldDriver;
+			var capacityText:String = config.stoneStockCapacity.toString();
+			assertTrue("Starting values on stone stock capacity set to config", stoneStockCapacityTextDriver.checkText(capacityText));
+		}
+		
 		
 		
 		

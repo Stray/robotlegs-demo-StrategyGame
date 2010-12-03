@@ -25,6 +25,8 @@ package strategy.model
 		function get maximumLabourCost():Number;
 		
 		function get startingBudget():Number;
+		
+		function get stoneStockCapacity():Number;
 	}
 
 }

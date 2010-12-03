@@ -15,6 +15,7 @@ package strategy.model
 		protected var _startingBudget:Number;
 		protected var _minimumLabourCost:Number;
 		protected var _maximumLabourCost:Number;
+		protected var _stoneStockCapacity:Number;
 		
 		public function GameConfigVO()
 		{
@@ -78,6 +79,11 @@ package strategy.model
 		public function get startingBudget():Number
 		{
 			return _startingBudget;
+		}
+		
+		public function get stoneStockCapacity():Number
+		{
+			return _stoneStockCapacity;
 		}
 
 	}
