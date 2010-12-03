@@ -1,6 +1,7 @@
 package strategy {
 	
 	import flash.display.Sprite;
+	import strategy.view.status.ProgressStatusView;
 	
 	public class PyramidGameView extends Sprite {
 		
@@ -16,9 +17,14 @@ package strategy {
 		 */
 		
 		public function PyramidGameView() {			
-			
+			init();
 		}
 		
+		protected function init():void
+		{
+			var progressView:Sprite = new ProgressStatusView();
+			addChild(progressView);
+		}
 		
 		
 	}

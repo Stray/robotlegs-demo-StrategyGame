@@ -62,7 +62,8 @@ package strategy.xendtoendtests {
 		
 		public function test_starting_values_on_progress_set():void {
 			
-			var progressStatusTextDriver:TextFieldDriver = inViewOf(ProgressStatusView).getA(TextField) as TextFieldDriver;
+			var progressStatusTextDriver:TextFieldDriver = inViewOf(ProgressStatusView).getAny(TextField) as TextFieldDriver;
+			trace(progressStatusTextDriver);
 			assertNotNull("Found the textfield", progressStatusTextDriver);
 			assertTrue("Starting values on progress set to zero", progressStatusTextDriver.checkText('0'));
 		}

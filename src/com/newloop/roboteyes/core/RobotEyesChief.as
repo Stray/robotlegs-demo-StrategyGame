@@ -141,12 +141,31 @@ package com.newloop.roboteyes.core {
 				useViewRoot = _viewRoot;
 			}
 			
+			var nextChild:DisplayObject;
+			
 			var iLength:uint = useViewRoot.numChildren;
 			for (var i:uint = 0; i<iLength; i++){
-				var nextChild:DisplayObject = useViewRoot.getChildAt(i) as DisplayObject;
+				nextChild = useViewRoot.getChildAt(i) as DisplayObject;
 				
 				if(nextChild is uiClazz){
 					return createDriverFor(nextChild);
+				}
+			}
+			
+			for(i=0; i<iLength; i++){
+				nextChild = useViewRoot.getChildAt(i) as DisplayObject;
+				
+				if(nextChild is DisplayObjectContainer){
+					try {
+						var grandChildResult:DisplayObjectDriver = findAnyInstanceOf(uiClazz, nextChild as DisplayObjectContainer);
+						if(grandChildResult != null)
+						{
+							return grandChildResult;
+						}
+					} catch(e:RobotEyesError) {
+						//
+					}
+					
 				}
 			}
 			
