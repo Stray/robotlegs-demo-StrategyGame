@@ -22,6 +22,7 @@ package strategy.xendtoendtests {
 	import strategy.view.status.StoneStockStatusView;
 	import strategy.model.FirstGameConfig;
 	import strategy.view.status.CashStatusView;
+	import strategy.view.status.TeamStatusView;
 
 	public class PyramidGameEndToEndTest extends TestCase {
 		private var robotEyes:RobotEyes;  
@@ -90,7 +91,11 @@ package strategy.xendtoendtests {
 			assertTrue("Starting values on cash set to budget", cashStatusTextDriver.checkText(cashText));
 		}
 		
-		
+		public function test_team_initially_shows_correct_number_of_people():void {
+			var workerCount:uint = inViewOf(TeamStatusView).countChildrenOfType(Sprite); 
+			var requiredWorkerCount:uint = config.minimumTeamSize;
+			assertEquals("Set the correct number of team members visible", requiredWorkerCount, workerCount);
+		}
 		
 	}
 }
