@@ -3,6 +3,7 @@ package strategy {
 	import flash.display.Sprite;
 	import strategy.view.status.ProgressStatusView;
 	import strategy.view.status.StoneStockStatusView;
+	import strategy.view.status.CashStatusView;
 	
 	public class PyramidGameView extends Sprite {
 		
@@ -28,6 +29,9 @@ package strategy {
 			
 			var stoneStockView:Sprite = new StoneStockStatusView();
 			addChild(stoneStockView);
+			
+			var cashStatusView:Sprite = new CashStatusView();
+			addChild(cashStatusView);
 		}
 		
 		

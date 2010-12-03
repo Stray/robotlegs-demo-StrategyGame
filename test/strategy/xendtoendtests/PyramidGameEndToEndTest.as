@@ -90,5 +90,7 @@ package strategy.xendtoendtests {
 			assertTrue("Starting values on cash set to budget", cashStatusTextDriver.checkText(cashText));
 		}
 		
+		
+		
 	}
 }
