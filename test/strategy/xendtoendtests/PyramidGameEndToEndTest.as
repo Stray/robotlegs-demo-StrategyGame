@@ -23,6 +23,8 @@ package strategy.xendtoendtests {
 	import strategy.model.FirstGameConfig;
 	import strategy.view.status.CashStatusView;
 	import strategy.view.status.TeamStatusView;
+	import skins.PyramidGameSkin;
+	import strategy.view.WorkerView;
 
 	public class PyramidGameEndToEndTest extends TestCase {
 		private var robotEyes:RobotEyes;  
@@ -92,7 +94,7 @@ package strategy.xendtoendtests {
 		}
 		
 		public function test_team_initially_shows_correct_number_of_people():void {
-			var workerCount:uint = inViewOf(TeamStatusView).countChildrenOfType(Sprite); 
+			var workerCount:uint = inViewOf(TeamStatusView).getSome(WorkerView).countInstancesWithProperty('visible', true); 
 			var requiredWorkerCount:uint = config.minimumTeamSize;
 			assertEquals("Set the correct number of team members visible", requiredWorkerCount, workerCount);
 		}

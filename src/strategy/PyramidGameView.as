@@ -4,6 +4,7 @@ package strategy {
 	import strategy.view.status.ProgressStatusView;
 	import strategy.view.status.StoneStockStatusView;
 	import strategy.view.status.CashStatusView;
+	import strategy.view.status.TeamStatusView;
 	
 	public class PyramidGameView extends Sprite {
 		
@@ -32,6 +33,9 @@ package strategy {
 			
 			var cashStatusView:Sprite = new CashStatusView();
 			addChild(cashStatusView);
+			
+			var teamStatusView:Sprite = new TeamStatusView();
+			addChild(teamStatusView);
 		}
 		
 		

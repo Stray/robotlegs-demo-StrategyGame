@@ -50,6 +50,7 @@ package {
 //	import strategy.view.status.StoneStockStatusViewTest;
 //	import strategy.view.status.TeamStatusViewMediatorTest;
 //	import strategy.view.status.TeamStatusViewTest;
+//	import strategy.view.WorkerViewTest;
 	import strategy.xendtoendtests.PyramidGameEndToEndTest;
 
 	public class AllTests extends TestSuite {
@@ -98,6 +99,7 @@ package {
 //			addTest(new strategy.view.status.StoneStockStatusViewTest());
 //			addTest(new strategy.view.status.TeamStatusViewMediatorTest());
 //			addTest(new strategy.view.status.TeamStatusViewTest());
+//			addTest(new strategy.view.WorkerViewTest());
 			addTest(new strategy.xendtoendtests.PyramidGameEndToEndTest());
 		}
 	}

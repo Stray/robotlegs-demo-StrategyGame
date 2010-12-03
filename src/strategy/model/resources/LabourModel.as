@@ -6,6 +6,7 @@ package strategy.model.resources {
 	import strategy.model.base.IMarketVariationModel;
 	import strategy.model.base.MarketVariationModel;
 	import strategy.model.markets.ILabourPriceMarket;
+	import strategy.controller.events.ResourceStatusEvent;
 	
 	public class LabourModel extends MarketVariationModel implements ILabourModel {
 		
@@ -28,7 +29,12 @@ package strategy.model.resources {
 
 		public function set teamSize(value:uint):void
 		{
-			adjustTeamSize(value);
+			if(value != team.length)
+			{
+				adjustTeamSize(value);
+				var evt:ResourceStatusEvent = new ResourceStatusEvent(ResourceStatusEvent.TEAM_SIZE_UPDATED, value, 0);
+				dispatch(evt);
+			}
 		}
 
 		public override function get currentValue():Number

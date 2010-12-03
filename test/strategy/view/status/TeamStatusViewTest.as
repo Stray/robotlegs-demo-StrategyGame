@@ -3,6 +3,8 @@ package strategy.view.status {
 	import asunit.framework.TestCase;
 	
 	import flash.display.Sprite;
+	import strategy.view.WorkerView;
+	import flash.display.DisplayObject;
 
 	public class TeamStatusViewTest extends TestCase {
 		private var instance:TeamStatusView;
@@ -48,10 +50,11 @@ package strategy.view.status {
 		{
 			var workerCount:uint = 0;
 			
-			var iLength:uint = skin.numChildren;
+			var iLength:uint = instance.numChildren;
 			for (var i:int = 0; i < iLength; i++)
 			{
-				if((skin.getChildAt(i).name != null) && (skin.getChildAt(i).name.indexOf("worker") == 0) && (skin.getChildAt(i).visible))
+				var nextChild:DisplayObject = instance.getChildAt(i);
+				if((nextChild is WorkerView) && (nextChild.visible))
 				{
 					workerCount++;
 				}
@@ -60,10 +63,6 @@ package strategy.view.status {
 			return workerCount;
 		}
 		
-		private function get skin():Sprite
-		{
-			return instance.getChildAt(0) as Sprite;
-		}
 		
 		
 	}

@@ -70,6 +70,10 @@ package com.newloop.roboteyes.core {
 			return findAnyInstanceOf(uiClazz, useViewRoot);
 		}
 		
+		public function getSome(uiClazz:Class, useViewRoot:DisplayObjectContainer = null):DisplayObjectDriverList{
+			return findInstancesOf(uiClazz, useViewRoot);
+		}
+		
 		public function createDriverFor(uiItem:DisplayObject):DisplayObjectDriver{
 			if(uiItem is TextField){
 				return new TextFieldDriver(uiItem as TextField);

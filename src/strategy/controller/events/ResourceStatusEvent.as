@@ -15,6 +15,7 @@ package strategy.controller.events {
 		public static const CALENDAR_UPDATED:String = "ResourceStatusEvent.calendarUpdated"
 		public static const STONE_SUPPLY_UPDATED:String = "ResourceStatusEvent.stoneSupplyUpdated"
 		public static const STONE_CAPACITY_UPDATED:String = "ResourceStatusEvent.stoneCapacityUpdated"
+		public static const TEAM_SIZE_UPDATED:String = "ResourceStatusEvent.teamSizeUpdated"
 		
 		
 		//--------------------------------------

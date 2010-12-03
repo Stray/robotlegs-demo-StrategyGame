@@ -2,10 +2,11 @@ package strategy.view.status {
 	
 	import flash.display.Sprite;
 	import skins.PyramidGameSkin;
+	import strategy.view.WorkerView;
 	
 	public class TeamStatusView extends Sprite {
 		
-		protected var workers:Vector.<Sprite>;
+		protected var workers:Vector.<WorkerView>;
 		
 		//--------------------------------------------------------------------------
 		//
@@ -34,12 +35,14 @@ package strategy.view.status {
 		{
 			var skin:Sprite = new skinClass() as Sprite;
 			addChild(skin);
-		    workers = new Vector.<Sprite>();
+		    workers = new Vector.<WorkerView>();
 		
 			var iLength:uint = 4;
 			for (var i:int = 0; i < iLength; i++)
 			{
-				workers.push(skin.getChildByName('worker_' + (i+1).toString()) as Sprite);
+				var nextWorkerView:WorkerView = new WorkerView(skin.getChildByName('worker_' + (i+1).toString()) as Sprite);
+				workers.push(nextWorkerView);
+				addChild(nextWorkerView);
 			}
 		}
 		
