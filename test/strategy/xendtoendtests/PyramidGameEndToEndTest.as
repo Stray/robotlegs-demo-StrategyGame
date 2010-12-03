@@ -68,7 +68,6 @@ package strategy.xendtoendtests {
 		}
 		
 		public function test_starting_values_on_progress_set():void {
-			
 			var progressStatusTextDriver:TextFieldDriver = inViewOf(ProgressStatusView).getAny(TextField) as TextFieldDriver;
 			assertTrue("Starting values on progress set to zero", progressStatusTextDriver.checkText('0'));
 		}
@@ -83,9 +82,6 @@ package strategy.xendtoendtests {
 			var capacityText:String = config.stoneStockCapacity.toString();
 			assertTrue("Starting values on stone stock capacity set to config", stoneStockCapacityTextDriver.checkText(capacityText));
 		}
-		
-		
-		
 		
 	}
 }

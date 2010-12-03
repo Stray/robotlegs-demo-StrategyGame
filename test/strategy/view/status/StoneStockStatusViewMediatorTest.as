@@ -75,5 +75,13 @@ package strategy.view.status {
 			verify(instanceMediator.view).method('updateStatus').args(equalTo(newValue));
 		}
 		
+		public function test_update_capacity_updates_view():void {
+			var newValue:Number = 600;
+			var evt:ResourceStatusEvent = new ResourceStatusEvent(ResourceStatusEvent.STONE_CAPACITY_UPDATED, newValue, 0);
+			instanceMediator.eventDispatcher.dispatchEvent(evt);
+			verify(instanceMediator.view).method('updateCapacity').args(equalTo(newValue));
+		}
+		
+		
 	}
 }

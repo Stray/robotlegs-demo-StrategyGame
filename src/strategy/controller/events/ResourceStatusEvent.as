@@ -14,6 +14,7 @@ package strategy.controller.events {
 		public static const ENVIRONMENTAL_IMPACT_UPDATED:String = "ResourceStatusEvent.environmentalImpactUpdated"
 		public static const CALENDAR_UPDATED:String = "ResourceStatusEvent.calendarUpdated"
 		public static const STONE_SUPPLY_UPDATED:String = "ResourceStatusEvent.stoneSupplyUpdated"
+		public static const STONE_CAPACITY_UPDATED:String = "ResourceStatusEvent.stoneCapacityUpdated"
 		
 		
 		//--------------------------------------
@@ -24,6 +25,7 @@ package strategy.controller.events {
 		 *	@constructor
 		 */
 		public function ResourceStatusEvent(type:String, value:Number, percentage:Number, bubbles:Boolean=true, cancelable:Boolean=false ){
+			trace("ResourceStatusEvent::() ", type, value, percentage);
 			_value = value;
 			_percentage = percentage;
 			super(type, bubbles, cancelable);		

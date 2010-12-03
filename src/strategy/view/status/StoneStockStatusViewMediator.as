@@ -38,6 +38,7 @@ package strategy.view.status {
 		override public function onRegister():void
 		{			
 			eventMap.mapListener(eventDispatcher, ResourceStatusEvent.STONE_SUPPLY_UPDATED, updateHandler);
+			eventMap.mapListener(eventDispatcher, ResourceStatusEvent.STONE_CAPACITY_UPDATED, updateCapacityHandler);
 		}
 		
 		//--------------------------------------------------------------------------
@@ -49,6 +50,11 @@ package strategy.view.status {
 		private function updateHandler(e:ResourceStatusEvent):void
 		{
 			view.updateStatus(e.value);
+		} 
+		
+		private function updateCapacityHandler(e:ResourceStatusEvent):void
+		{
+			view.updateCapacity(e.value);
 		}
 		
 	}

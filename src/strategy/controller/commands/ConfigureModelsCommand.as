@@ -8,6 +8,7 @@ package strategy.controller.commands
 	import strategy.model.IGameConfig;
 	import strategy.model.resources.ICashModel;
 	import strategy.model.markets.ILabourPriceMarket;
+	import strategy.model.resources.IStoneSupplyModel;
 	
 	public class ConfigureModelsCommand extends Command
 	{
@@ -27,7 +28,10 @@ package strategy.controller.commands
 		public var cash:ICashModel; 
 		
 		[Inject]
-		public var gameConfig:IGameConfig;
+		public var gameConfig:IGameConfig; 
+		
+		[Inject]
+		public var stoneStock:IStoneSupplyModel;
 		
 		override public function execute():void 
 		{
@@ -46,6 +50,11 @@ package strategy.controller.commands
 			
 			cash.min = 0;
 			cash.currentValue = gameConfig.startingBudget;
+			
+			stoneStock.min = 0;
+			stoneStock.max = gameConfig.stoneStockCapacity;
+			stoneStock.currentValue = 0;
+			
 		} 
 	}
 }

@@ -21,6 +21,8 @@ package gameplay {
 	import strategy.model.markets.ILabourPriceMarket;
 	import strategy.model.base.IMarketVariationModel;
 	import strategy.model.markets.LabourPriceMarket;
+	import strategy.model.resources.StoneSupplyModel;
+	import strategy.model.resources.IStoneSupplyModel;
 
 	public class MinimumUnwinnableGameTest extends TestCase {
 		private var eventDispatcher:IEventDispatcher; 
@@ -35,7 +37,8 @@ package gameplay {
 		private var calendar:ICalendarModel;
 		private var labour:ILabourModel;
 		private var cash:ICashModel;
-		private var labourPriceMarket:ILabourPriceMarket;
+		private var labourPriceMarket:ILabourPriceMarket; 
+		private var stoneStock:IStoneSupplyModel;
 		
 		public function MinimumUnwinnableGameTest(methodName:String=null) {
 			super(methodName);
@@ -53,6 +56,7 @@ package gameplay {
 			labour = new LabourModel();
 			cash = new CashModel();
 			labourPriceMarket = new LabourPriceMarket();
+			stoneStock = new StoneSupplyModel();
 			                                                
 			processDayEndCommand.buildingProgress = buildingProgress;
 			processDayEndCommand.calendar = calendar; 
@@ -145,7 +149,8 @@ package gameplay {
 			buildingProgress.eventDispatcher = eventDispatcher;
 			calendar.eventDispatcher = eventDispatcher;
 			labour.eventDispatcher = eventDispatcher;
-			cash.eventDispatcher = eventDispatcher;           
+			cash.eventDispatcher = eventDispatcher;
+			stoneStock.eventDispatcher = eventDispatcher;           
 			
 			labour.labourPriceMarket = labourPriceMarket;
 			
@@ -155,7 +160,8 @@ package gameplay {
 			configurationCommand.labour = labour;        
 			configurationCommand.cash = cash;
 			configurationCommand.labourPriceMarket = labourPriceMarket;
-			configurationCommand.gameConfig = gameConfig; 
+			configurationCommand.gameConfig = gameConfig;
+			configurationCommand.stoneStock = stoneStock; 
 			
 			configurationCommand.execute();
 		    

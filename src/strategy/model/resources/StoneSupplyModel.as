@@ -9,5 +9,15 @@ package strategy.model.resources {
 			updateType = ResourceStatusEvent.STONE_SUPPLY_UPDATED;
 		}
 		
+		override public function set max(value:Number):void
+		{
+			if(value != _max)
+			{
+				_max = value;
+				var evt:ResourceStatusEvent = new ResourceStatusEvent(ResourceStatusEvent.STONE_CAPACITY_UPDATED, _max, 100);
+				dispatch(evt);
+			}
+		}
+		
 	}
 }

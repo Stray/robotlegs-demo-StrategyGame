@@ -26,6 +26,8 @@ package strategy {
 	import strategy.model.markets.ILabourPriceMarket;
 	import strategy.model.markets.LabourAvailabilityMarket;
 	import strategy.model.markets.ILabourAvailabilityMarket;
+	import strategy.view.status.StoneStockStatusView;
+	import strategy.view.status.StoneStockStatusViewMediator;
 	
 	public class PyramidGameContext extends Context {
 		
@@ -89,6 +91,7 @@ package strategy {
 			// The mediators are created automatically when the view is added to stage (within contextView)
 			mediatorMap.mapView(PyramidGameView, PyramidGameViewMediator);
 			mediatorMap.mapView(ProgressStatusView, ProgressStatusViewMediator);
+			mediatorMap.mapView(StoneStockStatusView, StoneStockStatusViewMediator);
 			// or - if your view is already on stage
 			// mediatorMap.createMediator(viewObject);
 			
