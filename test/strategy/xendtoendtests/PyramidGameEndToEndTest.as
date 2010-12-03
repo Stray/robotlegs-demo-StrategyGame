@@ -25,6 +25,7 @@ package strategy.xendtoendtests {
 	import strategy.view.status.TeamStatusView;
 	import skins.PyramidGameSkin;
 	import strategy.view.WorkerView;
+	import strategy.view.status.CalendarStatusView;
 
 	public class PyramidGameEndToEndTest extends TestCase {
 		private var robotEyes:RobotEyes;  
@@ -97,6 +98,12 @@ package strategy.xendtoendtests {
 			var workerCount:uint = inViewOf(TeamStatusView).getSome(WorkerView).countInstancesWithProperty('visible', true); 
 			var requiredWorkerCount:uint = config.minimumTeamSize;
 			assertEquals("Set the correct number of team members visible", requiredWorkerCount, workerCount);
+		}
+		
+	    public function test_starting_values_on_calendar_set():void {
+			var calendarStatusTextDriver:TextFieldDriver = inViewOf(CalendarStatusView).getAny(TextField) as TextFieldDriver;
+			var daysRemaining:String = config.calendarDays.toString();
+			assertTrue("Starting values on calendar set by config", calendarStatusTextDriver.checkText(daysRemaining));
 		}
 		
 	}
