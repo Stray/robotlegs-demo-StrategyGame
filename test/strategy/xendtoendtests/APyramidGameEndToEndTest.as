@@ -62,7 +62,6 @@ package strategy.xendtoendtests {
 		}
 		
 		override protected function cleanUp():void{
-		    trace("PyramidGameEndToEndTest::cleanUp()");
 			//removeChild(robotEyes);
 			//robotEyes = null;
 		}

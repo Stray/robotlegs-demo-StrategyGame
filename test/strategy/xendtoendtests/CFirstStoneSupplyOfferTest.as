@@ -58,7 +58,7 @@ package strategy.xendtoendtests {
 				quantityDriver.enterText(QUANTITY_TO_BUY);
 				
 				var costDriver:TextFieldDriver = stoneScreenDriver.getA(TextField).named("cost_txt") as TextFieldDriver;
-				expectedCost = Number(costDriver.textField.text);
+				expectedCost = Number(costDriver.textField.text.split(" ")[0]);
 				
 				var submitButtonDriver:InteractiveObjectDriver = stoneScreenDriver.getAny(SimpleButton) as InteractiveObjectDriver;
 				submitButtonDriver.click();
@@ -77,7 +77,7 @@ package strategy.xendtoendtests {
 				assertTrue("Updated stone stock", stoneStockStatusTextDriver.checkText(QUANTITY_TO_BUY));
 
 				var cashStatusTextDriver:TextFieldDriver = inViewOf(CashStatusView).getAny(TextField) as TextFieldDriver; 
-				var expectedCash:Number = config.startingBudget - expectedCost;
+				var expectedCash:Number = config.startingBudget - expectedCost; 
 				var cashText:String = expectedCash.toString();
 				assertTrue("Updated money", cashStatusTextDriver.checkText(cashText));      
 			}

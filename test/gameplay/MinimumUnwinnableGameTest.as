@@ -23,6 +23,10 @@ package gameplay {
 	import strategy.model.markets.LabourPriceMarket;
 	import strategy.model.resources.StoneSupplyModel;
 	import strategy.model.resources.IStoneSupplyModel;
+	import strategy.model.markets.IStoneAvailabilityMarket;
+	import strategy.model.markets.IStonePriceMarket;
+	import strategy.model.markets.StoneAvailabilityMarket;
+	import strategy.model.markets.StonePriceMarket;
 
 	public class MinimumUnwinnableGameTest extends TestCase {
 		private var eventDispatcher:IEventDispatcher; 
@@ -39,6 +43,8 @@ package gameplay {
 		private var cash:ICashModel;
 		private var labourPriceMarket:ILabourPriceMarket; 
 		private var stoneStock:IStoneSupplyModel;
+		private var stoneAvailabilityMarket:IStoneAvailabilityMarket;
+		private var stonePriceMarket:IStonePriceMarket;
 		
 		public function MinimumUnwinnableGameTest(methodName:String=null) {
 			super(methodName);
@@ -57,6 +63,8 @@ package gameplay {
 			cash = new CashModel();
 			labourPriceMarket = new LabourPriceMarket();
 			stoneStock = new StoneSupplyModel();
+			stoneAvailabilityMarket = new StoneAvailabilityMarket();
+			stonePriceMarket = new StonePriceMarket();
 			                                                
 			processDayEndCommand.buildingProgress = buildingProgress;
 			processDayEndCommand.calendar = calendar; 
@@ -150,7 +158,9 @@ package gameplay {
 			calendar.eventDispatcher = eventDispatcher;
 			labour.eventDispatcher = eventDispatcher;
 			cash.eventDispatcher = eventDispatcher;
-			stoneStock.eventDispatcher = eventDispatcher;           
+			stoneStock.eventDispatcher = eventDispatcher;
+			stoneAvailabilityMarket.eventDispatcher = eventDispatcher;
+			stonePriceMarket.eventDispatcher = eventDispatcher;           
 			
 			labour.labourPriceMarket = labourPriceMarket;
 			
@@ -161,7 +171,9 @@ package gameplay {
 			configurationCommand.cash = cash;
 			configurationCommand.labourPriceMarket = labourPriceMarket;
 			configurationCommand.gameConfig = gameConfig;
-			configurationCommand.stoneStock = stoneStock; 
+			configurationCommand.stoneStock = stoneStock;
+			configurationCommand.stoneAvailabilityMarket = stoneAvailabilityMarket;
+			configurationCommand.stonePriceMarket = stonePriceMarket; 
 			
 			configurationCommand.execute();
 		    

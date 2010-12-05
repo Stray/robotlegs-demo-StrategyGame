@@ -52,7 +52,7 @@ package strategy.model.base
 		{
 			if(isNaN(_currentValue))
 			{
-				_currentValue = ((max + min)/2);
+				_currentValue = Math.round(((max + min)/2));
 			}
 			
 			return _currentValue;

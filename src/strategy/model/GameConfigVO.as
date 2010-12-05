@@ -18,6 +18,11 @@ package strategy.model
 		protected var _stoneStockCapacity:Number;
 		protected var _numberOfNormalDaysAtStart:uint;
 		
+		protected var _minimumStoneAvailability:Number = 30;
+		protected var _maximumStoneAvailability:Number = 300;
+		protected var _minimumStonePrice:Number = 8;
+		protected var _maximumStonePrice:Number = 25;
+		
 		public function GameConfigVO()
 		{
 			super();
@@ -92,6 +97,25 @@ package strategy.model
 			return _numberOfNormalDaysAtStart;
 		}
 		
+		public function get minimumStoneAvailability():Number
+		{
+			return _minimumStoneAvailability;
+		}
+		
+		public function get maximumStoneAvailability():Number
+		{
+			return _maximumStoneAvailability;
+		}
+		
+		public function get minimumStonePrice():Number
+		{
+			return _minimumStonePrice;
+		}
+		
+		public function get maximumStonePrice():Number
+		{
+			return _maximumStonePrice;
+		}		
 
 	}
 

@@ -28,6 +28,8 @@ package strategy.controller.commands {
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	import strategy.model.resources.IStoneSupplyModel;
+	import strategy.model.markets.IStoneAvailabilityMarket;
+	import strategy.model.markets.IStonePriceMarket;
 
 	public class ConfigureModelsCommandTest extends TestCase {
 		private var instance:ConfigureModelsCommand;
@@ -37,7 +39,7 @@ package strategy.controller.commands {
 		}
 
 		override public function run():void{
-			var mockolateMaker:IEventDispatcher = prepare(IBuildingProgressModel, ICashModel, ICalendarModel, IGameConfig, ILabourPriceMarket, ILabourModel,IStoneSupplyModel);
+			var mockolateMaker:IEventDispatcher = prepare(IBuildingProgressModel, ICashModel, ICalendarModel, IGameConfig, ILabourPriceMarket, ILabourModel,IStoneSupplyModel, IStoneAvailabilityMarket, IStonePriceMarket);
 			mockolateMaker.addEventListener(Event.COMPLETE, prepareCompleteHandler);
 		}
 
@@ -56,6 +58,8 @@ package strategy.controller.commands {
 			instance.labour = nice(ILabourModel);
 			instance.labourPriceMarket = nice(ILabourPriceMarket);
 			instance.stoneStock = nice(IStoneSupplyModel);
+			instance.stoneAvailabilityMarket = nice(IStoneAvailabilityMarket);
+			instance.stonePriceMarket = nice(IStonePriceMarket);
 		}
 
 		override protected function tearDown():void {

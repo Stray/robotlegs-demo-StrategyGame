@@ -18,6 +18,11 @@ package strategy.model {
 			_stoneStockCapacity = 500;
 			
 			_numberOfNormalDaysAtStart = 3;
+			
+			_minimumStoneAvailability = 100;
+			_maximumStoneAvailability = 300;
+			_minimumStonePrice = 8;
+			_maximumStonePrice = 25;
 		} 
 	}
 }

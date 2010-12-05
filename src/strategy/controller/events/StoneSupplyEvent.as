@@ -24,6 +24,7 @@ package strategy.controller.events {
 		 *	@constructor
 		 */
 		public function StoneSupplyEvent(type:String, message:String, transactionVO:StoneTransactionVO, bubbles:Boolean=true, cancelable:Boolean=false ){
+			trace("StoneSupplyEvent::()", type);
 			_message = message;
 			_transactionVO = transactionVO;
 			super(type, bubbles, cancelable);		

@@ -29,6 +29,14 @@ package strategy.model
 		function get stoneStockCapacity():Number;
 		
 		function get numberOfNormalDaysAtStart():uint;
+		
+		function get minimumStoneAvailability():Number;
+		
+		function get maximumStoneAvailability():Number;
+		
+		function get minimumStonePrice():Number;
+		
+		function get maximumStonePrice():Number;
 	}
 
 }

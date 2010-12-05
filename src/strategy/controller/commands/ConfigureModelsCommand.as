@@ -9,6 +9,8 @@ package strategy.controller.commands
 	import strategy.model.resources.ICashModel;
 	import strategy.model.markets.ILabourPriceMarket;
 	import strategy.model.resources.IStoneSupplyModel;
+	import strategy.model.markets.IStoneAvailabilityMarket;
+	import strategy.model.markets.IStonePriceMarket;
 	
 	public class ConfigureModelsCommand extends Command
 	{
@@ -33,12 +35,19 @@ package strategy.controller.commands
 		[Inject]
 		public var stoneStock:IStoneSupplyModel;
 		
+		[Inject]
+		public var stoneAvailabilityMarket:IStoneAvailabilityMarket;
+		
+		[Inject]
+		public var stonePriceMarket:IStonePriceMarket;
+		
 		override public function execute():void 
 		{
 			buildingProgress.max = gameConfig.targetBuildTotal;
 			buildingProgress.currentValue = 0;
 
-			calendar.min = 0;  
+			calendar.min = 0;
+			calendar.max = gameConfig.calendarDays;  
 			calendar.currentValue = gameConfig.calendarDays;
 
 			labourPriceMarket.min = gameConfig.minimumLabourCost;
@@ -54,6 +63,13 @@ package strategy.controller.commands
 			stoneStock.min = 0;
 			stoneStock.max = gameConfig.stoneStockCapacity;
 			stoneStock.currentValue = 0;
+			
+			trace("ConfigureModelsCommand::execute()",  stoneAvailabilityMarket);                                                                  
+			stoneAvailabilityMarket.min = gameConfig.minimumStoneAvailability;
+			stoneAvailabilityMarket.max = gameConfig.maximumStoneAvailability;
+			
+			stonePriceMarket.min = gameConfig.minimumStonePrice;
+			stonePriceMarket.max = gameConfig.maximumStonePrice;
 			
 		} 
 	}

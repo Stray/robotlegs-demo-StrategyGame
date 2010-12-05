@@ -69,7 +69,7 @@ package strategy.model.base {
 			newValue = Math.max(min, newValue);
 			newValue = Math.min(max, newValue);
 			
-			currentValue = newValue;
+			currentValue = Math.round(newValue);
 		}
 		
 		protected function get movingAverage():Number

@@ -38,7 +38,7 @@ package strategy {
 		 */
 		override public function onRegister():void
 		{			
-			eventMap.mapListener(eventDispatcher, StoneSupplyEvent.STONE_OFFERED, stoneOfferedHandler);
+			eventMap.mapListener(eventDispatcher, StoneSupplyEvent.STONE_OFFERED, stoneOfferedHandler, StoneSupplyEvent);
 		}
 		
 		//--------------------------------------------------------------------------

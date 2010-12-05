@@ -53,5 +53,6 @@ package strategy.view.decisions {
 			var evt:StoneSupplyEvent = new StoneSupplyEvent(StoneSupplyEvent.STONE_PURCHASED, "Stone purchased", transactionVO);
 			dispatch(evt);
 		}
+        
 	}
 }
