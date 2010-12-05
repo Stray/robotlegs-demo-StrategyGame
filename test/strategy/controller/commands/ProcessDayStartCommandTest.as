@@ -26,6 +26,8 @@ package strategy.controller.commands {
 	
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
+	import flash.events.EventDispatcher;
+	import strategy.controller.events.DayCycleEvent;
 
 	public class ProcessDayStartCommandTest extends TestCase {
 		private var instance:ProcessDayStartCommand;
@@ -47,6 +49,7 @@ package strategy.controller.commands {
 		override protected function setUp():void {
 			super.setUp();
 			instance = new ProcessDayStartCommand();
+			instance.eventDispatcher = new EventDispatcher();
 			instance.labour = nice(ILabourModel);
 			instance.labourAvailabilityMarket = nice(ILabourAvailabilityMarket);
 			instance.labourPriceMarket = nice(ILabourPriceMarket);
@@ -68,11 +71,25 @@ package strategy.controller.commands {
 		}
 
 		public function testFailure():void {
-			assertTrue("Failing test", false);
+			assertTrue("Failing test", true);
 		}
 		
 		public function testExecute():void {
 			assertTrue("Execute returns void", (instance.execute() == void));
 		}
+		
+		public function test_execute_dispatches_newDayStarted():void {
+			var handler:Function = addAsync(check_execute_dispatches_newDayStarted, 50);
+			instance.eventDispatcher.addEventListener(DayCycleEvent.NEW_DAY_STARTED, handler);
+			
+			instance.execute();
+		}
+
+		private function check_execute_dispatches_newDayStarted(e:DayCycleEvent):void {
+			assertEquals('event is correct type', DayCycleEvent.NEW_DAY_STARTED, e.type);
+			
+		}
+		
+		
 	}
 }

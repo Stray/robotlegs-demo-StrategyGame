@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>test/strategy/view/status/CalendarStatusViewMediatorTest.as</string>
+	<string>test/strategy/view/decisions/StoneOfferViewTest.as</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -21,28 +21,74 @@
 	<integer>403</integer>
 	<key>metaData</key>
 	<dict>
-		<key>test/strategy/view/status/CalendarStatusViewMediatorTest.as</key>
+		<key>assets/skins/PyramidGameSkin.as</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>9</integer>
+				<integer>30</integer>
 				<key>line</key>
-				<integer>53</integer>
+				<integer>16</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>20</integer>
+				<key>line</key>
+				<integer>16</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>43</integer>
+				<key>line</key>
+				<integer>16</integer>
+			</dict>
+		</dict>
+		<key>src/strategy/view/decisions/StoneOfferView.as</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>66</integer>
+				<key>line</key>
+				<integer>25</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>32</integer>
+			<integer>11</integer>
+		</dict>
+		<key>test/strategy/view/decisions/StoneOfferViewTest.as</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>44</integer>
+				<key>line</key>
+				<integer>90</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>59</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>test/strategy/view/status/CalendarStatusViewMediatorTest.as</string>
+		<string>test/strategy/view/decisions/StoneOfferViewTest.as</string>
+		<string>src/strategy/view/decisions/StoneOfferView.as</string>
+		<string>assets/skins/PyramidGameSkin.as</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{12, 53}, {962, 825}}</string>
+	<string>{{-1, 53}, {962, 825}}</string>
 </dict>
 </plist>

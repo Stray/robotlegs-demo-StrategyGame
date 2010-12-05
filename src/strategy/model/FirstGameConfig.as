@@ -16,6 +16,8 @@ package strategy.model {
 			
 			_startingBudget = 30000; 
 			_stoneStockCapacity = 500;
+			
+			_numberOfNormalDaysAtStart = 3;
 		} 
 	}
 }

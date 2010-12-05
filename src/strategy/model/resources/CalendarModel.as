@@ -5,7 +5,7 @@ package strategy.model.resources {
 	import strategy.controller.events.ResourceBoundaryEvent;
 	
 	public class CalendarModel extends GameFactorModel implements ICalendarModel {
-		
+	                             
 		public function CalendarModel() {
 			updateType = ResourceStatusEvent.CALENDAR_UPDATED;
 		}
@@ -18,5 +18,17 @@ package strategy.model.resources {
 				dispatch(evt);
 			}
 		}
+		
+		//---------------------------------------
+		// ICalendarModel Implementation
+		//---------------------------------------
+
+		//import strategy.model.resources.ICalendarModel;
+		public function get daysPassed():uint
+		{
+			return (max - currentValue);
+		}
+
+		
 	}
 }

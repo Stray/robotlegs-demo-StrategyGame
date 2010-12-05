@@ -16,6 +16,7 @@ package strategy.model
 		protected var _minimumLabourCost:Number;
 		protected var _maximumLabourCost:Number;
 		protected var _stoneStockCapacity:Number;
+		protected var _numberOfNormalDaysAtStart:uint;
 		
 		public function GameConfigVO()
 		{
@@ -84,7 +85,13 @@ package strategy.model
 		public function get stoneStockCapacity():Number
 		{
 			return _stoneStockCapacity;
+		} 
+		
+		public function get numberOfNormalDaysAtStart():uint
+		{
+			return _numberOfNormalDaysAtStart;
 		}
+		
 
 	}
 

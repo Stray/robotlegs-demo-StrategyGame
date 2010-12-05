@@ -6,6 +6,7 @@ package strategy {
 	import strategy.view.status.CashStatusView;
 	import strategy.view.status.TeamStatusView;
 	import strategy.view.status.CalendarStatusView;
+	import strategy.view.decisions.StoneOfferView;
 	
 	public class PyramidGameView extends Sprite {
 		
@@ -22,6 +23,12 @@ package strategy {
 		
 		public function PyramidGameView() {			
 			init();
+		}
+		
+		public function showStoneOffer(price:Number, quantity:Number):void
+		{
+			var stoneOffer:StoneOfferView = new StoneOfferView(price, quantity);
+			addChild(stoneOffer);
 		}
 		
 		protected function init():void

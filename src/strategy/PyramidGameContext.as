@@ -34,8 +34,22 @@ package strategy {
 	import strategy.view.status.TeamStatusViewMediator;
 	import strategy.view.status.CalendarStatusView;
 	import strategy.view.status.CalendarStatusViewMediator;
+	import strategy.controller.events.DayCycleEvent;
+	import strategy.controller.surprises.IStoneSurpriseEventCaster;
+	import strategy.controller.surprises.StoneSurpriseEventCaster;
+	import strategy.controller.commands.OfferStoneCommand;
+	import strategy.view.decisions.StoneOfferView;
+	import strategy.view.decisions.StoneOfferViewMediator;
+	import strategy.controller.commands.ProcessDayStartCommand;
+	import strategy.model.markets.IStoneAvailabilityMarket;
+	import strategy.model.markets.StoneAvailabilityMarket;
+	import strategy.model.markets.IStonePriceMarket;
+	import strategy.model.markets.StonePriceMarket;
+	import org.robotlegs.core.IRelaxedEventContext;
+	import org.robotlegs.core.IRelaxedEventMap;
+	import org.robotlegs.base.RelaxedEventMap;
 	
-	public class PyramidGameContext extends Context {
+	public class PyramidGameContext extends Context implements IRelaxedEventContext {
 		
 		//--------------------------------------------------------------------------
 		//
@@ -78,16 +92,21 @@ package strategy {
 			// Map some Commands to Events
 			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartViewCommand, ContextEvent, true);
 			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, ConfigureModelsCommand, ContextEvent, true);
+			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, ProcessDayStartCommand, ContextEvent, true);
+			commandMap.mapEvent(DayCycleEvent.NEW_DAY_STARTED, OfferStoneCommand, DayCycleEvent);
 			// Dependency injection for models, services and values
 			injector.mapSingletonOf(IGameConfig, FirstGameConfig);
-			injector.mapSingletonOf(IBuildingProgressModel, BuildingProgressModel);
 			
+			injector.mapSingletonOf(IBuildingProgressModel, BuildingProgressModel);
 			injector.mapSingletonOf(ICalendarModel, CalendarModel);
 			injector.mapSingletonOf(ICashModel, CashModel);
 			injector.mapSingletonOf(ILabourModel, LabourModel);
 			injector.mapSingletonOf(IStoneSupplyModel, StoneSupplyModel);
 			injector.mapSingletonOf(ILabourPriceMarket, LabourPriceMarket);
-			injector.mapSingletonOf(ILabourAvailabilityMarket, LabourAvailabilityMarket)
+			injector.mapSingletonOf(ILabourAvailabilityMarket, LabourAvailabilityMarket);
+			injector.mapSingletonOf(IStoneSurpriseEventCaster, StoneSurpriseEventCaster);
+			injector.mapSingletonOf(IStoneAvailabilityMarket, StoneAvailabilityMarket);
+			injector.mapSingletonOf(IStonePriceMarket, StonePriceMarket);
 			// injector.mapSingleton(whenAskedFor:Class, named:String = null);
 			// injector.mapClass(whenAskedFor:Class, instantiateClass:Class, named:String = null);
 			// injector.mapValue(whenAskedFor:Class, useValue:Object, named:String = null);
@@ -101,12 +120,37 @@ package strategy {
 		    mediatorMap.mapView(CashStatusView, CashStatusViewMediator);
 			mediatorMap.mapView(TeamStatusView, TeamStatusViewMediator);
 			mediatorMap.mapView(CalendarStatusView, CalendarStatusViewMediator);
+			mediatorMap.mapView(StoneOfferView, StoneOfferViewMediator);
 			// or - if your view is already on stage
 			// mediatorMap.createMediator(viewObject);
 			
 			// and we're done
 			super.startup();
 		}
+		//---------------------------------------
+		// IRelaxedEventContext Implementation
+		//---------------------------------------
+
+		//import org.robotlegs.core.IRelaxedEventContext;
+		
+		protected var _relaxedEventMap:IRelaxedEventMap;
+		
+		public function get relaxedEventMap():IRelaxedEventMap
+		{
+			return _relaxedEventMap ||= new RelaxedEventMap(eventDispatcher);
+		}
+		
+		public function set relaxedEventMap(value:IRelaxedEventMap):void
+		{
+			_relaxedEventMap = value;
+		}
+		
+		override protected function mapInjections():void
+		{
+			super.mapInjections();
+			injector.mapValue(IRelaxedEventMap, relaxedEventMap);
+		}
+
 		
 	}
 }

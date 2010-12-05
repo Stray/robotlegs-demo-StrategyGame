@@ -7,6 +7,8 @@ import flash.events.IEventDispatcher;
 		function set surprisePercentageProbability(value:Number):void;
 		
 		function castSurpriseEvent():void;
+		
+		function castNormalEvent():void;
 		 
 		function get eventDispatcher():IEventDispatcher;
 		

@@ -40,8 +40,8 @@ package strategy.controller.surprises {
 		public function set surprisePercentageProbability(value:Number):void
 		{
 			_surprisePercentageProbability = value;
-		}
-
+		} 
+		
 		public function castSurpriseEvent():void
 		{
 			if(_surprisePercentageProbability/100 > Math.random())
@@ -53,7 +53,12 @@ package strategy.controller.surprises {
 				dispatchNormalEvent();
 			}
 		}
-        
+         
+        public function castNormalEvent():void
+		{
+			dispatchNormalEvent();
+		}	
+		
 		//
 
 		protected function dispatchNormalEvent():void

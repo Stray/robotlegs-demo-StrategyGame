@@ -27,6 +27,8 @@ package strategy.model
 		function get startingBudget():Number;
 		
 		function get stoneStockCapacity():Number;
+		
+		function get numberOfNormalDaysAtStart():uint;
 	}
 
 }

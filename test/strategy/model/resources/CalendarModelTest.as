@@ -78,5 +78,12 @@ package strategy.model.resources {
 			assertEquals('event is correct type', ResourceBoundaryEvent.BOUNDARY_BREACHED, e.type);
 		}
 		
+		public function test_daysPassed_returns_max_less_current_value():void {
+			instance.max = 30;
+			instance.currentValue = 27;
+			assertEquals("days passed returns correct value", 3, instance.daysPassed);
+		}
+		
+		
 	}
 }

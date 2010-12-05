@@ -7,6 +7,7 @@ package strategy.controller.commands
 	import strategy.model.markets.IStoneAvailabilityMarket;
 	import strategy.model.markets.IStonePriceMarket;
 	import strategy.model.resources.ILabourModel;
+	import strategy.controller.events.DayCycleEvent;
 	
 	public class ProcessDayStartCommand extends Command
 	{
@@ -29,6 +30,7 @@ package strategy.controller.commands
 		{
 			updateMarkets();
 			reduceTeamToCore();
+			dispatchDayStart();
 		}
 		
 		private function updateMarkets():void
@@ -42,6 +44,12 @@ package strategy.controller.commands
 		private function reduceTeamToCore():void
 		{
 			labour.setToMinimum();
+		}
+		
+		private function dispatchDayStart():void
+		{
+			var evt:DayCycleEvent = new DayCycleEvent(DayCycleEvent.NEW_DAY_STARTED);
+			dispatch(evt);
 		} 
 	}
 }

@@ -3,6 +3,8 @@ package strategy {
 	import strategy.PyramidGameView;
 	
 	import org.robotlegs.mvcs.Mediator;
+	import strategy.model.transactions.StoneTransactionVO;
+	import strategy.controller.events.StoneSupplyEvent;
 	
 	public class PyramidGameViewMediator extends Mediator {
 		
@@ -36,7 +38,7 @@ package strategy {
 		 */
 		override public function onRegister():void
 		{			
-			//eventMap.mapListener(eventDispatcher, EventType.EVENT_NAME, eventHandlerFunction);
+			eventMap.mapListener(eventDispatcher, StoneSupplyEvent.STONE_OFFERED, stoneOfferedHandler);
 		}
 		
 		//--------------------------------------------------------------------------
@@ -44,6 +46,12 @@ package strategy {
 		//  Event Handlers
 		//
 		//--------------------------------------------------------------------------
+		
+		private function stoneOfferedHandler(e:StoneSupplyEvent):void
+		{
+			var transactionVO:StoneTransactionVO = e.transactionVO;
+			view.showStoneOffer(transactionVO.price, transactionVO.quantity);
+		}
 		
 	}
 }

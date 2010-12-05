@@ -4,7 +4,7 @@ package strategy.model.resources {
 	
 	public interface ICalendarModel extends IGameFactorModel {
 		
-		function ICalendarModel():void;
+		function get daysPassed():uint;
 		
 	}
 }
