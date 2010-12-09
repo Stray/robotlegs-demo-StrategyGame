@@ -37,6 +37,8 @@ package strategy.model
 		function get minimumStonePrice():Number;
 		
 		function get maximumStonePrice():Number;
+		
+		function get stoneSurpriseEventProbability():Number;
 	}
 
 }

@@ -11,6 +11,7 @@ package strategy.controller.commands
 	import strategy.model.resources.IStoneSupplyModel;
 	import strategy.model.markets.IStoneAvailabilityMarket;
 	import strategy.model.markets.IStonePriceMarket;
+	import strategy.controller.surprises.IStoneSurpriseEventCaster;
 	
 	public class ConfigureModelsCommand extends Command
 	{
@@ -41,6 +42,9 @@ package strategy.controller.commands
 		[Inject]
 		public var stonePriceMarket:IStonePriceMarket;
 		
+		[Inject]
+		public var stoneSurpriseEventCaster:IStoneSurpriseEventCaster;
+		
 		override public function execute():void 
 		{
 			buildingProgress.max = gameConfig.targetBuildTotal;
@@ -70,6 +74,9 @@ package strategy.controller.commands
 			
 			stonePriceMarket.min = gameConfig.minimumStonePrice;
 			stonePriceMarket.max = gameConfig.maximumStonePrice;
+			
+			stoneSurpriseEventCaster.surprisePercentageProbability = gameConfig.stoneSurpriseEventProbability;
+			stoneSurpriseEventCaster.primeSurpriseEvents();
 			
 		} 
 	}

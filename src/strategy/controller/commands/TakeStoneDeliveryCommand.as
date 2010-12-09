@@ -6,6 +6,7 @@ package strategy.controller.commands
 	import strategy.controller.events.StoneSupplyEvent;
 	import strategy.model.resources.IStoneSupplyModel;
 	import strategy.model.transactions.StoneTransactionVO;
+	import strategy.controller.events.DayCycleEvent;
 	
 	public class TakeStoneDeliveryCommand extends Command
 	{
@@ -20,6 +21,7 @@ package strategy.controller.commands
 		
 		override public function execute():void 
 		{
+			trace("TakeStoneDeliveryCommand::execute()");
 			var transactionVO:StoneTransactionVO = stoneSupplyEvent.transactionVO;
 			var quantity:Number = transactionVO.quantity;
 			var price:Number = transactionVO.price;
@@ -29,6 +31,9 @@ package strategy.controller.commands
 			var cost:Number = quantity * price;
 			
 			cashModel.adjustByValue(-cost);
+			              
+			var evt:DayCycleEvent = new DayCycleEvent(DayCycleEvent.STONE_DELIVERY_COMPLETED);
+			dispatch(evt);
 		} 
 	}
 }

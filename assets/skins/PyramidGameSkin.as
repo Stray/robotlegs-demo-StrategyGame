@@ -16,7 +16,16 @@ package skins {
 		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_stone_delivery_normal")]
 		public static var StoneDeliveryNormalSkin:Class;
 		
+		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_stone_delivery_special")]
+		public static var StoneDeliveryDilemmaSkin:Class; 
+		
+		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_stone_delivery_no_stone")]
+		public static var StoneDeliveryNoStoneSkin:Class;
+		
 		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_team")]
 		public static var TeamStatusSkin:Class;
+		
+		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_daily_progress_summary")]
+		public static var DailyProgressSummarySkin:Class;
 	}
 }

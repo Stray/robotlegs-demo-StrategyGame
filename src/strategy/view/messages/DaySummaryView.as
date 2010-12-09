@@ -5,11 +5,13 @@ package strategy.view.messages {
 	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	import flash.display.SimpleButton;
+	import org.osflash.signalsv1.Signal;
 	
 	public class DaySummaryView extends Sprite {   
 		
 		protected var _quantityText:TextField;
 		protected var _costText:TextField;
+		protected var _submitSignal:Signal;
 		
 		//--------------------------------------------------------------------------
 		//
@@ -26,7 +28,13 @@ package strategy.view.messages {
 			init(PyramidGameSkin.DailyProgressSummarySkin);
 			_quantityText.text = blocksBuilt.toString();
 			_costText.text = wagesPaid.toString() + " coins";
+		} 
+		
+		public function get submitSignal():Signal
+		{
+			return _submitSignal ||= new Signal();
 		}
+		
 		
 		protected function init(skinClass:Class):void
 		{
@@ -41,7 +49,7 @@ package strategy.view.messages {
 		
 		protected function submitClickedHandler(e:MouseEvent):void
 		{
-			
+			submitSignal.dispatch();
 		}
 		
 		

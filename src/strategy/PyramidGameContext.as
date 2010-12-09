@@ -64,6 +64,7 @@ package strategy {
 			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, ConfigureModelsCommand, ContextEvent, true);
 			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, ProcessDayStartCommand, ContextEvent, true);
 			
+			
 			// Dependency injection for models, services and values
 			// injector.mapSingleton(whenAskedFor:Class, named:String = null);
 			// injector.mapClass(whenAskedFor:Class, instantiateClass:Class, named:String = null);

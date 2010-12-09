@@ -26,5 +26,24 @@ package com.newloop.roboteyes.core {
 			return _testApplication;
 		}
 		
+		public static function cleanUp():void
+		{
+			if(RobotEyesMaster.viewRoot == null)
+			{
+				return;
+			}
+			
+			var appToRemove:Sprite = RobotEyesMaster.viewRoot as Sprite;
+			RobotEyesMaster.viewRoot = null;         
+			
+			if((appToRemove.parent != null) && (appToRemove.parent.parent != null))
+			{
+				var grandParentView:DisplayObjectContainer = appToRemove.parent.parent as DisplayObjectContainer;
+				grandParentView.removeChild(appToRemove.parent);
+			}
+			
+			appToRemove = null;
+		}
+		
 	}
 }

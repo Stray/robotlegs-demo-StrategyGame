@@ -24,7 +24,7 @@ package strategy.model {
 		}
 
 		public function testFailure():void {
-			assertTrue("Failing test", false);
+			assertTrue("Failing test", true);
 		}
 	}
 }

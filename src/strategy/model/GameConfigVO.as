@@ -21,7 +21,9 @@ package strategy.model
 		protected var _minimumStoneAvailability:Number = 30;
 		protected var _maximumStoneAvailability:Number = 300;
 		protected var _minimumStonePrice:Number = 8;
-		protected var _maximumStonePrice:Number = 25;
+		protected var _maximumStonePrice:Number = 25; 
+		
+		protected var _stoneSurpriseEventProbability:Number = 15;
 		
 		public function GameConfigVO()
 		{
@@ -115,6 +117,11 @@ package strategy.model
 		public function get maximumStonePrice():Number
 		{
 			return _maximumStonePrice;
+		}
+		
+		public function get stoneSurpriseEventProbability():Number
+		{
+			return _stoneSurpriseEventProbability;
 		}		
 
 	}

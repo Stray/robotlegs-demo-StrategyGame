@@ -3,6 +3,7 @@ package {
 	import flash.display.DisplayObject;
 	import skins.PyramidGameSkin;
 	import strategy.PyramidGameContext;
+	import mx.core.SpriteAsset;
 	
 	public class PyramidGame extends Sprite {
         
@@ -11,5 +12,6 @@ package {
 		public function PyramidGame() {
 			_context = new PyramidGameContext(this);
 		}
-	}
+	} 
+	      
 }

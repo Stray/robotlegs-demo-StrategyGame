@@ -1,7 +1,5 @@
 package strategy.model.transactions {
 	
-	import flash.events.Event;
-	
 	public class StoneTransactionVO {
 		
 		/**

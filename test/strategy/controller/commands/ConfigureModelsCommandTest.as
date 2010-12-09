@@ -30,6 +30,7 @@ package strategy.controller.commands {
 	import strategy.model.resources.IStoneSupplyModel;
 	import strategy.model.markets.IStoneAvailabilityMarket;
 	import strategy.model.markets.IStonePriceMarket;
+	import strategy.controller.surprises.IStoneSurpriseEventCaster;
 
 	public class ConfigureModelsCommandTest extends TestCase {
 		private var instance:ConfigureModelsCommand;
@@ -39,7 +40,7 @@ package strategy.controller.commands {
 		}
 
 		override public function run():void{
-			var mockolateMaker:IEventDispatcher = prepare(IBuildingProgressModel, ICashModel, ICalendarModel, IGameConfig, ILabourPriceMarket, ILabourModel,IStoneSupplyModel, IStoneAvailabilityMarket, IStonePriceMarket);
+			var mockolateMaker:IEventDispatcher = prepare(IBuildingProgressModel, ICashModel, ICalendarModel, IGameConfig, ILabourPriceMarket, ILabourModel,IStoneSupplyModel, IStoneAvailabilityMarket, IStonePriceMarket, IStoneSurpriseEventCaster);
 			mockolateMaker.addEventListener(Event.COMPLETE, prepareCompleteHandler);
 		}
 
@@ -60,6 +61,7 @@ package strategy.controller.commands {
 			instance.stoneStock = nice(IStoneSupplyModel);
 			instance.stoneAvailabilityMarket = nice(IStoneAvailabilityMarket);
 			instance.stonePriceMarket = nice(IStonePriceMarket);
+			instance.stoneSurpriseEventCaster = nice(IStoneSurpriseEventCaster);
 		}
 
 		override protected function tearDown():void {

@@ -7,18 +7,19 @@ package {
 	 */
 
 	import asunit.framework.TestSuite;
-	import gameplay.MinimumUnwinnableGameTest;
 	import strategy.controller.commands.ConfigureModelsCommandTest;
 	import strategy.controller.commands.OfferStoneCommandTest;
 	import strategy.controller.commands.ProcessDayEndCommandTest;
 	import strategy.controller.commands.ProcessDayStartCommandTest;
 	import strategy.controller.commands.StartViewCommandTest;
 	import strategy.controller.commands.TakeStoneDeliveryCommandTest;
+	import strategy.controller.events.DailyProgressEventTest;
 	import strategy.controller.events.DayCycleEventTest;
-	import strategy.controller.events.MarketEventTest;
+	import strategy.controller.events.LabourSupplyEventTest;
 	import strategy.controller.events.ResourceBoundaryEventTest;
 	import strategy.controller.events.ResourceStatusEventTest;
 	import strategy.controller.events.StoneSupplyEventTest;
+	import strategy.controller.surprises.LabourSurpriseEventCasterTest;
 	import strategy.controller.surprises.StoneSurpriseEventCasterTest;
 	import strategy.model.base.GameFactorModelTest;
 	import strategy.model.base.MarketVariationModelTest;
@@ -38,8 +39,13 @@ package {
 	import strategy.PyramidGameContextTest;
 	import strategy.PyramidGameViewMediatorTest;
 	import strategy.PyramidGameViewTest;
+	import strategy.view.decisions.NoStoneViewMediatorTest;
+	import strategy.view.decisions.NoStoneViewTest;
+	import strategy.view.decisions.StoneDilemmaViewTest;
 	import strategy.view.decisions.StoneOfferViewMediatorTest;
 	import strategy.view.decisions.StoneOfferViewTest;
+	import strategy.view.messages.DaySummaryViewMediatorTest;
+	import strategy.view.messages.DaySummaryViewTest;
 	import strategy.view.status.CalendarStatusViewMediatorTest;
 	import strategy.view.status.CalendarStatusViewTest;
 	import strategy.view.status.CashStatusViewMediatorTest;
@@ -57,23 +63,24 @@ package {
 	import strategy.view.WorkerViewTest;
 	import strategy.xendtoendtests.APyramidGameEndToEndTest;
 	import strategy.xendtoendtests.BStartingConditionsTest;
-	import strategy.xendtoendtests.CFirstStoneSupplyOfferTest;
+	import strategy.xendtoendtests.CFirstDayTest;
 
 	public class AllTests extends TestSuite {
 
 		public function AllTests() {
-			addTest(new gameplay.MinimumUnwinnableGameTest());
 			addTest(new strategy.controller.commands.ConfigureModelsCommandTest());
 			addTest(new strategy.controller.commands.OfferStoneCommandTest());
 			addTest(new strategy.controller.commands.ProcessDayEndCommandTest());
 			addTest(new strategy.controller.commands.ProcessDayStartCommandTest());
 			addTest(new strategy.controller.commands.StartViewCommandTest());
 			addTest(new strategy.controller.commands.TakeStoneDeliveryCommandTest());
+			addTest(new strategy.controller.events.DailyProgressEventTest());
 			addTest(new strategy.controller.events.DayCycleEventTest());
-			addTest(new strategy.controller.events.MarketEventTest());
+			addTest(new strategy.controller.events.LabourSupplyEventTest());
 			addTest(new strategy.controller.events.ResourceBoundaryEventTest());
 			addTest(new strategy.controller.events.ResourceStatusEventTest());
 			addTest(new strategy.controller.events.StoneSupplyEventTest());
+			addTest(new strategy.controller.surprises.LabourSurpriseEventCasterTest());
 			addTest(new strategy.controller.surprises.StoneSurpriseEventCasterTest());
 			addTest(new strategy.model.base.GameFactorModelTest());
 			addTest(new strategy.model.base.MarketVariationModelTest());
@@ -93,8 +100,13 @@ package {
 			addTest(new strategy.PyramidGameContextTest());
 			addTest(new strategy.PyramidGameViewMediatorTest());
 			addTest(new strategy.PyramidGameViewTest());
+			addTest(new strategy.view.decisions.NoStoneViewMediatorTest());
+			addTest(new strategy.view.decisions.NoStoneViewTest());
+			addTest(new strategy.view.decisions.StoneDilemmaViewTest());
 			addTest(new strategy.view.decisions.StoneOfferViewMediatorTest());
 			addTest(new strategy.view.decisions.StoneOfferViewTest());
+			addTest(new strategy.view.messages.DaySummaryViewMediatorTest());
+			addTest(new strategy.view.messages.DaySummaryViewTest());
 			addTest(new strategy.view.status.CalendarStatusViewMediatorTest());
 			addTest(new strategy.view.status.CalendarStatusViewTest());
 			addTest(new strategy.view.status.CashStatusViewMediatorTest());
@@ -112,7 +124,7 @@ package {
 			addTest(new strategy.view.WorkerViewTest());
 			addTest(new strategy.xendtoendtests.APyramidGameEndToEndTest());
 			addTest(new strategy.xendtoendtests.BStartingConditionsTest());
-			addTest(new strategy.xendtoendtests.CFirstStoneSupplyOfferTest());
+			addTest(new strategy.xendtoendtests.CFirstDayTest());
 		}
 	}
 }

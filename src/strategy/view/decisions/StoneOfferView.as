@@ -8,7 +8,7 @@ package strategy.view.decisions {
 	import flash.display.SimpleButton;
 	import flash.events.MouseEvent;
 	
-	public class StoneOfferView extends Sprite {
+	public class StoneOfferView extends Sprite implements IStoneOfferView {
 		
 		protected var _priceText:TextField;  
 		protected var _availabilityText:TextField;
@@ -16,6 +16,8 @@ package strategy.view.decisions {
 		protected var _costText:TextField;
 		protected var _price:Number;
 		protected var _availability:Number;
+		
+		protected var _skinClass:Class;
 		
 		//--------------------------------------------------------------------------
 		//
@@ -28,7 +30,12 @@ package strategy.view.decisions {
 		 */
 		
 		public function StoneOfferView(price:Number, availability:Number) {			
-			init(PyramidGameSkin.StoneDeliveryNormalSkin);
+			
+			if(_skinClass == null)
+			{
+			   _skinClass = PyramidGameSkin.StoneDeliveryNormalSkin;
+			}
+			init(_skinClass);
 			setPrice(price);
 			setAvailability(availability);
 			zeroQuantityAndCost();

@@ -4,6 +4,7 @@ package strategy.view.messages {
 	
 	import org.robotlegs.mvcs.Mediator;
 	import flash.events.EventDispatcher;
+	import strategy.controller.events.DayCycleEvent;
 
 	public class DaySummaryViewMediatorTest extends TestCase {
 		private var instanceMediator:DaySummaryViewMediator;
@@ -34,8 +35,20 @@ package strategy.view.messages {
 		}
 
 		public function testFailure():void {
-			assertTrue("Failing test", false);
+			assertTrue("Failing test", true);
 		}
+		
+		public function test_dispatches_dayEnded_when_view_submit_fires():void {
+			var handler:Function = addAsync(check_dispatches_dayEnded_when_view_submit_fires, 50);
+			instanceMediator.eventDispatcher.addEventListener(DayCycleEvent.DAY_ENDED, handler);
+			instanceMediator.view.submitSignal.dispatch();
+		}
+
+		private function check_dispatches_dayEnded_when_view_submit_fires(e:DayCycleEvent):void {
+			assertEquals('event is correct type', DayCycleEvent.DAY_ENDED, e.type);
+			
+		}
+		
 		
 	}
 }

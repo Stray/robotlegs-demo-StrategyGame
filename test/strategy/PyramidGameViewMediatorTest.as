@@ -24,6 +24,9 @@ package strategy {
 	import flash.events.IEventDispatcher;
 	import strategy.controller.events.StoneSupplyEvent;
 	import strategy.model.transactions.StoneTransactionVO;
+	import strategy.controller.events.DayCycleEvent;
+	import strategy.controller.events.DailyProgressEvent;
+	import strategy.model.transactions.DailyProductivityVO;
 
 	public class PyramidGameViewMediatorTest extends TestCase {
 		private var instanceMediator:PyramidGameViewMediator;
@@ -74,8 +77,44 @@ package strategy {
 			var evt:StoneSupplyEvent = new StoneSupplyEvent(StoneSupplyEvent.STONE_OFFERED, '', transactionVO);
 			instanceMediator.eventDispatcher.dispatchEvent(evt);
 			verify(instanceMediator.view).method('showStoneOffer').args(equalTo(price), equalTo(quantity));
+		} 
+		
+		public function test_stoneDilemma_passes_values_to_view():void {                   
+			var quantity:Number = 523;
+			var price:Number = 23;
+			var message:String = "test message";
+			var transactionVO:StoneTransactionVO = new StoneTransactionVO(quantity, price);
+			var evt:StoneSupplyEvent = new StoneSupplyEvent(StoneSupplyEvent.STONE_DILEMMA, message, transactionVO);
+			instanceMediator.eventDispatcher.dispatchEvent(evt);
+			verify(instanceMediator.view).method('showStoneDilemma').args(equalTo(price), equalTo(quantity), equalTo(message));
 		}
 		
+		public function test_noStoneOffered_passes_values_to_view():void {                   
+			var message:String = "test message";
+			var evt:StoneSupplyEvent = new StoneSupplyEvent(StoneSupplyEvent.NO_STONE_OFFERED, message, null);
+			instanceMediator.eventDispatcher.dispatchEvent(evt);
+			verify(instanceMediator.view).method('showNoStoneOffer').args(equalTo(message));
+		}
 		
+		public function test_stoneDeliveryCompleted_removes_stone_offer_from_view():void {
+			var evt:DayCycleEvent = new DayCycleEvent(DayCycleEvent.STONE_DELIVERY_COMPLETED);
+			instanceMediator.eventDispatcher.dispatchEvent(evt);
+			verify(instanceMediator.view).method('removeStoneOffer').noArgs();
+		}
+		
+		public function test_daySummary_passes_values_to_view():void {
+			var blocksBuilt:Number = 352;
+			var wagesPaid:Number = 345;
+			var productivityVO:DailyProductivityVO = new DailyProductivityVO(blocksBuilt, wagesPaid);
+			var evt:DailyProgressEvent = new DailyProgressEvent(DailyProgressEvent.PROGRESS_CALCULATED, productivityVO);
+			instanceMediator.eventDispatcher.dispatchEvent(evt);
+			verify(instanceMediator.view).method("showEndOfDaySummary").args(equalTo(blocksBuilt), equalTo(wagesPaid));
+		}
+		
+		public function test_dayEnded_removes_daySummary_from_view():void {
+			var evt:DayCycleEvent = new DayCycleEvent(DayCycleEvent.DAY_ENDED);
+			instanceMediator.eventDispatcher.dispatchEvent(evt);
+			verify(instanceMediator.view).method('removeEndOfDaySummary').noArgs();
+		}
 	}
 }

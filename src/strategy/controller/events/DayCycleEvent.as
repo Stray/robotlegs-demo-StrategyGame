@@ -8,7 +8,10 @@ package strategy.controller.events {
 		// CLASS CONSTANTS
 		//--------------------------------------
 		
-		public static const NEW_DAY_STARTED:String = "DayCycleEvent.newDayStarted";                    
+		public static const NEW_DAY_STARTED:String = "DayCycleEvent.newDayStarted";
+		public static const STONE_DELIVERY_COMPLETED:String = "DayCycleEvent.stoneDeliveryCompleted";
+		public static const PROGRESS_CALCULATED:String = "DayCycleEvent.progressCalculated";
+		public static const DAY_ENDED:String = "DayCycleEvent.dayEnded";                    
 		
 		//--------------------------------------
 		//  CONSTRUCTOR

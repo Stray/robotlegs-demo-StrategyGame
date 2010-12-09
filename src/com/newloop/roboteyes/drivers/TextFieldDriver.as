@@ -29,8 +29,11 @@ package com.newloop.roboteyes.drivers {
 		}
 		
 		public function checkText(testText:String):Boolean{
-			trace("Looking for: " + testText + "  found " + _textField.text)
 			return _textField.text == testText;
+		}
+		
+		public function getText():String {
+			return _textField.text;
 		}
 		
 		public function textIs(testText:String):Boolean{

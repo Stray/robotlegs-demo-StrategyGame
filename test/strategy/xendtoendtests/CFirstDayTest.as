@@ -28,6 +28,7 @@ package strategy.xendtoendtests {
 	import strategy.model.FirstGameConfig;
 	import flash.display.SimpleButton;
 	import strategy.view.messages.DaySummaryView;
+	import flash.display.DisplayObjectContainer;
 
 	public class CFirstDayTest extends TestCase {
 		
@@ -50,6 +51,10 @@ package strategy.xendtoendtests {
 		
 		override protected function tearDown():void {
 			super.tearDown();
+		}
+		
+		override protected function cleanUp():void {
+			RobotEyes.cleanUp();
 		}
 		
 		public function test_shows_normal_stone_delivery_option_screen():void {

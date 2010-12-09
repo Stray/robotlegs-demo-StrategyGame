@@ -10,7 +10,9 @@ package strategy.view.messages {
 	public class DaySummaryViewTest extends TestCase {
 		private var instance:DaySummaryView;
 		private const BLOCKS_BUILT:Number = 345;
-		private const WAGES_PAID:Number = 250;
+		private const WAGES_PAID:Number = 250; 
+		
+		private var _submitReceived:Boolean;
 
 		public function DaySummaryViewTest(methodName:String=null) {
 			super(methodName)
@@ -45,6 +47,17 @@ package strategy.view.messages {
 		public function test_sets_quantity():void {
 			assertEquals("Set quantity updates text", BLOCKS_BUILT.toString(), quantityField.text);
 		}
+		
+		public function test_pressing_submit_dispatches_signal():void {
+			_submitReceived = false;
+			instance.submitSignal.add(submitSignalHandler);
+			UnitHelpers.clickItem(submitButton);
+			assertTrue("Submit signal dispatched", _submitReceived);
+		} 
+		
+		private function submitSignalHandler():void {
+			_submitReceived = true;
+		}                                           
 		
 		private function get quantityField():TextField {
 			return UnitHelpers.findNamedInstance(instance, 'quantity_txt', 3) as TextField;

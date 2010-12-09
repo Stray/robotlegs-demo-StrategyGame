@@ -25,6 +25,8 @@ package strategy.controller.commands {
 	
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
+	import flash.events.EventDispatcher;
+	import strategy.controller.events.DayCycleEvent;
 
 	public class TakeStoneDeliveryCommandTest extends TestCase {
 		private var instance:TakeStoneDeliveryCommand;
@@ -48,7 +50,8 @@ package strategy.controller.commands {
 
 		override protected function setUp():void {
 			super.setUp();
-			instance = new TakeStoneDeliveryCommand();                                                            
+			instance = new TakeStoneDeliveryCommand(); 
+			instance.eventDispatcher = new EventDispatcher();                                                           
 			var transactionVO:StoneTransactionVO = new StoneTransactionVO(QUANTITY, PRICE);
 			instance.stoneSupplyEvent = new StoneSupplyEvent(StoneSupplyEvent.STONE_PURCHASED, '', transactionVO);
 			instance.cashModel = nice(ICashModel);
@@ -85,6 +88,18 @@ package strategy.controller.commands {
 		public function test_execute_updates_stone_supply():void {
 			instance.execute();
 			verify(instance.stoneSupplyModel).method("adjustByValue").args(equalTo(QUANTITY));
+		}
+		
+		public function test_execute_fires_stone_delivery_completed_event():void {
+			var handler:Function = addAsync(check_execute_fires_stone_delivery_completed_event, 50);
+			instance.eventDispatcher.addEventListener(DayCycleEvent.STONE_DELIVERY_COMPLETED, handler);
+			
+			instance.execute();
+		}
+
+		private function check_execute_fires_stone_delivery_completed_event(e:DayCycleEvent):void {
+			assertEquals('event is correct type', DayCycleEvent.STONE_DELIVERY_COMPLETED, e.type);
+			
 		}
 		
 		

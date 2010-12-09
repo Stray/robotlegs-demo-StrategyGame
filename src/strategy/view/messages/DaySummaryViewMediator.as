@@ -3,8 +3,10 @@ package strategy.view.messages {
 	import strategy.view.messages.DaySummaryView;
 	
 	import org.robotlegs.mvcs.Mediator;
+	import org.robotlegs.mvcs.SignalMediator;
+	import strategy.controller.events.DayCycleEvent;
 	
-	public class DaySummaryViewMediator extends Mediator {
+	public class DaySummaryViewMediator extends SignalMediator {
 		
 		// declare the view to be injected
 		[Inject]
@@ -36,7 +38,7 @@ package strategy.view.messages {
 		 */
 		override public function onRegister():void
 		{			
-			//eventMap.mapListener(eventDispatcher, EventType.EVENT_NAME, eventHandlerFunction);
+			addToSignal(view.submitSignal, submitHandler);
 		}
 		
 		//--------------------------------------------------------------------------
@@ -45,5 +47,10 @@ package strategy.view.messages {
 		//
 		//--------------------------------------------------------------------------
 		
+		private function submitHandler():void
+		{
+			var evt:DayCycleEvent = new DayCycleEvent(DayCycleEvent.DAY_ENDED);
+			dispatch(evt);
+		}
 	}
 }

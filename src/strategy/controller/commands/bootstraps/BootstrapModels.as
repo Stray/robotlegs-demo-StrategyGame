@@ -23,6 +23,8 @@ package strategy.controller.commands.bootstraps
 	import strategy.model.markets.StoneAvailabilityMarket;
 	import strategy.model.markets.IStonePriceMarket;
 	import strategy.model.markets.StonePriceMarket;
+	import strategy.controller.surprises.ILabourSurpriseEventCaster;
+	import strategy.controller.surprises.LabourSurpriseEventCaster;
 
 	public class BootstrapModels extends Command
 	{
@@ -42,9 +44,11 @@ package strategy.controller.commands.bootstraps
 			injector.mapSingletonOf(ILabourAvailabilityMarket, LabourAvailabilityMarket);
 			
 			injector.mapSingletonOf(IStoneSupplyModel, StoneSupplyModel);
-			injector.mapSingletonOf(IStoneSurpriseEventCaster, StoneSurpriseEventCaster);
 			injector.mapSingletonOf(IStoneAvailabilityMarket, StoneAvailabilityMarket);
 			injector.mapSingletonOf(IStonePriceMarket, StonePriceMarket);
+			injector.mapSingletonOf(IStoneSurpriseEventCaster, StoneSurpriseEventCaster);
+			
+			injector.mapSingletonOf(ILabourSurpriseEventCaster, LabourSurpriseEventCaster);
 		}
 	
 	} 

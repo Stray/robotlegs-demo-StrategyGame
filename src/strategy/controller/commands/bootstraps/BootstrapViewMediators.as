@@ -15,6 +15,11 @@ package strategy.controller.commands.bootstraps
 	import strategy.view.status.StoneStockStatusViewMediator;
 	import strategy.view.status.TeamStatusView;
 	import strategy.view.status.TeamStatusViewMediator;
+	import strategy.view.messages.DaySummaryView;
+	import strategy.view.messages.DaySummaryViewMediator;
+	import strategy.view.decisions.StoneDilemmaView;
+	import strategy.view.decisions.NoStoneView;
+	import strategy.view.decisions.NoStoneViewMediator;
 
 
 	public class BootstrapViewMediators extends Command
@@ -29,6 +34,9 @@ package strategy.controller.commands.bootstraps
 			mediatorMap.mapView(TeamStatusView, TeamStatusViewMediator);
 			mediatorMap.mapView(CalendarStatusView, CalendarStatusViewMediator);
 			mediatorMap.mapView(StoneOfferView, StoneOfferViewMediator);
+			mediatorMap.mapView(StoneDilemmaView, StoneOfferViewMediator, StoneOfferView);
+			mediatorMap.mapView(NoStoneView, NoStoneViewMediator);
+			mediatorMap.mapView(DaySummaryView, DaySummaryViewMediator);
 		}
 	
 	}

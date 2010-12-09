@@ -53,6 +53,11 @@ package com.newloop.roboteyes.core {
 		public static function set viewRoot(_viewRoot:DisplayObjectContainer):void
 		{
 			_robotEyesChief.viewRoot = _viewRoot;
+		}
+		
+		public static function get viewRoot():DisplayObjectContainer
+		{
+		    return _robotEyesChief.viewRoot;
 		} 
 		
 		//--------------------------------------

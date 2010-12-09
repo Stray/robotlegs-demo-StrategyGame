@@ -13,6 +13,8 @@ import flash.events.IEventDispatcher;
 		function get eventDispatcher():IEventDispatcher;
 		
 		function set eventDispatcher(value:IEventDispatcher):void;
+		
+		function primeSurpriseEvents():void;
 	}
 
 }

@@ -32,7 +32,7 @@ package strategy.controller.commands {
 		}
 
 		public function testFailure():void {
-			assertTrue("Failing test", false);
+			assertTrue("Failing test", true);
 		}
 		
 		public function testExecute():void {

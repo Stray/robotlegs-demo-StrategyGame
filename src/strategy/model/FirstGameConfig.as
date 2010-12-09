@@ -19,10 +19,12 @@ package strategy.model {
 			
 			_numberOfNormalDaysAtStart = 3;
 			
-			_minimumStoneAvailability = 100;
-			_maximumStoneAvailability = 300;
+			_minimumStoneAvailability = 300;
+			_maximumStoneAvailability = 350;
 			_minimumStonePrice = 8;
 			_maximumStonePrice = 25;
+			
+			_stoneSurpriseEventProbability = 15;
 		} 
 	}
 }

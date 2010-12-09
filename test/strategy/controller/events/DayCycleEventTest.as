@@ -38,6 +38,9 @@ package strategy.controller.events {
 		
 		public function testEventStrings():void{
 		   	assertTrue("DayCycleEvent.NEW_DAY_STARTED has correct string", DayCycleEvent.NEW_DAY_STARTED == 'DayCycleEvent.newDayStarted');
+		   	assertTrue("DayCycleEvent.STONE_DELIVERY_COMPLETED has correct string", DayCycleEvent.STONE_DELIVERY_COMPLETED == 'DayCycleEvent.stoneDeliveryCompleted');
+		   	assertTrue("DayCycleEvent.PROGRESS_CALCULATED has correct string", DayCycleEvent.PROGRESS_CALCULATED == 'DayCycleEvent.progressCalculated');
+		   	assertTrue("DayCycleEvent.DAY_ENDED has correct string", DayCycleEvent.DAY_ENDED == 'DayCycleEvent.dayEnded');
 		}
 
 		public function testFailure():void {

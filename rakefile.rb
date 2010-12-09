@@ -14,6 +14,7 @@ project_model :model do |m|
   m.width                   = 970
   m.height                  = 550
   m.keep_as3_metadata       = 'Inject'
+  # m.keep_as3_metadata       = 'PostConstruct'
   # m.use_fdb               = true
   # m.use_fcsh              = true
   # m.preprocessor          = 'cpp -D__DEBUG=false -P - - | tail -c +3'
@@ -25,8 +26,6 @@ project_model :model do |m|
   # m.test_dir              = 'test'
   # m.doc_dir               = 'doc'
   # m.asset_dir             = 'assets'
-  # m.compiler_gem_name     = 'sprout-flex4sdk-tool'
-  # m.compiler_gem_version  = '>= 4.0.0'
   # m.source_path           << "#{m.lib_dir}/somelib"
   m.compiler_gem_name     = 'sprout-flex4sdk-tool'
   m.compiler_gem_version  = '>= 4.0.0'
@@ -46,7 +45,6 @@ def populate_test_task(t)
   t.source_path << "support"
   t.gem_name     = 'sprout-flex4sdk-tool'
   t.gem_version  = '>= 4.0.0'
-  t.prepended_args = '-static-link-runtime-shared-libraries=true'
 end
 
 desc 'Compile and debug the application'
