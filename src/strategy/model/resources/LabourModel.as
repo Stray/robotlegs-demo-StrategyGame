@@ -7,6 +7,8 @@ package strategy.model.resources {
 	import strategy.model.base.MarketVariationModel;
 	import strategy.model.markets.ILabourPriceMarket;
 	import strategy.controller.events.ResourceStatusEvent;
+	import strategy.model.resources.TempWorker;
+	import strategy.model.transactions.WorkerProductivityVO;
 	
 	public class LabourModel extends MarketVariationModel implements ILabourModel {
 		
@@ -32,8 +34,36 @@ package strategy.model.resources {
 			if(value != team.length)
 			{
 				adjustTeamSize(value);
-				var evt:ResourceStatusEvent = new ResourceStatusEvent(ResourceStatusEvent.TEAM_SIZE_UPDATED, value, 0);
-				dispatch(evt);
+				dispatchTeamUpdate();
+		    }
+		}
+		
+		public function appendWorkers(workers:Vector.<WorkerProductivityVO>):void
+		{
+			if((workers == null )||(workers.length==0))
+			{
+				return;
+			}
+			
+			var iLength:uint = workers.length;
+			for (var i:int = 0; i < iLength; i++)
+			{
+				var nextWorkerProductivty:WorkerProductivityVO = workers[i];
+				var tempWorker:IWorker = createTempWorker(nextWorkerProductivty);
+				team.push(tempWorker);
+			}
+			dispatchTeamUpdate();
+		}
+		
+		public function removeTempWorkers():void
+		{
+			var iLength:uint = team.length;
+			for (var i:int = iLength-1; i >= 0; i--)
+			{
+				if(team[i] is TempWorker)
+				{
+					team.pop();
+				}
 			}
 		}
 
@@ -44,6 +74,7 @@ package strategy.model.resources {
 			for (var i:int = 0; i < iLength; i++)
 			{
 				var nextWorker:IWorker = team[i];
+				trace("adding blocks from: " + nextWorker + " -> " + nextWorker.currentValue);
 				totalBuilt += nextWorker.currentValue;
 			}
 			
@@ -73,6 +104,7 @@ package strategy.model.resources {
 			for (var i:int = 0; i < iLength; i++)
 			{
 			    var nextWorker:IWorker = team[i];
+				trace("adding pay for: " + nextWorker + " -> " + nextWorker.pay);
 		   		totalCost += nextWorker.pay;
 			}
 			
@@ -108,11 +140,27 @@ package strategy.model.resources {
 			return worker;
 		}
 		
+		protected function createTempWorker(workerVO:WorkerProductivityVO):IWorker
+		{
+			var worker:IWorker = new TempWorker();
+			worker.max = workerVO.stonesBuilt + this.volatility;
+			worker.min = workerVO.stonesBuilt - this.volatility;
+			worker.pay = workerVO.wagesPaid;
+			
+			return worker;
+		}
+		
 		protected function configureWorker(worker:IWorker):void
 		{
 			worker.max = this.max;
 			worker.min = this.min;
 			worker.volatility = this.volatility;
+		}
+		
+		protected function dispatchTeamUpdate():void
+		{
+			var evt:ResourceStatusEvent = new ResourceStatusEvent(ResourceStatusEvent.TEAM_SIZE_UPDATED, team.length, 0);
+			dispatch(evt);
 		}   
 		
 		                     

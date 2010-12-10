@@ -3,6 +3,7 @@ package strategy.model.resources {
 	import strategy.model.resources.IWorker;
 	import strategy.model.base.IMarketVariationModel;
 	import strategy.model.markets.ILabourPriceMarket;
+	import strategy.model.transactions.WorkerProductivityVO;
 	
 	public interface ILabourModel extends IMarketVariationModel {
 				
@@ -15,5 +16,9 @@ package strategy.model.resources {
 		function get teamCost():Number;
 		
 		function set labourPriceMarket(value:ILabourPriceMarket):void;
+		
+		function appendWorkers(workers:Vector.<WorkerProductivityVO>):void;
+		
+		function removeTempWorkers():void;
 	}
 }

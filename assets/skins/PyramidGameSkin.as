@@ -20,12 +20,27 @@ package skins {
 		public static var StoneDeliveryDilemmaSkin:Class; 
 		
 		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_stone_delivery_no_stone")]
-		public static var StoneDeliveryNoStoneSkin:Class;
+		public static var StoneDeliveryNoStoneSkin:Class; 
+		
+		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_stone_theft")]
+		public static var StoneStockCheckSkin:Class;
 		
 		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_team")]
 		public static var TeamStatusSkin:Class;
 		
 		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_daily_progress_summary")]
-		public static var DailyProgressSummarySkin:Class;
+		public static var DailyProgressSummarySkin:Class; 
+		
+		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_worker_for_hire")]
+		public static var WorkerForHireSkin:Class; 
+		
+		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_labour_offer")]
+		public static var LabourOfferSkin:Class;
+		
+		[Embed(source="PyramidGame/GameSkin.swf", symbol="temp_bg")]
+		public static var BackgroundSkin:Class;   
+		
+		[Embed(source="PyramidGame/GameSkin.swf", symbol="temp_foreground")]
+		public static var ForegroundSkin:Class;
 	}
 }

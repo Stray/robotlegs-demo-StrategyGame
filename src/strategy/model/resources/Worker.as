@@ -17,7 +17,7 @@ package strategy.model.resources {
 			createEnergyModel();
 		}
 		
-		private function createEnergyModel():void
+		protected function createEnergyModel():void
 		{
 			_energyModel = new MarketVariationModel();
 			_energyModel.max = DEFAULT_MAX_ENERGY_LEVEL;
@@ -32,7 +32,7 @@ package strategy.model.resources {
 			newValue = Math.max(min, newValue);
 			newValue = Math.min(max, newValue);
 			newValue = newValue * _energyModel.currentValue / 100;
-			currentValue = newValue;
+			currentValue = Math.round(newValue);
 		}
 		
 		//---------------------------------------

@@ -11,8 +11,8 @@ project_model :model do |m|
   m.project_name            = 'PyramidGame'
   m.language                = 'as3'
   m.background_color        = '#FFFFFF'
-  m.width                   = 970
-  m.height                  = 550
+  m.width                   = 800
+  m.height                  = 384
   m.keep_as3_metadata       = 'Inject'
   # m.keep_as3_metadata       = 'PostConstruct'
   # m.use_fdb               = true

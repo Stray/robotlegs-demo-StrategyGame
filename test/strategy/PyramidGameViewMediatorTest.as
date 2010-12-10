@@ -27,6 +27,9 @@ package strategy {
 	import strategy.controller.events.DayCycleEvent;
 	import strategy.controller.events.DailyProgressEvent;
 	import strategy.model.transactions.DailyProductivityVO;
+	import strategy.model.transactions.WorkerProductivityVO;
+	import strategy.controller.events.LabourSupplyEvent;
+	import strategy.controller.events.StoneStockCheckEvent;
 
 	public class PyramidGameViewMediatorTest extends TestCase {
 		private var instanceMediator:PyramidGameViewMediator;
@@ -116,5 +119,32 @@ package strategy {
 			instanceMediator.eventDispatcher.dispatchEvent(evt);
 			verify(instanceMediator.view).method('removeEndOfDaySummary').noArgs();
 		}
+		
+		public function test_workersOffered_passes_values_to_view():void {
+			var workers:Vector.<WorkerProductivityVO> = new Vector.<WorkerProductivityVO>();
+			var evt:LabourSupplyEvent = new LabourSupplyEvent(LabourSupplyEvent.WORKERS_OFFERED, workers);
+			instanceMediator.eventDispatcher.dispatchEvent(evt);
+			verify(instanceMediator.view).method("showLabourOffer").args(equalTo(workers));
+		}
+
+		public function test_labourHireCompleted_removes_daySummary_from_view():void {
+			var evt:DayCycleEvent = new DayCycleEvent(DayCycleEvent.LABOUR_HIRE_COMPLETED);
+			instanceMediator.eventDispatcher.dispatchEvent(evt);
+			verify(instanceMediator.view).method('removeLabourOffer').noArgs();
+		}
+		
+		public function test_stockStolen_passes_values_to_view():void {                   
+			var quantity:Number = 523;
+			var evt:StoneStockCheckEvent = new StoneStockCheckEvent(StoneStockCheckEvent.STOCK_STOLEN , quantity);
+			instanceMediator.eventDispatcher.dispatchEvent(evt);
+			verify(instanceMediator.view).method('showStoneStockCheck').args(equalTo(quantity));
+		}
+		
+		public function test_stockCheckCompleted_removes_stoneStockCheck_from_view():void {
+			var evt:DayCycleEvent = new DayCycleEvent(DayCycleEvent.STONE_STOCK_CHECKED);
+			instanceMediator.eventDispatcher.dispatchEvent(evt);
+			verify(instanceMediator.view).method('removeStoneStockCheck').noArgs();
+		}
+		
 	}
 }

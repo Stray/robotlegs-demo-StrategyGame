@@ -12,6 +12,7 @@ package strategy.controller.commands
 	import strategy.model.markets.IStoneAvailabilityMarket;
 	import strategy.model.markets.IStonePriceMarket;
 	import strategy.controller.surprises.IStoneSurpriseEventCaster;
+	import strategy.model.markets.ILabourAvailabilityMarket;
 	
 	public class ConfigureModelsCommand extends Command
 	{
@@ -45,6 +46,9 @@ package strategy.controller.commands
 		[Inject]
 		public var stoneSurpriseEventCaster:IStoneSurpriseEventCaster;
 		
+		[Inject]
+		public var labourAvailabilityMarket:ILabourAvailabilityMarket;
+		
 		override public function execute():void 
 		{
 			buildingProgress.max = gameConfig.targetBuildTotal;
@@ -60,6 +64,9 @@ package strategy.controller.commands
 			labour.min = gameConfig.minimumWorkerProductivity;
 			labour.max = gameConfig.maximumWorkerProductivity;
 			labour.teamSize = gameConfig.minimumTeamSize; 
+			
+			labourAvailabilityMarket.min = 1;
+			labourAvailabilityMarket.max = 3;
 			
 			cash.min = 0;
 			cash.currentValue = gameConfig.startingBudget;

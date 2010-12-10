@@ -9,6 +9,10 @@ package strategy {
 	import strategy.view.messages.DaySummaryView;
 	import strategy.view.decisions.StoneDilemmaView;
 	import strategy.view.decisions.NoStoneView;
+	import strategy.model.transactions.WorkerProductivityVO;
+	import strategy.view.decisions.LabourOfferView;
+	import strategy.view.decisions.WorkerForHireView;
+	import strategy.view.messages.StoneStockCheckView;
 
 	public class PyramidGameViewTest extends TestCase {
 		private var instance:PyramidGameView;
@@ -152,7 +156,38 @@ package strategy {
 			assertFalse("no instance of NoStoneOfferView in the view", containsA(NoStoneView));
 		}
 		
-		 
+		public function test_showLabourOffer_adds_view_with_correct_values():void {
+			var childrenBefore:uint = instance.numChildren;
+			var workers:Vector.<WorkerProductivityVO> = new Vector.<WorkerProductivityVO>();
+			workers.push(new WorkerProductivityVO(100,100));
+			instance.showLabourOffer(workers);
+			assertEquals("Has added one more child", childrenBefore+1, instance.numChildren);
+			var topItem:Sprite = instance.getChildAt(childrenBefore) as Sprite; 
+			assertTrue("Has added the correct type of view", topItem is LabourOfferView);
+			assertEquals("Correct number of workers added", 1, UnitHelpers.countInstancesOf(topItem, WorkerForHireView));
+		}
 		
+		public function test_removeLabourOffer_removes_from_screen_if_present():void {
+			instance.showLabourOffer(null);
+			instance.removeLabourOffer();
+			assertFalse("no instance of LabourOfferView in the view", containsA(LabourOfferView));
+		}
+		
+		public function test_showStoneStockCheck_adds_view_with_correct_values():void {
+			var childrenBefore:uint = instance.numChildren;
+			var quantity:Number = 99;
+		    instance.showStoneStockCheck(quantity);
+			assertEquals("Has added one more child", childrenBefore+1, instance.numChildren);
+			var topItem:Sprite = instance.getChildAt(childrenBefore) as Sprite;
+			assertTrue("Has added the correct type of view", topItem is StoneStockCheckView);
+			var quantityField:TextField = UnitHelpers.findNamedInstance(topItem, 'quantity_txt', 3);
+			assertEquals("quantity passed correctly", quantity.toString() + " stones", quantityField.text);
+		}
+		
+	    public function test_removeStoneStockCheck_removes_from_screen_if_present():void {
+			instance.showStoneStockCheck(1);
+			instance.removeStoneStockCheck();
+			assertFalse("no instance of StoneStockCheckView in the view", containsA(StoneStockCheckView));
+		}  
 	}
 }

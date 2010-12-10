@@ -8,6 +8,9 @@ package strategy {
 	import strategy.controller.events.DayCycleEvent;
 	import strategy.controller.events.DailyProgressEvent;
 	import strategy.model.transactions.DailyProductivityVO;
+	import strategy.controller.events.LabourSupplyEvent;
+	import strategy.model.transactions.WorkerProductivityVO;
+	import strategy.controller.events.StoneStockCheckEvent;
 	
 	public class PyramidGameViewMediator extends Mediator {
 		
@@ -41,11 +44,19 @@ package strategy {
 		 */
 		override public function onRegister():void
 		{			
+			eventMap.mapListener(eventDispatcher, StoneStockCheckEvent.STOCK_STOLEN, stockStolenHandler, StoneStockCheckEvent);
+			
 			eventMap.mapListener(eventDispatcher, StoneSupplyEvent.STONE_OFFERED, stoneOfferedHandler, StoneSupplyEvent);
 			eventMap.mapListener(eventDispatcher, StoneSupplyEvent.NO_STONE_OFFERED, noStoneOfferedHandler, StoneSupplyEvent);
 			eventMap.mapListener(eventDispatcher, StoneSupplyEvent.STONE_DILEMMA, stoneDilemmaHandler, StoneSupplyEvent);
-			eventMap.mapListener(eventDispatcher, DayCycleEvent.STONE_DELIVERY_COMPLETED, stoneDeliveryCompletedHandler, DayCycleEvent);
+
+			eventMap.mapListener(eventDispatcher, LabourSupplyEvent.WORKERS_OFFERED, workersOfferedHandler, LabourSupplyEvent);
+
 			eventMap.mapListener(eventDispatcher, DailyProgressEvent.PROGRESS_CALCULATED, progressCalculatedHandler, DailyProgressEvent);
+
+			eventMap.mapListener(eventDispatcher, DayCycleEvent.STONE_STOCK_CHECKED, stoneStockChecked, DayCycleEvent);
+			eventMap.mapListener(eventDispatcher, DayCycleEvent.STONE_DELIVERY_COMPLETED, stoneDeliveryCompletedHandler, DayCycleEvent);
+			eventMap.mapListener(eventDispatcher, DayCycleEvent.LABOUR_HIRE_COMPLETED, labourHireCompletedHandler, DayCycleEvent);
 			eventMap.mapListener(eventDispatcher, DayCycleEvent.DAY_ENDED, dayEndedHandler, DayCycleEvent);
 		}
 		
@@ -54,6 +65,11 @@ package strategy {
 		//  Event Handlers
 		//
 		//--------------------------------------------------------------------------
+		
+		private function stockStolenHandler(e:StoneStockCheckEvent):void
+		{
+			view.showStoneStockCheck(e.quantity);
+		}
 		
 		private function stoneOfferedHandler(e:StoneSupplyEvent):void
 		{
@@ -72,15 +88,31 @@ package strategy {
 			view.showStoneDilemma(transactionVO.price, transactionVO.quantity, e.message);
 		}
 		
-		private function stoneDeliveryCompletedHandler(e:DayCycleEvent):void
+		private function workersOfferedHandler(e:LabourSupplyEvent):void
 		{
-			view.removeStoneOffer();
+			var workersVector:Vector.<WorkerProductivityVO> = e.workers;
+			view.showLabourOffer(workersVector);
 		}
-		
+
 		private function progressCalculatedHandler(e:DailyProgressEvent):void
 		{
 			var productivityVO:DailyProductivityVO = e.productivityVO;
 			view.showEndOfDaySummary(productivityVO.stonesBuilt, productivityVO.wagesPaid);
+		}
+		
+		private function stoneStockChecked(e:DayCycleEvent):void
+		{
+			view.removeStoneStockCheck();
+		}
+
+		private function stoneDeliveryCompletedHandler(e:DayCycleEvent):void
+		{
+			view.removeStoneOffer();
+		} 
+		
+		private function labourHireCompletedHandler(e:DayCycleEvent):void
+		{
+			view.removeLabourOffer();
 		}
 		
 		private function dayEndedHandler(e:DayCycleEvent):void

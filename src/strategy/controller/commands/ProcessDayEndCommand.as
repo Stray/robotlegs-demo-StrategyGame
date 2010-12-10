@@ -31,13 +31,14 @@ package strategy.controller.commands
 		{
 			trace("ProcessDayEndCommand::execute()");
 			
+			labour.move();
 			var blocksBuilt:Number = labour.currentValue;
 			buildingProgress.adjustByValue(blocksBuilt); 
 			stoneSupply.adjustByValue(-blocksBuilt);
 			
 			var costOfLabour:Number = labour.teamCost;
 			cash.adjustByValue(-costOfLabour);
-
+			
 			calendar.adjustByValue(-1);
 			
 			var productivityVO:DailyProductivityVO = new DailyProductivityVO(blocksBuilt, costOfLabour);

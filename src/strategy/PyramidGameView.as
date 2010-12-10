@@ -14,6 +14,9 @@ package strategy {
 	import strategy.view.decisions.StoneDilemmaView;
 	import strategy.view.decisions.NoStoneView;
 	import strategy.view.decisions.IStoneOfferView;
+	import strategy.model.transactions.WorkerProductivityVO;
+	import strategy.view.decisions.LabourOfferView;
+	import strategy.view.messages.StoneStockCheckView;
 	
 	public class PyramidGameView extends Sprite {
 		
@@ -50,21 +53,44 @@ package strategy {
 			introduce(stoneOffer);
 		}
 		
+	    public function showEndOfDaySummary(blocksBuilt:Number, wagesPaid:Number):void
+		{
+			var daySummary:DaySummaryView = new DaySummaryView(blocksBuilt, wagesPaid);
+			introduce(daySummary);
+		}
+		 
+		public function showLabourOffer(workerVOs:Vector.<WorkerProductivityVO>):void
+		{
+			var labourOffer:LabourOfferView = new LabourOfferView(workerVOs);
+			introduce(labourOffer);
+		}
+		
+		public function showStoneStockCheck(quantity:Number):void
+		{
+			var stoneStockCheck:StoneStockCheckView = new StoneStockCheckView(quantity);
+			introduce(stoneStockCheck);
+		}
+		
 		public function removeStoneOffer():void
 		{
 			removeAny(IStoneOfferView);
 		}
 		
-		public function showEndOfDaySummary(blocksBuilt:Number, wagesPaid:Number):void
+		public function removeEndOfDaySummary():void
 		{
-			var daySummary:DaySummaryView = new DaySummaryView(blocksBuilt, wagesPaid);
-			introduce(daySummary);
-		}
-		
-		public function removeEndOfDaySummary():void {
 			removeAny(DaySummaryView);
 		}
 		
+		public function removeLabourOffer():void
+		{
+			removeAny(LabourOfferView);
+		}
+		
+		public function removeStoneStockCheck():void
+		{
+			removeAny(StoneStockCheckView);
+		}
+				
 		protected function introduce(viewItem:Sprite):void
 		{
 			viewItem.x = this.stage.width;
@@ -95,10 +121,12 @@ package strategy {
 			var iLength:uint = numChildren;
 			for (var i:int = iLength-1; i >= 0; i--)
 			{
-				if(getChildAt(i) is needleClass)
+				var nextItem:Sprite = getChildAt(i) as Sprite;
+				if(nextItem is needleClass)
 				{
-					removeChildAt(i);					
-				}
+					removeChildAt(i);
+					return;
+			    }
 			}
 		}
 		

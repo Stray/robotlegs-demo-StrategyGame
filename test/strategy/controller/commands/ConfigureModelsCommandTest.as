@@ -31,6 +31,7 @@ package strategy.controller.commands {
 	import strategy.model.markets.IStoneAvailabilityMarket;
 	import strategy.model.markets.IStonePriceMarket;
 	import strategy.controller.surprises.IStoneSurpriseEventCaster;
+	import strategy.model.markets.ILabourAvailabilityMarket;
 
 	public class ConfigureModelsCommandTest extends TestCase {
 		private var instance:ConfigureModelsCommand;
@@ -40,7 +41,7 @@ package strategy.controller.commands {
 		}
 
 		override public function run():void{
-			var mockolateMaker:IEventDispatcher = prepare(IBuildingProgressModel, ICashModel, ICalendarModel, IGameConfig, ILabourPriceMarket, ILabourModel,IStoneSupplyModel, IStoneAvailabilityMarket, IStonePriceMarket, IStoneSurpriseEventCaster);
+			var mockolateMaker:IEventDispatcher = prepare(IBuildingProgressModel, ICashModel, ICalendarModel, IGameConfig, ILabourPriceMarket, ILabourModel,IStoneSupplyModel, IStoneAvailabilityMarket, IStonePriceMarket, IStoneSurpriseEventCaster, ILabourAvailabilityMarket);
 			mockolateMaker.addEventListener(Event.COMPLETE, prepareCompleteHandler);
 		}
 
@@ -57,11 +58,12 @@ package strategy.controller.commands {
 			instance.cash = nice(ICashModel);
 			instance.gameConfig = nice(IGameConfig);
 			instance.labour = nice(ILabourModel);
+			instance.labourAvailabilityMarket = nice(ILabourAvailabilityMarket);
 			instance.labourPriceMarket = nice(ILabourPriceMarket);
 			instance.stoneStock = nice(IStoneSupplyModel);
 			instance.stoneAvailabilityMarket = nice(IStoneAvailabilityMarket);
 			instance.stonePriceMarket = nice(IStonePriceMarket);
-			instance.stoneSurpriseEventCaster = nice(IStoneSurpriseEventCaster);
+			instance.stoneSurpriseEventCaster = nice(IStoneSurpriseEventCaster); 
 		}
 
 		override protected function tearDown():void {

@@ -46,9 +46,7 @@ package strategy.view.messages {
 
 		private function check_dispatches_dayEnded_when_view_submit_fires(e:DayCycleEvent):void {
 			assertEquals('event is correct type', DayCycleEvent.DAY_ENDED, e.type);
-			
 		}
-		
 		
 	}
 }

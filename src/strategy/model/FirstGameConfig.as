@@ -14,7 +14,7 @@ package strategy.model {
 			_minimumLabourCost = 80;
 			_maximumLabourCost = 120;
 			
-			_startingBudget = 30000; 
+			_startingBudget = 50000; 
 			_stoneStockCapacity = 500;
 			
 			_numberOfNormalDaysAtStart = 3;
@@ -22,9 +22,9 @@ package strategy.model {
 			_minimumStoneAvailability = 300;
 			_maximumStoneAvailability = 350;
 			_minimumStonePrice = 8;
-			_maximumStonePrice = 25;
+			_maximumStonePrice = 20;
 			
-			_stoneSurpriseEventProbability = 15;
+			_stoneSurpriseEventProbability = 20;
 		} 
 	}
 }

@@ -24,6 +24,7 @@ package strategy.model.resources {
 	
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
+	import strategy.model.transactions.WorkerProductivityVO;
 
 	public class LabourModelTest extends TestCase {
 		private var instance:LabourModel;
@@ -77,6 +78,34 @@ package strategy.model.resources {
 		private function check_adjusting_team_size_fires_update_event(e:ResourceStatusEvent):void {
 			assertEquals('correct team size sent', NEW_TEAM_SIZE, e.value);
 			
+		}
+		
+		public function test_appendWorkers_changes_team_size():void { 
+			var startTeamSize:uint = 3;
+			instance.teamSize = startTeamSize;
+			
+			var workers:Vector.<WorkerProductivityVO> = new Vector.<WorkerProductivityVO>();
+			workers.push(new WorkerProductivityVO(100, 200));
+			workers.push(new WorkerProductivityVO(200, 300));
+			
+			instance.appendWorkers(workers);
+			
+            assertEquals("2 members added to team", startTeamSize+2, instance.teamSize);
+		}
+		
+		public function test_removeTempWorkers_changes_team_size():void {
+			var startTeamSize:uint = 3;
+			instance.teamSize = startTeamSize;
+			
+			var workers:Vector.<WorkerProductivityVO> = new Vector.<WorkerProductivityVO>();
+			workers.push(new WorkerProductivityVO(100, 200));
+			workers.push(new WorkerProductivityVO(200, 300));
+			
+			instance.appendWorkers(workers);
+			
+			instance.removeTempWorkers();
+			
+			assertEquals("temps removed from team", startTeamSize, instance.teamSize);
 		}
 		
 		

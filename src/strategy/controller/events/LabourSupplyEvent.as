@@ -13,6 +13,8 @@ package strategy.controller.events {
 		public static const WORKERS_OFFERED:String = "LabourSupplyEvent.workersOffered";
 		
 		public static const WORKERS_HIRED:String = "LabourSupplyEvent.workersHired";
+
+		public static const NO_WORKERS_HIRED:String = "LabourSupplyEvent.noWorkersHired";
 		
 		//--------------------------------------
 		//  CONSTRUCTOR

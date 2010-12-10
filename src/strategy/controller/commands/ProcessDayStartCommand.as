@@ -43,7 +43,7 @@ package strategy.controller.commands
 		
 		private function reduceTeamToCore():void
 		{
-			labour.setToMinimum();
+			labour.removeTempWorkers();
 		}
 		
 		private function dispatchDayStart():void
