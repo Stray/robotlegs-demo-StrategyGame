@@ -26,6 +26,8 @@ package strategy.controller.commands.bootstraps
 	import strategy.view.decisions.WorkerForHireViewMediator;
 	import strategy.view.messages.StoneStockCheckView;
 	import strategy.view.messages.StoneStockCheckViewMediator;
+	import strategy.view.messages.GameOverView;
+	import strategy.view.messages.GameOverViewMediator;
 
 
 	public class BootstrapViewMediators extends Command
@@ -46,6 +48,7 @@ package strategy.controller.commands.bootstraps
 			mediatorMap.mapView(LabourOfferView, LabourOfferViewMediator);
 			mediatorMap.mapView(WorkerForHireView, WorkerForHireViewMediator);
 			mediatorMap.mapView(StoneStockCheckView, StoneStockCheckViewMediator);
+			mediatorMap.mapView(GameOverView, GameOverViewMediator);
 		}
 	
 	}

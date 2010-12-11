@@ -4,17 +4,13 @@ package strategy {
 	
 	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.Context;
-	import strategy.controller.commands.ConfigureModelsCommand;
-	import strategy.controller.commands.StartViewCommand;
-	import strategy.controller.commands.ProcessDayStartCommand;
 	import org.robotlegs.core.IRelaxedEventContext;
 	import org.robotlegs.core.IRelaxedEventMap;
 	import org.robotlegs.base.RelaxedEventMap;
-	import strategy.controller.commands.bootstraps.BootstrapModels;
-	import strategy.controller.commands.bootstraps.BootstrapViewMediators;
-	import strategy.controller.commands.bootstraps.BootstrapDayCycleCommands;
-	import strategy.controller.events.StoneSupplyEvent;
-	import strategy.controller.commands.TakeStoneDeliveryCommand;
+	import strategy.controller.commands.bootstraps.BootstrapGameStartup;
+	import strategy.controller.commands.StartGameCommand;
+	import strategy.controller.events.GameEvent;
+	import strategy.controller.commands.RestartGameCommand;
 	
 	public class PyramidGameContext extends Context implements IRelaxedEventContext {
 		
@@ -57,13 +53,9 @@ package strategy {
 		override public function startup():void
 		{
 			// Map some Commands to Events
-			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, BootstrapModels, ContextEvent, true);
-			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, BootstrapViewMediators, ContextEvent, true);
-			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, BootstrapDayCycleCommands, ContextEvent, true);
-			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartViewCommand, ContextEvent, true);
-			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, ConfigureModelsCommand, ContextEvent, true);
-			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, ProcessDayStartCommand, ContextEvent, true);
-			
+			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, BootstrapGameStartup, ContextEvent, true);
+			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartGameCommand, ContextEvent, true);
+			commandMap.mapEvent(GameEvent.GAME_RESTARTED, RestartGameCommand, GameEvent, true);
 			
 			// Dependency injection for models, services and values
 			// injector.mapSingleton(whenAskedFor:Class, named:String = null);

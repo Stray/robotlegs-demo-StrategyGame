@@ -17,9 +17,12 @@ package strategy {
 	import strategy.model.transactions.WorkerProductivityVO;
 	import strategy.view.decisions.LabourOfferView;
 	import strategy.view.messages.StoneStockCheckView;
+	import strategy.view.messages.GameOverView;
+	import org.osflash.signalsv1.Signal;
 	
 	public class PyramidGameView extends Sprite {
 		
+		protected var introduce:Function;
 		
 		//--------------------------------------------------------------------------
 		//
@@ -71,6 +74,13 @@ package strategy {
 			introduce(stoneStockCheck);
 		}
 		
+		public function showGameOver(message:String):void
+		{
+			var gameOver:GameOverView = new GameOverView(message);
+			introduce(gameOver);
+			blockNewViewsUntil(gameOver.submitSignal);
+		}
+		
 		public function removeStoneOffer():void
 		{
 			removeAny(IStoneOfferView);
@@ -91,11 +101,27 @@ package strategy {
 			removeAny(StoneStockCheckView);
 		}
 				
-		protected function introduce(viewItem:Sprite):void
+		protected function introduceLive(viewItem:Sprite):void
 		{
 			viewItem.x = this.stage.width;
 			addChild(viewItem);
 			TweenLite.to(viewItem, 1, {x:0, ease:Quad.easeOut});
+		}
+		
+		protected function introduceBlocked(viewItem:Sprite):void
+		{
+			// do nothing;
+		}
+		
+		protected function blockNewViewsUntil(clearingSignal:Signal):void
+		{
+			introduce = introduceBlocked;
+			clearingSignal.addOnce(clearingFunction);
+		}
+		
+		protected function clearingFunction():void
+		{
+			introduce = introduceLive;
 		}
 		
 		protected function init():void
@@ -114,6 +140,8 @@ package strategy {
 			
 			var calendarStatusView:Sprite = new CalendarStatusView();
 			addChild(calendarStatusView);
+			
+			introduce = introduceLive;
 		}
 		
 		protected function removeAny(needleClass:Class):void

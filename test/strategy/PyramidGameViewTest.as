@@ -13,6 +13,8 @@ package strategy {
 	import strategy.view.decisions.LabourOfferView;
 	import strategy.view.decisions.WorkerForHireView;
 	import strategy.view.messages.StoneStockCheckView;
+	import strategy.view.messages.GameOverView;
+	import flash.display.SimpleButton;
 
 	public class PyramidGameViewTest extends TestCase {
 		private var instance:PyramidGameView;
@@ -188,6 +190,30 @@ package strategy {
 			instance.showStoneStockCheck(1);
 			instance.removeStoneStockCheck();
 			assertFalse("no instance of StoneStockCheckView in the view", containsA(StoneStockCheckView));
-		}  
+		}
+		
+		public function test_showGameOver_adds_view_with_correct_values():void {
+			var childrenBefore:uint = instance.numChildren;
+			var message:String = "Test message here";
+		    instance.showGameOver(message);
+			assertEquals("Has added one more child", childrenBefore+1, instance.numChildren);
+            var topItem:Sprite = instance.getChildAt(childrenBefore) as Sprite;
+			assertTrue("Has added the correct type of view", topItem is GameOverView);
+			var messageField:TextField = UnitHelpers.findNamedInstance(topItem, 'message_txt', 3);
+			assertEquals("message passed correctly", message, messageField.text);
+		}
+		
+		public function test_showGameOver_blocks_other_views_from_being_added_until_submit():void {
+			instance.showGameOver('test message');
+			var childrenBefore:uint = instance.numChildren;
+			instance.showLabourOffer(null);
+			assertEquals("Has not added labour offer", childrenBefore, instance.numChildren);
+			var submitButton:SimpleButton = UnitHelpers.findInstanceOf(instance, SimpleButton, 3);
+			UnitHelpers.clickItem(submitButton);
+			instance.showLabourOffer(null);
+			assertEquals("Has not added labour offer", childrenBefore + 1, instance.numChildren);			
+		}
+		
+		  
 	}
 }

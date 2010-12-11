@@ -14,6 +14,7 @@ package strategy.model.resources {
 		{
 			if(currentValue <= min)
 			{
+				trace("CalendarModel::checkBoundaries firing breach");
 				var evt:ResourceBoundaryEvent = new ResourceBoundaryEvent(ResourceBoundaryEvent.BOUNDARY_BREACHED);
 				dispatch(evt);
 			}

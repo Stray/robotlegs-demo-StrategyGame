@@ -14,7 +14,7 @@ package strategy.model {
 			_minimumLabourCost = 80;
 			_maximumLabourCost = 120;
 			
-			_startingBudget = 50000; 
+			_startingBudget = 10000; 
 			_stoneStockCapacity = 500;
 			
 			_numberOfNormalDaysAtStart = 3;

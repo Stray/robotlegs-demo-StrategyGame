@@ -25,12 +25,15 @@ package strategy.controller.commands.bootstraps
 	import strategy.model.markets.StonePriceMarket;
 	import strategy.controller.surprises.ILabourSurpriseEventCaster;
 	import strategy.controller.surprises.LabourSurpriseEventCaster;
+	import strategy.view.messages.IGameMessageText;
+	import strategy.view.messages.GameMessageText;
 
 	public class BootstrapModels extends Command
 	{
 	
 		override public function execute():void
 		{
+			injector.mapSingletonOf(IGameMessageText, GameMessageText);
 			injector.mapSingletonOf(IGameConfig, FirstGameConfig);
 			
 			injector.mapSingletonOf(IBuildingProgressModel, BuildingProgressModel); 

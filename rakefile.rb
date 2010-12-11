@@ -15,7 +15,7 @@ project_model :model do |m|
   m.height                  = 384
   m.keep_as3_metadata       = 'Inject'
   # m.keep_as3_metadata       = 'PostConstruct'
-  # m.use_fdb               = true
+  # m.use_fdb                 = true
   # m.use_fcsh              = true
   # m.preprocessor          = 'cpp -D__DEBUG=false -P - - | tail -c +3'
   # m.preprocessed_path     = '.preprocessed'
@@ -31,10 +31,6 @@ project_model :model do |m|
   m.compiler_gem_version  = '>= 4.0.0'
   m.source_path           << "#{m.lib_dir}/robotlegs"
   m.source_path           << "#{m.lib_dir}/greensock"
-  m.source_path           << "#{m.lib_dir}/mockolate"
-  m.library_path          << 'lib/asx.swc'
-  m.library_path          << 'lib/hamcrest.swc'
-  m.library_path          << 'lib/FLoxy.swc'
   m.library_path          << 'lib/as3-signals.swc'
   m.endtoend_test_dir     = 'test/strategy/xendtoendtests'
   m.support_dir           = 'support'  
@@ -42,13 +38,20 @@ project_model :model do |m|
 end
 
 def populate_test_task(t)
-  t.source_path << "support"
+  t.source_path  << "support" 
+  t.source_path  << "lib/mockolate"
+  t.library_path << 'lib/asx.swc'
+  t.library_path << 'lib/hamcrest.swc'
+  t.library_path << 'lib/FLoxy.swc'
+  
   t.gem_name     = 'sprout-flex4sdk-tool'
   t.gem_version  = '>= 4.0.0'
 end
 
 desc 'Compile and debug the application'
-debug :debug
+debug :debug do |t|
+  t.debug = true
+end
 
 desc 'Compile run the test harness'
 unit :test do |t|

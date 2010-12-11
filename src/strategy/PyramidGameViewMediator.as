@@ -11,6 +11,7 @@ package strategy {
 	import strategy.controller.events.LabourSupplyEvent;
 	import strategy.model.transactions.WorkerProductivityVO;
 	import strategy.controller.events.StoneStockCheckEvent;
+	import strategy.controller.events.GameOverEvent;
 	
 	public class PyramidGameViewMediator extends Mediator {
 		
@@ -58,6 +59,8 @@ package strategy {
 			eventMap.mapListener(eventDispatcher, DayCycleEvent.STONE_DELIVERY_COMPLETED, stoneDeliveryCompletedHandler, DayCycleEvent);
 			eventMap.mapListener(eventDispatcher, DayCycleEvent.LABOUR_HIRE_COMPLETED, labourHireCompletedHandler, DayCycleEvent);
 			eventMap.mapListener(eventDispatcher, DayCycleEvent.DAY_ENDED, dayEndedHandler, DayCycleEvent);
+			
+			eventMap.mapListener(eventDispatcher, GameOverEvent.GAME_OVER, gameOverHandler, GameOverEvent);
 		}
 		
 		//--------------------------------------------------------------------------
@@ -118,6 +121,11 @@ package strategy {
 		private function dayEndedHandler(e:DayCycleEvent):void
 		{
 			view.removeEndOfDaySummary();
+		}
+		
+		private function gameOverHandler(e:GameOverEvent):void
+		{
+			view.showGameOver(e.reason);
 		}
 		
 	}

@@ -30,6 +30,7 @@ package strategy {
 	import strategy.model.transactions.WorkerProductivityVO;
 	import strategy.controller.events.LabourSupplyEvent;
 	import strategy.controller.events.StoneStockCheckEvent;
+	import strategy.controller.events.GameOverEvent;
 
 	public class PyramidGameViewMediatorTest extends TestCase {
 		private var instanceMediator:PyramidGameViewMediator;
@@ -145,6 +146,14 @@ package strategy {
 			instanceMediator.eventDispatcher.dispatchEvent(evt);
 			verify(instanceMediator.view).method('removeStoneStockCheck').noArgs();
 		}
+		
+		public function test_gameOver_passes_value_to_view():void {
+        	var message:String = "Test message";
+			var evt:GameOverEvent = new GameOverEvent(GameOverEvent.GAME_OVER, message);
+			instanceMediator.eventDispatcher.dispatchEvent(evt);
+			verify(instanceMediator.view).method("showGameOver").args(equalTo(message));
+		}
+		
 		
 	}
 }
