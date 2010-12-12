@@ -1,0 +1,117 @@
+GameIncidentsSkin.swf Movie Report
+-----------------------------------
+
+Metadata
+--------
+Bytes    Value
+-----    -----
+ 1275    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/"> <xmp:CreatorTool>Adobe Flash CS4 Professional</xmp:CreatorTool> <xmp:CreateDate>2010-12-12T15:40:53Z</xmp:CreateDate> <xmp:MetadataDate>2010-12-12T16:33:18Z</xmp:MetadataDate> <xmp:ModifyDate>2010-12-12T16:33:18Z</xmp:ModifyDate> </rdf:Description> <rdf:Description rdf:about="" xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/" xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#"> <xmpMM:InstanceID>xmp.iid:521C514E092068118F62B00E6D903E3E</xmpMM:InstanceID> <xmpMM:DocumentID>xmp.did:521C514E092068118F62B00E6D903E3E</xmpMM:DocumentID> <xmpMM:OriginalDocumentID>xmp.did:7284F3A3072068118F62B00E6D903E3E</xmpMM:OriginalDocumentID> <xmpMM:DerivedFrom rdf:parseType="Resource"> <stRef:instanceID>xmp.iid:F763C50F082068118F62B00E6D903E3E</stRef:instanceID> <stRef:documentID>xmp.did:F763C50F082068118F62B00E6D903E3E</stRef:documentID> <stRef:originalDocumentID>xmp.did:7284F3A3072068118F62B00E6D903E3E</stRef:originalDocumentID> </xmpMM:DerivedFrom> </rdf:Description> <rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/"> <dc:format>application/x-shockwave-flash</dc:format> </rdf:Description> </rdf:RDF> 
+
+Frame #    Frame Bytes    Total Bytes    Scene
+-------    -----------    -----------    ----------------
+      1         857841         857841    Scene 1 (AS 3.0 Classes Export Frame)
+
+Scene                        Shape Bytes    Text Bytes    ActionScript Bytes
+-------------------------    -----------    ----------    ------------------
+Scene 1                              171             0                  3790
+
+Symbol                       Shape Bytes    Text Bytes    ActionScript Bytes
+-------------------------    -----------    ----------    ------------------
+mc_icon_weatherSun                   476             0                     0
+mc_sunheat                             0             0                     0
+arms                                 109             0                     0
+neck_collar_green                    290             0                     0
+pharoah_hat                          394             0                     0
+stripes                             1420             0                     0
+mc_head                              109             0                     0
+mc_icon_pharoah                      235             0                     0
+mc_hardHat                             0             0                     0
+mc_pharoahHat                          0             0                     0
+mc_rain                              696             0                     0
+mc_icon_stoneOverlay                  67             0                     0
+mc_icon_stone                         46             0                     0
+mc_snow                              306             0                     0
+mc_snowStones                         60             0                     0
+mc_locust                           1153             0                     0
+mc_locustGroup                         0             0                     0
+mc_tornado                          5693             0                     0
+mc_icon_weatherCloud                 381             0                     0
+mc_frog                             2028             0                     0
+mc_rainingFrogs                        0             0                     0
+mc_cat                               705             0                     0
+mc_catsinStone                         0             0                     0
+neck_collar_yellow                   245             0                     0
+mc_speech                            377             0                     0
+mc_icon_Worker_questionbubble        135            32                     0
+mc_rings                             325             0                     0
+mc_calendar_building                 289           106                     0
+mc_pyramid_cover                     134             0                     0
+mc_pyramid                            52             0                     0
+mc_graffetti_spray                   396             0                     0
+mc_graffetti                           0             0                     0
+mc_parchment                           0             0                     0
+mc_stop                                0            65                     0
+mc_speech_pharoh                       0             0                     0
+mc_placard                           143            43                     0
+mc_placard2                          143            43                     0
+mc_placards                            0             0                     0
+mc_poison                           5643             0                     0
+mc_shadowPyramid                       0             0                     0
+mc_windflow                         3868             0                     0
+mc_icon_environment                  614             0                     0
+mc_enviro_assmt                        0             0                     0
+mc_shed                              337             0                     0
+mc_door                               61             0                     0
+mc_lock                              119             0                     0
+mc_secureShed                        501             0                     0
+mc_insurance                         299            45                     0
+mc_saw                              2161             0                     0
+mc_miniHammer                        172             0                     0
+mc_wind                             1781             0                     0
+mc_blownTools                       3465             0                     0
+mc_icon_Worker_hot                   140             0                     0
+mc_icicles                           124             0                     0
+mc_hardHat_icicles                   379             0                     0
+mc_icon_Worker_cold                  135             0                     0
+mc_headHitMan                        161             0                     0
+mc_hammer_on_head                     93             0                     0
+mc_tripMan                           240             0                     0
+mc_tripping                            0             0                     0
+mc_ladderRuts                        162             0                     0
+mc_ladder                            104             0                     0
+mc_fallingMan                        264             0                     0
+mc_ladderFall                          0             0                     0
+mc_redCircle                         101             0                     0
+mc_cross                              69             0                     0
+mc_healthCert                          0             0                     0
+mc_googles                           165             0                     0
+mc_icon_Worker_PPE                   403             0                     0
+mc_foot                              299             0                     0
+mc_hurtFoot                          166             0                     0
+mc_hand                              297             0                     0
+mc_fingers                           169             0                     0
+mc_indexfinger                       126             0                     0
+mc_hammeredThumb                     175             0                     0
+
+Font Name                 Bytes        Characters    
+----------------------    ---------    --------------
+Herculanum                     7628    ?ADEFHIMNOPRSTUWbdgilnu
+Papyrus                       10671     !ACEILNOPSUYacenrsu
+
+ActionScript Bytes    Location
+------------------    --------
+              3790    Scene 1:Frame 1
+
+Bitmap                     Compressed    Compression
+-----------------------    ----------  --------  -----------
+sand.jpg                      764888     6809600   Imported JPEG=102
+<Mesh>_3                        3331       81864   JPEG Quality=80
+<Mesh>_5                        3483       83600   JPEG Quality=80
+<Mesh>_6                        2346       39976   JPEG Quality=80
+<Mesh>_7                        2344       41340   JPEG Quality=80
+<Mesh>_11                        542         660   JPEG Quality=80
+<Mesh>_14                      11214      817684   JPEG Quality=80
+
+
+
+

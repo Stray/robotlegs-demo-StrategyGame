@@ -108,6 +108,23 @@ package strategy.model.resources {
 			assertEquals("temps removed from team", startTeamSize, instance.teamSize);
 		}
 		
+		public function test_adjustTeamEnergy_adjusts_individual_team_energy():void {
+			instance.teamSize = 4;
+			var referenceWorker:IWorker = instance.team[0];
+			var referenceEnergy:Number = referenceWorker.energyLevel;
+			
+			instance.adjustTeamEnergy(-10);
+			
+			var energyShouldBe:Number = referenceEnergy - 10;
+			
+			var team:Vector.<IWorker> = instance.team;
+			for each (var worker:IWorker in team)
+			{
+				assertEquals("energy adjusted", energyShouldBe, worker.energyLevel);
+			}
+			
+		}
+		
 		
 	}
 }

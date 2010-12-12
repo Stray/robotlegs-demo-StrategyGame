@@ -1,4 +1,3 @@
-// TODO: Game win screen triggered by target-reached event
 // TODO: Random Event Generator
 // TODO: Process random event consequences
 // TODO: Health and safety event generator
@@ -7,4 +6,6 @@
 // TODO: Environment monitor view
 // TODO: Project log graphs
 // TODO: 5 day week, with weekend breaks
-// TODO: Weekends impact on energy if worked
+// TODO: Weekends impact on energy if worked  
+
+                

@@ -6,7 +6,7 @@ package strategy.model {
 			_calendarDays = 30;
 			_workingDaysPerWeek = 7;
 			_daysPerTurn = 1;
-			_targetBuildTotal = 1000;
+			_targetBuildTotal = 10000;
 			_minimumTeamSize = 3;
 			_maximumTeamSize = 4;
 			_minimumWorkerProductivity = 60;

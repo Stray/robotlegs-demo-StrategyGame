@@ -20,5 +20,7 @@ package strategy.model.resources {
 		function appendWorkers(workers:Vector.<WorkerProductivityVO>):void;
 		
 		function removeTempWorkers():void;
+		
+		function adjustTeamEnergy(value:Number):void;
 	}
 }

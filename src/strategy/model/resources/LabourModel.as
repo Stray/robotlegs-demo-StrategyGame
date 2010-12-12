@@ -110,6 +110,14 @@ package strategy.model.resources {
 			
 			return totalCost;
 		}
+		
+		public function adjustTeamEnergy(value:Number):void
+		{
+			for each (var worker:IWorker in team)
+			{
+				worker.adjustEnergyLevel(value);
+			}
+		}
 		                                                          
 		[Inject]
 		public function set labourPriceMarket(value:ILabourPriceMarket):void
