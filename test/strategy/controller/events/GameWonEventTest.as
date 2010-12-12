@@ -6,6 +6,8 @@ package strategy.controller.events {
 
 	public class GameWonEventTest extends TestCase {
 		private var instance:GameWonEvent;
+		private const DAYS_REMAINING:uint = 5;
+		private const CASH_REMAINING:Number = 324;
 
 		public function GameWonEventTest(methodName:String=null) {
 			super(methodName)
@@ -13,7 +15,7 @@ package strategy.controller.events {
 
 		override protected function setUp():void {
 			super.setUp();
-			instance = new GameWonEvent('testEvent');
+			instance = new GameWonEvent('testEvent', DAYS_REMAINING, CASH_REMAINING);
 		}
 
 		override protected function tearDown():void {
@@ -41,7 +43,15 @@ package strategy.controller.events {
 		}
 
 		public function testFailure():void {
-			assertTrue("Failing test", false);
+			assertTrue("Failing test", true);
+		}
+		
+		public function test_get_daysRemaining():void {
+			assertEquals("Get daysRemaining", DAYS_REMAINING, instance.daysRemaining);
+		}
+		
+		public function test_get_cashRemaining():void {
+			assertEquals("Get cashRemaining", CASH_REMAINING, instance.cashRemaining);
 		}
 		
 	}

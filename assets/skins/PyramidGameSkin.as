@@ -44,7 +44,7 @@ package skins {
 		public static var ForegroundSkin:Class;
 		
 		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_win")]
-		public static var WinSkin:Class; 
+		public static var GameWonSkin:Class; 
 		
 		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_game_over")]
 		public static var GameOverSkin:Class;

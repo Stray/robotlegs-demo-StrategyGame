@@ -6,7 +6,7 @@ package strategy.model {
 			_calendarDays = 30;
 			_workingDaysPerWeek = 7;
 			_daysPerTurn = 1;
-			_targetBuildTotal = 5000;
+			_targetBuildTotal = 1000;
 			_minimumTeamSize = 3;
 			_maximumTeamSize = 4;
 			_minimumWorkerProductivity = 60;
@@ -14,7 +14,7 @@ package strategy.model {
 			_minimumLabourCost = 80;
 			_maximumLabourCost = 120;
 			
-			_startingBudget = 10000; 
+			_startingBudget = 100000; 
 			_stoneStockCapacity = 500;
 			
 			_numberOfNormalDaysAtStart = 3;

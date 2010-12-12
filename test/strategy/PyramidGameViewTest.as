@@ -15,6 +15,7 @@ package strategy {
 	import strategy.view.messages.StoneStockCheckView;
 	import strategy.view.messages.GameOverView;
 	import flash.display.SimpleButton;
+	import strategy.view.messages.GameWonView;
 
 	public class PyramidGameViewTest extends TestCase {
 		private var instance:PyramidGameView;
@@ -212,7 +213,32 @@ package strategy {
 			UnitHelpers.clickItem(submitButton);
 			instance.showLabourOffer(null);
 			assertEquals("Has not added labour offer", childrenBefore + 1, instance.numChildren);			
+		} 
+		
+		public function test_showGameWon_adds_view_with_correct_values():void {
+			var childrenBefore:uint = instance.numChildren; 
+			var days:uint = 3;
+			var cash:Number = 324;
+		    instance.showGameWon(days, cash);
+			assertEquals("Has added one more child", childrenBefore+1, instance.numChildren);
+            var topItem:Sprite = instance.getChildAt(childrenBefore) as Sprite;
+			assertTrue("Has added the correct type of view", topItem is GameWonView);
+			var daysField:TextField = UnitHelpers.findNamedInstance(topItem, 'days_txt', 3);
+			assertEquals("days passed correctly", days.toString() + " days", daysField.text);
+			var cashField:TextField = UnitHelpers.findNamedInstance(topItem, 'cost_txt', 3);
+			assertEquals("cash passed correctly", cash.toString() + " coins", cashField.text);
 		}
+		
+		public function test_showGameWon_blocks_other_views_from_being_added_until_submit():void {
+			instance.showGameWon(3, 55);
+			var childrenBefore:uint = instance.numChildren;
+			instance.showLabourOffer(null);
+			assertEquals("Has not added labour offer", childrenBefore, instance.numChildren);
+			var submitButton:SimpleButton = UnitHelpers.findInstanceOf(instance, SimpleButton, 3);
+			UnitHelpers.clickItem(submitButton);
+			instance.showLabourOffer(null);
+			assertEquals("Has not added labour offer", childrenBefore + 1, instance.numChildren);			
+		}   
 		
 		  
 	}

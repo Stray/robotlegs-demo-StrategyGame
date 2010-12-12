@@ -23,6 +23,5 @@ package strategy.view.messages {
 		}
 		
 		
-		
 	}
 }

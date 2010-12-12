@@ -31,6 +31,7 @@ package strategy {
 	import strategy.controller.events.LabourSupplyEvent;
 	import strategy.controller.events.StoneStockCheckEvent;
 	import strategy.controller.events.GameOverEvent;
+	import strategy.controller.events.GameWonEvent;
 
 	public class PyramidGameViewMediatorTest extends TestCase {
 		private var instanceMediator:PyramidGameViewMediator;
@@ -154,6 +155,13 @@ package strategy {
 			verify(instanceMediator.view).method("showGameOver").args(equalTo(message));
 		}
 		
+		public function test_gameWon_passes_value_to_view():void {
+        	var days:uint = 3;
+			var cash:Number = 35;
+			var evt:GameWonEvent = new GameWonEvent(GameWonEvent.GAME_WON, days, cash);
+			instanceMediator.eventDispatcher.dispatchEvent(evt);
+			verify(instanceMediator.view).method("showGameWon").args(equalTo(days), equalTo(cash));
+		}
 		
 	}
 }

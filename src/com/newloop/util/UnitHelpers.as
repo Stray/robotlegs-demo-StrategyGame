@@ -156,7 +156,7 @@ package com.newloop.util {
 		public static function getBackground(width:Number = 800, height:Number = 600, colour:uint = 0xFFFFFF):Sprite
 		{
 		   	var rectangle:Sprite = new Sprite();
-			rectangle.graphics.beginFill(0xFFFFFF, 1);
+			rectangle.graphics.beginFill(colour, 1);
 			rectangle.graphics.drawRect(0,0,width, height);
 			rectangle.graphics.endFill();
 			

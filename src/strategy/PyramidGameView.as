@@ -19,6 +19,7 @@ package strategy {
 	import strategy.view.messages.StoneStockCheckView;
 	import strategy.view.messages.GameOverView;
 	import org.osflash.signalsv1.Signal;
+	import strategy.view.messages.GameWonView;
 	
 	public class PyramidGameView extends Sprite {
 		
@@ -79,6 +80,13 @@ package strategy {
 			var gameOver:GameOverView = new GameOverView(message);
 			introduce(gameOver);
 			blockNewViewsUntil(gameOver.submitSignal);
+		}
+		
+		public function showGameWon(days:uint, cash:Number):void
+		{
+			var gameWon:GameWonView = new GameWonView(days, cash);
+			introduce(gameWon);
+			blockNewViewsUntil(gameWon.submitSignal);
 		}
 		
 		public function removeStoneOffer():void

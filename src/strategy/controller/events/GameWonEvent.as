@@ -10,7 +10,6 @@ package strategy.controller.events {
 		
 		public static const GAME_WON:String = "GameWonEvent.gameWon";
 		
-		
 		//--------------------------------------
 		//  CONSTRUCTOR
 		//--------------------------------------
@@ -18,20 +17,37 @@ package strategy.controller.events {
 		/**
 		 *	@constructor
 		 */
-		public function GameWonEvent(type:String, bubbles:Boolean=true, cancelable:Boolean=false ){
+		public function GameWonEvent(type:String, daysRemaining:uint, cashRemaining:Number, bubbles:Boolean=true, cancelable:Boolean=false ){
+			_daysRemaining = daysRemaining;
+			_cashRemaining = cashRemaining;
 			super(type, bubbles, cancelable);		
 		}
 		
 		//--------------------------------------
 		//  GETTER/SETTERS
 		//--------------------------------------
+	   	
+		protected var _daysRemaining:uint;
+
+		public function get daysRemaining():uint
+		{
+			return _daysRemaining;
+		}
 		
+		protected var _cashRemaining:Number;
+
+		public function get cashRemaining():Number
+		{
+			return _cashRemaining;
+		}
+		
+	 
 		//--------------------------------------
 		//  PUBLIC METHODS
 		//--------------------------------------
 
 		override public function clone() : Event {
-			return new GameWonEvent(type, bubbles, cancelable);
+			return new GameWonEvent(type, _daysRemaining, _cashRemaining, bubbles, cancelable);
 		}
 		
 		//--------------------------------------
