@@ -64,7 +64,8 @@ package strategy.view.decisions {
 			setFieldValue('title_txt', dilemmaVO.title);
 			setFieldValue('message_txt', dilemmaVO.question);
 			
-			configureButtons(dilemmaVO.options)
+			configureButtons(dilemmaVO.options);
+		   	addImage(dilemmaVO.image);
 		}
 	
 		protected function configureButtons(options:Vector.<IOptionVO>):void
@@ -98,6 +99,13 @@ package strategy.view.decisions {
 		{
 			var optionID:uint = _idsByButton[e.target] as uint;
 			optionSubmittedSignal.dispatch(optionID);
+		}
+		
+		protected function addImage(image:Sprite):void
+		{
+			addChild(image);
+			image.x = 615;
+			image.y = 200;
 		} 
 	}
 }

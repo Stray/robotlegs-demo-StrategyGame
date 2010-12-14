@@ -1,6 +1,7 @@
 package strategy.model.gameplay {
 
 	import asunit.framework.TestCase;
+	import flash.display.Sprite;
 
 	public class DilemmaVOTest extends TestCase {
 		private var instance:DilemmaVO; 
@@ -8,6 +9,7 @@ package strategy.model.gameplay {
 		private const TITLE:String = "test title";
 		private const QUESTION:String = "Test question";
 		private const OPTIONS:Vector.<IOptionVO> = new Vector.<IOptionVO>();
+		private const IMAGE:Sprite = new Sprite();
 
 		public function DilemmaVOTest(methodName:String=null) {
 			super(methodName)
@@ -15,7 +17,7 @@ package strategy.model.gameplay {
 
 		override protected function setUp():void {
 			super.setUp();
-			instance = new DilemmaVO(TITLE, QUESTION, OPTIONS);
+			instance = new DilemmaVO(TITLE, QUESTION, OPTIONS, IMAGE);
 		}
 
 		override protected function tearDown():void {
@@ -41,6 +43,10 @@ package strategy.model.gameplay {
 		
 		public function test_get_options():void {
 			assertEquals("Get options", OPTIONS, instance.options);
+		}
+		
+		public function test_get_image():void {
+			assertEquals("Get image", IMAGE, instance.image);
 		}
 	}
 }

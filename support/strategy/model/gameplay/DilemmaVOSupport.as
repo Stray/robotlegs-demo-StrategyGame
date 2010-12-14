@@ -1,6 +1,7 @@
 package strategy.model.gameplay {
 	                                 
 	import strategy.model.gameplay.DilemmaVO;
+	import flash.display.Sprite;
 	
 	public class DilemmaVOSupport extends DilemmaVO {
 		
@@ -26,7 +27,7 @@ package strategy.model.gameplay {
 				options.push(option);
 			}
 			
-			super(title, question, options);
+			super(title, question, options, new Sprite());
 		}
 		
 		//--------------------------------------------------------------------------

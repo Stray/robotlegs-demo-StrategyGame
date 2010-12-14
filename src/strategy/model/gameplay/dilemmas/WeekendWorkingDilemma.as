@@ -5,6 +5,7 @@ package strategy.model.gameplay.dilemmas {
 	import strategy.controller.commands.surpriseconsequences.WorkTheWeekendCommand;
 	import strategy.model.gameplay.OptionVO;
 	import strategy.controller.commands.surpriseconsequences.RestTheWeekendCommand;
+	import skins.SurprisesSkin;
 	
 	public class WeekendWorkingDilemma extends DilemmaVO {
 		
@@ -15,7 +16,7 @@ package strategy.model.gameplay.dilemmas {
 		protected const REST_OPTION_TITLE:String = "Rest";
 		
 		public function WeekendWorkingDilemma() {
-			super(TITLE, QUESTION, createOptions());
+			super(TITLE, QUESTION, createOptions(), new SurprisesSkin.Weekend());
 		}
 		
 		protected function createOptions():Vector.<IOptionVO>

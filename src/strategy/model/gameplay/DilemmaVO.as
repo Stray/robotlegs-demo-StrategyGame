@@ -1,15 +1,19 @@
 package strategy.model.gameplay {
 	
+	import flash.display.Sprite;
+	
 	public class DilemmaVO implements IDilemmaVO {
 		
 		protected var _title:String;
 		protected var _question:String;
 		protected var _options:Vector.<IOptionVO>;
+		protected var _image:Sprite;
 		
-		public function DilemmaVO(title:String, question:String, options:Vector.<IOptionVO>) {
+		public function DilemmaVO(title:String, question:String, options:Vector.<IOptionVO>, image:Sprite) {
 			_title = title;
 			_question = question;
 			_options = options;
+			_image = image;
 		}
 		
 		//---------------------------------------
@@ -31,7 +35,11 @@ package strategy.model.gameplay {
 		{
 			return _options;
 		}
-
-		 
+		
+		public function get image():Sprite
+		{
+			return _image;
+		}
+                                  
 	}
 }

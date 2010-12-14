@@ -8,6 +8,7 @@ package strategy.view.decisions {
 	import flash.display.SimpleButton;
 	import strategy.model.gameplay.IDilemmaVO;
 	import strategy.model.gameplay.DilemmaVOSupport;
+	import strategy.model.gameplay.dilemmas.WeekendWorkingDilemma;
 
 	public class DilemmaViewTest extends TestCase {
 		private var instance:DilemmaView;
@@ -20,7 +21,7 @@ package strategy.view.decisions {
 
 		override protected function setUp():void {
 			super.setUp();
-			dilemmaVO = new DilemmaVOSupport(1,2);
+			dilemmaVO = new WeekendWorkingDilemma();
 			instance = new DilemmaView(dilemmaVO);
 			optionSubmitted = 0;
 		}
@@ -57,6 +58,11 @@ package strategy.view.decisions {
 			UnitHelpers.clickItem(option2Button);
 			assertEquals("optionSubmittedSignal fired with correct payload", 2, optionSubmitted);
 		}
+		
+		public function test_adds_image():void {
+			assertEquals("Has added correct image", dilemmaVO.image, instance.getChildAt(instance.numChildren-1));
+		}
+		
 		
 		public function test_verified_visually():void {
 			addChild(instance);
