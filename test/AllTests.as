@@ -13,6 +13,7 @@ package {
 	import strategy.controller.commands.daycycle.HireWorkersCommandTest;
 	import strategy.controller.commands.daycycle.OfferLabourCommandTest;
 	import strategy.controller.commands.daycycle.OfferStoneCommandTest;
+	import strategy.controller.commands.daycycle.OfferWeekendWorkingCommandTest;
 	import strategy.controller.commands.daycycle.ProcessDayEndCommandTest;
 	import strategy.controller.commands.daycycle.ProcessDayStartCommandTest;
 	import strategy.controller.commands.daycycle.SkipHireWorkersCommandTest;
@@ -40,6 +41,7 @@ package {
 	import strategy.model.base.GameFactorModelTest;
 	import strategy.model.base.MarketVariationModelTest;
 	import strategy.model.FirstGameConfigTest;
+	import strategy.model.gameplay.dilemmas.WeekendWorkingDilemmaTest;
 	import strategy.model.gameplay.DilemmaVOTest;
 	import strategy.model.gameplay.OptionVOTest;
 	import strategy.model.markets.LabourAvailabilityMarketTest;
@@ -102,6 +104,7 @@ package {
 			addTest(new strategy.controller.commands.daycycle.HireWorkersCommandTest());
 			addTest(new strategy.controller.commands.daycycle.OfferLabourCommandTest());
 			addTest(new strategy.controller.commands.daycycle.OfferStoneCommandTest());
+			addTest(new strategy.controller.commands.daycycle.OfferWeekendWorkingCommandTest());
 			addTest(new strategy.controller.commands.daycycle.ProcessDayEndCommandTest());
 			addTest(new strategy.controller.commands.daycycle.ProcessDayStartCommandTest());
 			addTest(new strategy.controller.commands.daycycle.SkipHireWorkersCommandTest());
@@ -129,6 +132,7 @@ package {
 			addTest(new strategy.model.base.GameFactorModelTest());
 			addTest(new strategy.model.base.MarketVariationModelTest());
 			addTest(new strategy.model.FirstGameConfigTest());
+			addTest(new strategy.model.gameplay.dilemmas.WeekendWorkingDilemmaTest());
 			addTest(new strategy.model.gameplay.DilemmaVOTest());
 			addTest(new strategy.model.gameplay.OptionVOTest());
 			addTest(new strategy.model.markets.LabourAvailabilityMarketTest());
