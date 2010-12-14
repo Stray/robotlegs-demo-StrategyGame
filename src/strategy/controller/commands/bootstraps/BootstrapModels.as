@@ -27,12 +27,16 @@ package strategy.controller.commands.bootstraps
 	import strategy.controller.surprises.LabourSurpriseEventCaster;
 	import strategy.view.messages.IGameMessageText;
 	import strategy.view.messages.GameMessageText;
+	import org.robotlegs.core.IOptionCommandMapper;
+	import org.robotlegs.mvcs.OptionCommandMapper;
 
 	public class BootstrapModels extends Command
 	{
 	
 		override public function execute():void
 		{
+			injector.mapSingletonOf(IOptionCommandMapper, OptionCommandMapper);
+			
 			injector.mapSingletonOf(IGameMessageText, GameMessageText);
 			injector.mapSingletonOf(IGameConfig, FirstGameConfig);
 			

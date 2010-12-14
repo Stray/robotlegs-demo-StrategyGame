@@ -16,6 +16,9 @@ package strategy {
 	import strategy.view.messages.GameOverView;
 	import flash.display.SimpleButton;
 	import strategy.view.messages.GameWonView;
+	import strategy.model.gameplay.DilemmaVOSupport;
+	import strategy.view.decisions.DilemmaView;
+	import strategy.model.gameplay.IDilemmaVO;
 
 	public class PyramidGameViewTest extends TestCase {
 		private var instance:PyramidGameView;
@@ -239,6 +242,24 @@ package strategy {
 			instance.showLabourOffer(null);
 			assertEquals("Has not added labour offer", childrenBefore + 1, instance.numChildren);			
 		}   
+		
+		public function test_showDilemma_adds_view():void {
+			var childrenBefore:uint = instance.numChildren; 
+			var dilemmaVO:IDilemmaVO = new DilemmaVOSupport();
+			instance.showDilemma(dilemmaVO);
+			assertEquals("Has added one more child", childrenBefore+1, instance.numChildren);
+            var topItem:Sprite = instance.getChildAt(childrenBefore) as Sprite;
+			assertTrue("Has added the correct type of view", topItem is DilemmaView);
+		}
+
+		public function test_dilemmaDispose_removes_view():void {
+			var childrenBefore:uint = instance.numChildren; 
+			var dilemmaVO:IDilemmaVO = new DilemmaVOSupport();
+			instance.showDilemma(dilemmaVO);
+			var topItem:Sprite = instance.getChildAt(instance.numChildren-1) as Sprite;
+   		    DilemmaView(topItem).dispose();  
+			assertEquals("Has removed the DilemmaView", childrenBefore, instance.numChildren);
+		}
 		
 		  
 	}

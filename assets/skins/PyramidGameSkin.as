@@ -47,6 +47,10 @@ package skins {
 		public static var GameWonSkin:Class; 
 		
 		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_game_over")]
-		public static var GameOverSkin:Class;
+		public static var GameOverSkin:Class;  
+		
+		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_dilemma")]
+		public static var DilemmaSkin:Class;  
+		
 	}
 }

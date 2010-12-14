@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>src/strategy/PyramidGameContext.as</string>
+	<string>test/strategy/PyramidGameViewMediatorTest.as</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -49,93 +49,33 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>rakefile.rb</key>
+		<key>src/strategy/controller/commands/surpriseconsequences/RestTheWeekendCommand.as</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>15</integer>
+				<integer>36</integer>
 				<key>line</key>
-				<integer>46</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>15</integer>
-		</dict>
-		<key>src/strategy/PyramidGameContext.as</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>90</integer>
-				<key>line</key>
-				<integer>98</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>67</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>32</integer>
-				<key>line</key>
-				<integer>98</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>90</integer>
-				<key>line</key>
-				<integer>98</integer>
-			</dict>
-		</dict>
-		<key>src/strategy/controller/commands/daycycle/CheckForWeekendCommand.as</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>16</integer>
-				<key>line</key>
-				<integer>41</integer>
+				<integer>25</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>src/strategy/model/IGameConfig.as</key>
+		<key>src/strategy/controller/commands/surpriseconsequences/WorkTheWeekendCommand.as</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>23</integer>
+				<integer>35</integer>
 				<key>line</key>
-				<integer>8</integer>
+				<integer>14</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>15</integer>
-				<key>line</key>
-				<integer>8</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>33</integer>
-				<key>line</key>
-				<integer>8</integer>
-			</dict>
 		</dict>
 		<key>src/strategy/model/markets/StoneAvailabilityMarket.as</key>
 		<dict>
@@ -151,43 +91,56 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>src/strategy/model/resources/ICalendarModel.as</key>
+		<key>test/strategy/PyramidGameViewMediatorTest.as</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>80</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>172</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>128</integer>
 		</dict>
-		<key>test/strategy/controller/commands/daycycle/CheckForWeekendCommandTest.as</key>
+		<key>test/strategy/controller/commands/surpriseconsequences/RestTheWeekendCommandTest.as</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>71</integer>
+				<integer>38</integer>
 				<key>line</key>
-				<integer>130</integer>
+				<integer>49</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>101</integer>
+			<integer>32</integer>
+		</dict>
+		<key>test/strategy/controller/commands/surpriseconsequences/WorkTheWeekendCommandTest.as</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>27</integer>
+				<key>line</key>
+				<integer>23</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>test/strategy/controller/commands/daycycle/CheckForWeekendCommandTest.as</string>
-		<string>src/strategy/controller/commands/daycycle/CheckForWeekendCommand.as</string>
-		<string>rakefile.rb</string>
-		<string>src/strategy/PyramidGameContext.as</string>
-		<string>src/strategy/model/IGameConfig.as</string>
-		<string>src/strategy/model/resources/ICalendarModel.as</string>
+		<string>src/strategy/controller/commands/surpriseconsequences/RestTheWeekendCommand.as</string>
+		<string>test/strategy/controller/commands/surpriseconsequences/RestTheWeekendCommandTest.as</string>
+		<string>test/strategy/controller/commands/surpriseconsequences/WorkTheWeekendCommandTest.as</string>
+		<string>src/strategy/controller/commands/surpriseconsequences/WorkTheWeekendCommand.as</string>
+		<string>test/strategy/PyramidGameViewMediatorTest.as</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>

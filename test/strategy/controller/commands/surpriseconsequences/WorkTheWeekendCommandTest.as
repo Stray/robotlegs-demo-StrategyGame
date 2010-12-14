@@ -23,6 +23,8 @@ package strategy.controller.commands.surpriseconsequences {
 	
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
+	import flash.events.EventDispatcher;
+	import strategy.controller.events.DayCycleEvent;
 
 	public class WorkTheWeekendCommandTest extends TestCase {
 		private var instance:WorkTheWeekendCommand;
@@ -45,6 +47,7 @@ package strategy.controller.commands.surpriseconsequences {
 			super.setUp();
 			instance = new WorkTheWeekendCommand();
 			instance.labourModel = nice(ILabourModel);
+			instance.eventDispatcher = new EventDispatcher();
 		}
 
 		override protected function tearDown():void {
@@ -69,5 +72,15 @@ package strategy.controller.commands.surpriseconsequences {
 		    verify(instance.labourModel).method('adjustTeamEnergy').args(equalTo(-10));
 		}
 		
+		public function test_execute_dispatches_workingDayStarted_event():void {
+			var handler:Function = addAsync(check_execute_dispatches_workingDayStarted_event, 50);
+			instance.eventDispatcher.addEventListener(DayCycleEvent.WORKING_DAY_STARTED, handler);
+			
+			instance.execute();
+		}
+
+		private function check_execute_dispatches_workingDayStarted_event(e:DayCycleEvent):void {
+			assertEquals('event is correct type', DayCycleEvent.WORKING_DAY_STARTED, e.type);
+		}
 	}
 }

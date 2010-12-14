@@ -20,6 +20,8 @@ package strategy {
 	import strategy.view.messages.GameOverView;
 	import org.osflash.signalsv1.Signal;
 	import strategy.view.messages.GameWonView;
+	import strategy.view.decisions.DilemmaView;
+	import strategy.model.gameplay.IDilemmaVO;
 	
 	public class PyramidGameView extends Sprite {
 		
@@ -88,6 +90,13 @@ package strategy {
 			introduce(gameWon);
 			blockNewViewsUntil(gameWon.submitSignal);
 		}
+		 
+		public function showDilemma(dilemmaVO:IDilemmaVO):void
+		{
+			var dilemma:DilemmaView = new DilemmaView(dilemmaVO);
+			introduce(dilemma);
+			dilemma.clearSignal.add(clearHandler);
+		}
 		
 		public function removeStoneOffer():void
 		{
@@ -107,6 +116,14 @@ package strategy {
 		public function removeStoneStockCheck():void
 		{
 			removeAny(StoneStockCheckView);
+		}
+		
+		public function clearHandler(view:Sprite):void
+		{
+			if(contains(view))
+			{
+				removeChild(view);
+			}
 		}
 				
 		protected function introduceLive(viewItem:Sprite):void

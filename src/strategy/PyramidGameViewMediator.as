@@ -13,6 +13,7 @@ package strategy {
 	import strategy.controller.events.StoneStockCheckEvent;
 	import strategy.controller.events.GameOverEvent;
 	import strategy.controller.events.GameWonEvent;
+	import strategy.controller.events.DilemmaEvent;
 	
 	public class PyramidGameViewMediator extends Mediator {
 		
@@ -59,7 +60,9 @@ package strategy {
 			eventMap.mapListener(eventDispatcher, DayCycleEvent.STONE_STOCK_CHECKED, stoneStockChecked, DayCycleEvent);
 			eventMap.mapListener(eventDispatcher, DayCycleEvent.STONE_DELIVERY_COMPLETED, stoneDeliveryCompletedHandler, DayCycleEvent);
 			eventMap.mapListener(eventDispatcher, DayCycleEvent.LABOUR_HIRE_COMPLETED, labourHireCompletedHandler, DayCycleEvent);
-			eventMap.mapListener(eventDispatcher, DayCycleEvent.DAY_ENDED, dayEndedHandler, DayCycleEvent);
+			eventMap.mapListener(eventDispatcher, DayCycleEvent.DAY_ENDED, dayEndedHandler, DayCycleEvent); 
+			
+			eventMap.mapListener(eventDispatcher, DilemmaEvent.DILEMMA_PRESENTED, dilemmaPresentedHandler, DilemmaEvent);
 			
 			eventMap.mapListener(eventDispatcher, GameOverEvent.GAME_OVER, gameOverHandler, GameOverEvent);
 			eventMap.mapListener(eventDispatcher, GameWonEvent.GAME_WON, gameWonHandler, GameWonEvent);    
@@ -133,6 +136,11 @@ package strategy {
 		private function gameWonHandler(e:GameWonEvent):void
 		{
 			view.showGameWon(e.daysRemaining, e.cashRemaining);
+		}
+		
+		private function dilemmaPresentedHandler(e:DilemmaEvent):void
+		{
+			view.showDilemma(e.dilemmaVO);
 		}
 		
 	}

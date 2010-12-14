@@ -32,6 +32,9 @@ package strategy {
 	import strategy.controller.events.StoneStockCheckEvent;
 	import strategy.controller.events.GameOverEvent;
 	import strategy.controller.events.GameWonEvent;
+	import strategy.model.gameplay.IDilemmaVO;
+	import strategy.model.gameplay.DilemmaVOSupport;
+	import strategy.controller.events.DilemmaEvent;
 
 	public class PyramidGameViewMediatorTest extends TestCase {
 		private var instanceMediator:PyramidGameViewMediator;
@@ -162,6 +165,14 @@ package strategy {
 			instanceMediator.eventDispatcher.dispatchEvent(evt);
 			verify(instanceMediator.view).method("showGameWon").args(equalTo(days), equalTo(cash));
 		}
+		
+		public function test_dilemmaEvent_passes_valu_to_view():void {
+			var dilemmaVO:IDilemmaVO = new DilemmaVOSupport();
+			var evt:DilemmaEvent = new DilemmaEvent(DilemmaEvent.DILEMMA_PRESENTED, dilemmaVO);
+			instanceMediator.eventDispatcher.dispatchEvent(evt);
+			verify(instanceMediator.view).method("showDilemma").args(equalTo(dilemmaVO));
+		}
+		
 		
 	}
 }

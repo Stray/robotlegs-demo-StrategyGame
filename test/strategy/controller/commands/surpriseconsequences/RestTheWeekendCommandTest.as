@@ -24,6 +24,8 @@ package strategy.controller.commands.surpriseconsequences {
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	import strategy.model.FirstGameConfig;
+	import strategy.controller.events.DayCycleEvent;
+	import flash.events.EventDispatcher;
 
 	public class RestTheWeekendCommandTest extends TestCase {
 		private var instance:RestTheWeekendCommand;
@@ -48,6 +50,7 @@ package strategy.controller.commands.surpriseconsequences {
 			instance.labourModel = nice(ILabourModel);
 			instance.calendarModel = nice(ICalendarModel);
 			instance.config = new FirstGameConfig();
+			instance.eventDispatcher = new EventDispatcher();
 		}
 
 		override protected function tearDown():void {
@@ -75,6 +78,17 @@ package strategy.controller.commands.surpriseconsequences {
 		public function test_execute_adjustsCalendar():void {
 			instance.execute();
 			verify(instance.calendarModel).method("adjustByValue").args(equalTo(-2)); 
+		} 
+		
+		public function test_execute_dispatches_dayEnded():void {
+			var handler:Function = addAsync(check_execute_dispatches_dayEnded, 50);
+			instance.eventDispatcher.addEventListener(DayCycleEvent.DAY_ENDED, handler);
+			
+			instance.execute();
+		}
+
+		private function check_execute_dispatches_dayEnded(e:DayCycleEvent):void {
+			assertEquals('event is correct type', DayCycleEvent.DAY_ENDED, e.type);
 		}
 		
 	}

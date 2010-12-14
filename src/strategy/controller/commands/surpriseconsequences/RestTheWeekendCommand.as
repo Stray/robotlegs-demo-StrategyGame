@@ -5,6 +5,7 @@ package strategy.controller.commands.surpriseconsequences
 	import strategy.model.resources.ICalendarModel;
 	import strategy.model.resources.ILabourModel;
 	import strategy.model.IGameConfig;
+	import strategy.controller.events.DayCycleEvent;
 	
 	public class RestTheWeekendCommand extends Command
 	{
@@ -20,10 +21,10 @@ package strategy.controller.commands.surpriseconsequences
 		override public function execute():void 
 		{
 			var restDays:Number = 7 - config.workingDaysPerWeek;
-			
 			calendarModel.adjustByValue(-restDays);
-			
 			labourModel.adjustTeamEnergy(10);
+			var evt:DayCycleEvent = new DayCycleEvent(DayCycleEvent.DAY_ENDED);
+			dispatch(evt);
 		} 
 	}
 }

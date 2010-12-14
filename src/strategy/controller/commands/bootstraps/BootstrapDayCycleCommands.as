@@ -12,13 +12,17 @@ package strategy.controller.commands.bootstraps
 	import strategy.controller.commands.daycycle.HireWorkersCommand;
 	import strategy.controller.commands.daycycle.SkipHireWorkersCommand;
 	import strategy.controller.commands.daycycle.CheckStoneStockCommand;
+	import strategy.controller.commands.daycycle.CheckForWeekendCommand;
+	import strategy.controller.commands.daycycle.OfferWeekendWorkingCommand;
 
 	public class BootstrapDayCycleCommands extends Command
 	{
 	
 		override public function execute():void
 		{
-			commandMap.mapEvent(DayCycleEvent.NEW_DAY_STARTED, CheckStoneStockCommand, DayCycleEvent);
+			commandMap.mapEvent(DayCycleEvent.NEW_DAY_STARTED, CheckForWeekendCommand, DayCycleEvent);    
+			commandMap.mapEvent(DayCycleEvent.WEEKEND_DAY_STARTED, OfferWeekendWorkingCommand, DayCycleEvent);
+			commandMap.mapEvent(DayCycleEvent.WORKING_DAY_STARTED, CheckStoneStockCommand, DayCycleEvent);
 			commandMap.mapEvent(DayCycleEvent.STONE_STOCK_CHECKED, OfferStoneCommand, DayCycleEvent);
 			commandMap.mapEvent(StoneSupplyEvent.STONE_PURCHASED, TakeStoneDeliveryCommand, StoneSupplyEvent);
 			commandMap.mapEvent(DayCycleEvent.STONE_DELIVERY_COMPLETED, OfferLabourCommand, DayCycleEvent);
