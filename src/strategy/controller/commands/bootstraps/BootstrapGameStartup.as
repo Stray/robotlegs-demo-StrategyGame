@@ -7,7 +7,7 @@ package strategy.controller.commands.bootstraps
 	import strategy.controller.commands.bootstraps.BootstrapGameEndingsCommand;
 	import strategy.controller.commands.StartViewCommand;
 	import strategy.controller.commands.ConfigureModelsCommand;
-	import strategy.controller.commands.ProcessDayStartCommand;
+	import strategy.controller.commands.daycycle.ProcessDayStartCommand;
 	import org.robotlegs.mvcs.Command;
 
 	public class BootstrapGameStartup extends Command

@@ -1,17 +1,17 @@
 package strategy.controller.commands.bootstraps
 {
 	import strategy.controller.events.DayCycleEvent;
-	import strategy.controller.commands.OfferStoneCommand;
+	import strategy.controller.commands.daycycle.OfferStoneCommand;
 	import org.robotlegs.mvcs.Command;
 	import strategy.controller.events.StoneSupplyEvent;
-	import strategy.controller.commands.TakeStoneDeliveryCommand;
-	import strategy.controller.commands.ProcessDayEndCommand;
-	import strategy.controller.commands.ProcessDayStartCommand;
-	import strategy.controller.commands.OfferLabourCommand;
+	import strategy.controller.commands.daycycle.TakeStoneDeliveryCommand;
+	import strategy.controller.commands.daycycle.ProcessDayEndCommand;
+	import strategy.controller.commands.daycycle.ProcessDayStartCommand;
+	import strategy.controller.commands.daycycle.OfferLabourCommand;
 	import strategy.controller.events.LabourSupplyEvent;
-	import strategy.controller.commands.HireWorkersCommand;
-	import strategy.controller.commands.SkipHireWorkersCommand;
-	import strategy.controller.commands.CheckStoneStockCommand;
+	import strategy.controller.commands.daycycle.HireWorkersCommand;
+	import strategy.controller.commands.daycycle.SkipHireWorkersCommand;
+	import strategy.controller.commands.daycycle.CheckStoneStockCommand;
 
 	public class BootstrapDayCycleCommands extends Command
 	{

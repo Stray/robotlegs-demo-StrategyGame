@@ -11,6 +11,8 @@ package strategy {
 	import strategy.controller.commands.StartGameCommand;
 	import strategy.controller.events.GameEvent;
 	import strategy.controller.commands.RestartGameCommand;
+	import org.robotlegs.core.IOptionCommandMap;
+	import org.robotlegs.base.OptionCommandMap;
 	
 	public class PyramidGameContext extends Context implements IRelaxedEventContext {
 		
@@ -90,12 +92,25 @@ package strategy {
 			_relaxedEventMap = value;
 		}
 		
+		protected var _optionCommandMap:IOptionCommandMap;
+		
+		public function get optionCommandMap():IOptionCommandMap
+		{
+			return _optionCommandMap ||= new OptionCommandMap(eventDispatcher, injector, reflector);
+		}
+		
+		public function set optionCommandMap(value:IOptionCommandMap):void
+		{
+			_optionCommandMap = value;
+		}      
+		
 		override protected function mapInjections():void
 		{
 			super.mapInjections();
 			injector.mapValue(IRelaxedEventMap, relaxedEventMap);
+			injector.mapValue(IOptionCommandMap, optionCommandMap);
 		}
-
+		
 		
 	}
 }

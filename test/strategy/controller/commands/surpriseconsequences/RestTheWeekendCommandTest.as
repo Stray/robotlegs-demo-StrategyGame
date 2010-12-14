@@ -23,6 +23,7 @@ package strategy.controller.commands.surpriseconsequences {
 	
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
+	import strategy.model.FirstGameConfig;
 
 	public class RestTheWeekendCommandTest extends TestCase {
 		private var instance:RestTheWeekendCommand;
@@ -46,6 +47,7 @@ package strategy.controller.commands.surpriseconsequences {
 			instance = new RestTheWeekendCommand();
 			instance.labourModel = nice(ILabourModel);
 			instance.calendarModel = nice(ICalendarModel);
+			instance.config = new FirstGameConfig();
 		}
 
 		override protected function tearDown():void {

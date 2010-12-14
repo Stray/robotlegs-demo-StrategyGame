@@ -1,4 +1,4 @@
-package strategy.controller.commands {
+package strategy.controller.commands.daycycle{
 
 	import asunit.framework.TestCase;
 	

@@ -4,7 +4,7 @@ package strategy.model {
 		
 		public function FirstGameConfig() { 
 			_calendarDays = 30;
-			_workingDaysPerWeek = 7;
+			_workingDaysPerWeek = 5;
 			_daysPerTurn = 1;
 			_targetBuildTotal = 10000;
 			_minimumTeamSize = 3;

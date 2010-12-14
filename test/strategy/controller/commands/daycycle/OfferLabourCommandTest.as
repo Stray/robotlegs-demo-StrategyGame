@@ -1,11 +1,9 @@
-package strategy.controller.commands {
+package strategy.controller.commands.daycycle{
 
 	import asunit.framework.TestCase;
 	
 	import org.robotlegs.mvcs.Command;
-	import flash.events.EventDispatcher;
-	import strategy.controller.surprises.IStoneSurpriseEventCaster;
-	import strategy.model.resources.ICalendarModel;
+	import strategy.controller.surprises.ILabourSurpriseEventCaster;
 
 	import asunit.errors.AssertionFailedError;     
 
@@ -25,16 +23,17 @@ package strategy.controller.commands {
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	import strategy.model.FirstGameConfig;
+	import strategy.model.resources.ICalendarModel;
 
-	public class OfferStoneCommandTest extends TestCase {
-		private var instance:OfferStoneCommand;
+	public class OfferLabourCommandTest extends TestCase {
+		private var instance:OfferLabourCommand;
 
-		public function OfferStoneCommandTest(methodName:String=null) {
+		public function OfferLabourCommandTest(methodName:String=null) {
 			super(methodName)
 		}
 
 		override public function run():void{
-			var mockolateMaker:IEventDispatcher = prepare(ICalendarModel, IStoneSurpriseEventCaster);
+			var mockolateMaker:IEventDispatcher = prepare(ILabourSurpriseEventCaster, ICalendarModel);
 			mockolateMaker.addEventListener(Event.COMPLETE, prepareCompleteHandler);
 		}
 
@@ -45,10 +44,10 @@ package strategy.controller.commands {
 
 		override protected function setUp():void {
 			super.setUp();
-			instance = new OfferStoneCommand();
+			instance = new OfferLabourCommand();
 			instance.config = new FirstGameConfig();
+			instance.labourSurpriseEventCaster = nice(ILabourSurpriseEventCaster);
 			instance.calendarModel = nice(ICalendarModel);
-			instance.stoneSurpriseEventCaster = nice(IStoneSurpriseEventCaster);
 		}
 
 		override protected function tearDown():void {
@@ -57,7 +56,7 @@ package strategy.controller.commands {
 		}
 
 		public function testInstantiated():void {
-			assertTrue("instance is OfferStoneCommand", instance is OfferStoneCommand);
+			assertTrue("instance is OfferLabourCommand", instance is OfferLabourCommand);
 		}
 		
 		public function testIsCommand():void{
@@ -68,22 +67,16 @@ package strategy.controller.commands {
 			assertTrue("Failing test", true);
 		}
 		
-		public function testExecute():void {
-			assertTrue("Execute returns void", (instance.execute() == void));
-		}
-		
 		public function test_requestsNormalEvent_if_days_under_normal_config_days():void {
 			stub(instance.calendarModel).property("daysPassed").returns(2);
 			instance.execute();
-			verify(instance.stoneSurpriseEventCaster).method('castNormalEvent').noArgs();
+			verify(instance.labourSurpriseEventCaster).method('castNormalEvent').noArgs();
 		}
 				
 		public function test_requestsSurpriseEvent_if_days_over_config_normal_days():void {
 			stub(instance.calendarModel).property("daysPassed").returns(4);
 			instance.execute();
-			verify(instance.stoneSurpriseEventCaster).method('castSurpriseEvent').noArgs();
+			verify(instance.labourSurpriseEventCaster).method('castSurpriseEvent').noArgs();
 		}
-		
-		
 	}
 }

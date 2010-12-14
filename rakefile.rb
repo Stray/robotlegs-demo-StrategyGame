@@ -31,6 +31,7 @@ project_model :model do |m|
   m.compiler_gem_version  = '>= 4.0.0'
   m.source_path           << "#{m.lib_dir}/robotlegs"
   m.source_path           << "#{m.lib_dir}/greensock"
+  m.source_path           << "#{m.lib_dir}/robotlegs_utilities_OptionCommandMap"
   m.library_path          << 'lib/as3-signals.swc'
   m.endtoend_test_dir     = 'test/strategy/xendtoendtests'
   m.support_dir           = 'support'  
@@ -42,8 +43,8 @@ def populate_test_task(t)
   t.source_path  << "lib/mockolate"
   t.library_path << 'lib/asx.swc'
   t.library_path << 'lib/hamcrest.swc'
-  t.library_path << 'lib/FLoxy.swc'
-  
+  t.library_path << 'lib/FLoxy.swc'          
+  t.source_path << "lib/robotlegs_utilities_OptionCommandMap"
   t.gem_name     = 'sprout-flex4sdk-tool'
   t.gem_version  = '>= 4.0.0'
 end
