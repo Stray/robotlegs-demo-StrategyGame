@@ -22,6 +22,8 @@ package strategy {
 	import strategy.view.messages.GameWonView;
 	import strategy.view.decisions.DilemmaView;
 	import strategy.model.gameplay.IDilemmaVO;
+	import strategy.view.status.SafetyStatusView;
+	import strategy.view.status.EnvironmentStatusView;
 	
 	public class PyramidGameView extends Sprite {
 		
@@ -165,6 +167,12 @@ package strategy {
 			
 			var calendarStatusView:Sprite = new CalendarStatusView();
 			addChild(calendarStatusView);
+			
+			var safetyStatusView:Sprite = new SafetyStatusView();
+			addChild(safetyStatusView);
+			
+			var environmentStatusView:Sprite = new EnvironmentStatusView();
+			addChild(environmentStatusView);
 			
 			introduce = introduceLive;
 		}

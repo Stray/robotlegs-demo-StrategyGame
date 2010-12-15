@@ -23,6 +23,9 @@ package {
 	import strategy.controller.commands.RestartGameCommandTest;
 	import strategy.controller.commands.StartGameCommandTest;
 	import strategy.controller.commands.StartViewCommandTest;
+	import strategy.controller.commands.surpriseconsequences.BuyExtraEquipmentCommandTest;
+	import strategy.controller.commands.surpriseconsequences.ContinueGameCommandTest;
+	import strategy.controller.commands.surpriseconsequences.DoubleStoneStorageCommandTest;
 	import strategy.controller.commands.surpriseconsequences.RestTheWeekendCommandTest;
 	import strategy.controller.commands.surpriseconsequences.WorkTheWeekendCommandTest;
 	import strategy.controller.events.DailyProgressEventTest;
@@ -116,6 +119,9 @@ package {
 			addTest(new strategy.controller.commands.RestartGameCommandTest());
 			addTest(new strategy.controller.commands.StartGameCommandTest());
 			addTest(new strategy.controller.commands.StartViewCommandTest());
+			addTest(new strategy.controller.commands.surpriseconsequences.BuyExtraEquipmentCommandTest());
+			addTest(new strategy.controller.commands.surpriseconsequences.ContinueGameCommandTest());
+			addTest(new strategy.controller.commands.surpriseconsequences.DoubleStoneStorageCommandTest());
 			addTest(new strategy.controller.commands.surpriseconsequences.RestTheWeekendCommandTest());
 			addTest(new strategy.controller.commands.surpriseconsequences.WorkTheWeekendCommandTest());
 			addTest(new strategy.controller.events.DailyProgressEventTest());

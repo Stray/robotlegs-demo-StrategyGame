@@ -3,6 +3,7 @@ package strategy.view.status {
 	import strategy.view.status.SafetyStatusView;
 	
 	import org.robotlegs.mvcs.Mediator;
+	import strategy.controller.events.ResourceStatusEvent;
 	
 	public class SafetyStatusViewMediator extends Mediator {
 		
@@ -36,7 +37,7 @@ package strategy.view.status {
 		 */
 		override public function onRegister():void
 		{			
-			//eventMap.mapListener(eventDispatcher, EventType.EVENT_NAME, eventHandlerFunction);
+			eventMap.mapListener(eventDispatcher, ResourceStatusEvent.HEALTH_AND_SAFETY_UPDATED, safetyUpdatedHandler, ResourceStatusEvent);
 		}
 		
 		//--------------------------------------------------------------------------
@@ -44,6 +45,10 @@ package strategy.view.status {
 		//  Event Handlers
 		//
 		//--------------------------------------------------------------------------
-		
+	   
+	    private function safetyUpdatedHandler(e:ResourceStatusEvent):void
+		{
+			view.updateStatus(e.percentage);
+		}
 	}
 }

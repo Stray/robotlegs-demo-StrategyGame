@@ -1,8 +1,9 @@
 package strategy.view.status {
 	
-	import flash.display.Sprite;
+	import skins.PyramidGameSkin;
+	import strategy.view.status.BaseGaugeStatusView;
 	
-	public class EnvironmentStatusView extends Sprite {
+	public class EnvironmentStatusView extends BaseGaugeStatusView {
 		
 		
 		//--------------------------------------------------------------------------
@@ -16,10 +17,8 @@ package strategy.view.status {
 		 */
 		
 		public function EnvironmentStatusView() {			
-			
+			init(PyramidGameSkin.EnvironmentStatusSkin);
 		}
-		
-		
 		
 	}
 }

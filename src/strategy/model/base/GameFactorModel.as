@@ -26,10 +26,7 @@ package strategy.model.base {
 
 		public function adjustByValue(value:Number):void
 		{
-			trace("GameFactorModel::adjustByValue(): ", value);
-			trace("current value before: " + currentValue);
 			currentValue = currentValue + value;
-			trace("current value after: " + currentValue);
 		}
 
 		public function adjustByPercentage(value:Number):void

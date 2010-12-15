@@ -3,6 +3,7 @@ package strategy.view.status {
 	import strategy.view.status.EnvironmentStatusView;
 	
 	import org.robotlegs.mvcs.Mediator;
+	import strategy.controller.events.ResourceStatusEvent;
 	
 	public class EnvironmentStatusViewMediator extends Mediator {
 		
@@ -36,7 +37,7 @@ package strategy.view.status {
 		 */
 		override public function onRegister():void
 		{			
-			//eventMap.mapListener(eventDispatcher, EventType.EVENT_NAME, eventHandlerFunction);
+			eventMap.mapListener(eventDispatcher, ResourceStatusEvent.ENVIRONMENTAL_IMPACT_UPDATED, impactUpdateHandler, ResourceStatusEvent);
 		}
 		
 		//--------------------------------------------------------------------------
@@ -45,5 +46,9 @@ package strategy.view.status {
 		//
 		//--------------------------------------------------------------------------
 		
+		private function impactUpdateHandler(e:ResourceStatusEvent):void
+		{
+			view.updateStatus(e.percentage);
+		}
 	}
 }

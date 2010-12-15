@@ -13,6 +13,8 @@ package strategy.controller.commands
 	import strategy.model.markets.IStonePriceMarket;
 	import strategy.controller.surprises.IStoneSurpriseEventCaster;
 	import strategy.model.markets.ILabourAvailabilityMarket;
+	import strategy.model.resources.IHealthAndSafetyModel;
+	import strategy.model.resources.IEnvironmentalImpactModel;
 	
 	public class ConfigureModelsCommand extends Command
 	{
@@ -47,7 +49,14 @@ package strategy.controller.commands
 		public var stoneSurpriseEventCaster:IStoneSurpriseEventCaster;
 		
 		[Inject]
-		public var labourAvailabilityMarket:ILabourAvailabilityMarket;
+		public var labourAvailabilityMarket:ILabourAvailabilityMarket; 
+		
+		[Inject]
+		public var safety:IHealthAndSafetyModel;
+		
+		[Inject]
+		public var environmentalImpact:IEnvironmentalImpactModel;
+		
 		
 		override public function execute():void 
 		{
@@ -75,7 +84,6 @@ package strategy.controller.commands
 			stoneStock.max = gameConfig.stoneStockCapacity;
 			stoneStock.currentValue = 0;
 			
-			trace("ConfigureModelsCommand::execute()",  stoneAvailabilityMarket);                                                                  
 			stoneAvailabilityMarket.min = gameConfig.minimumStoneAvailability;
 			stoneAvailabilityMarket.max = gameConfig.maximumStoneAvailability;
 			
@@ -84,7 +92,12 @@ package strategy.controller.commands
 			
 			stoneSurpriseEventCaster.surprisePercentageProbability = gameConfig.stoneSurpriseEventProbability;
 			stoneSurpriseEventCaster.primeSurpriseEvents();
+
+			safety.currentValue = 100;
+			environmentalImpact.currentValue = 100;
 			
+			safety.dailyImpact = gameConfig.dailySafetyImpact;
+			environmentalImpact.dailyImpact = gameConfig.dailyEnvironmentalImpact;
 		} 
 	}
 }

@@ -65,5 +65,14 @@ package strategy.model.resources {
 			assertEquals('percentage is correct', NEW_PERCENTAGE, e.percentage);
 		}
 		
+		public function test_applyImpact_adjusts_currentValue():void {
+			var impact:Number = -2;
+			instance.dailyImpact = impact;
+			var valueBefore:Number = instance.currentValue;
+			instance.applyImpact();
+			assertEquals('value has been adjusted', valueBefore+impact, instance.currentValue);
+		}
+		
+		
 	}
 }

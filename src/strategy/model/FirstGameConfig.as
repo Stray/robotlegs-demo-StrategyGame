@@ -24,7 +24,10 @@ package strategy.model {
 			_minimumStonePrice = 8;
 			_maximumStonePrice = 20;
 			
-			_stoneSurpriseEventProbability = 20;
+			_stoneSurpriseEventProbability = 20; 
+			
+			_dailyEnvironmentalImpact = -2;
+			_dailySafetyImpact = -2;
 		} 
 	}
 }

@@ -8,6 +8,9 @@ package strategy.controller.commands.daycycle
 	import strategy.model.markets.IStonePriceMarket;
 	import strategy.model.resources.ILabourModel;
 	import strategy.controller.events.DayCycleEvent;
+	import strategy.model.resources.IHealthAndSafetyModel;
+	import strategy.model.resources.IEnvironmentalImpactModel;
+	import strategy.model.IGameConfig;
 	
 	public class ProcessDayStartCommand extends Command
 	{
@@ -26,9 +29,16 @@ package strategy.controller.commands.daycycle
 	 	[Inject]
 		public var labour:ILabourModel;
 		
+		[Inject]
+		public var safety:IHealthAndSafetyModel;
+		
+		[Inject]
+		public var environmentalImpact:IEnvironmentalImpactModel;
+		
 		override public function execute():void 
 		{
 			updateMarkets();
+			applyImpacts();
 			reduceTeamToCore();
 			dispatchDayStart();
 		}
@@ -39,6 +49,12 @@ package strategy.controller.commands.daycycle
 			labourAvailabilityMarket.move();
 			stonePriceMarket.move();
 			stoneAvailabilityMarket.move();
+		}
+		
+		private function applyImpacts():void
+		{
+			safety.applyImpact();
+			environmentalImpact.applyImpact();
 		}
 		
 		private function reduceTeamToCore():void

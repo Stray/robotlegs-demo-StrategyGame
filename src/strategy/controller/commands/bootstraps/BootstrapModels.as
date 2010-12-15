@@ -29,6 +29,10 @@ package strategy.controller.commands.bootstraps
 	import strategy.view.messages.GameMessageText;
 	import org.robotlegs.core.IOptionCommandMapper;
 	import org.robotlegs.mvcs.OptionCommandMapper;
+	import strategy.model.resources.IEnvironmentalImpactModel;
+	import strategy.model.resources.EnvironmentalImpactModel;
+	import strategy.model.resources.IHealthAndSafetyModel;
+	import strategy.model.resources.HealthAndSafetyModel;
 
 	public class BootstrapModels extends Command
 	{
@@ -45,6 +49,9 @@ package strategy.controller.commands.bootstraps
 			injector.mapSingletonOf(ICalendarModel, CalendarModel);
 			
 			injector.mapSingletonOf(ICashModel, CashModel);
+			
+			injector.mapSingletonOf(IEnvironmentalImpactModel, EnvironmentalImpactModel);
+			injector.mapSingletonOf(IHealthAndSafetyModel, HealthAndSafetyModel);
 			
 			injector.mapSingletonOf(ILabourModel, LabourModel);
 			injector.mapSingletonOf(ILabourPriceMarket, LabourPriceMarket);

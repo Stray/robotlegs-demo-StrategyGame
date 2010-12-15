@@ -28,6 +28,9 @@ package strategy.controller.commands.daycycle{
 	import flash.events.IEventDispatcher;
 	import flash.events.EventDispatcher;
 	import strategy.controller.events.DayCycleEvent;
+	import strategy.model.resources.IHealthAndSafetyModel;
+	import strategy.model.resources.IEnvironmentalImpactModel;
+	import strategy.model.FirstGameConfig;
 
 	public class ProcessDayStartCommandTest extends TestCase {
 		private var instance:ProcessDayStartCommand;
@@ -37,7 +40,7 @@ package strategy.controller.commands.daycycle{
 		}
 
 		override public function run():void{
-			var mockolateMaker:IEventDispatcher = prepare(ILabourModel, ILabourAvailabilityMarket, ILabourPriceMarket, IStonePriceMarket, IStoneAvailabilityMarket);
+			var mockolateMaker:IEventDispatcher = prepare(ILabourModel, ILabourAvailabilityMarket, ILabourPriceMarket, IStonePriceMarket, IStoneAvailabilityMarket, IHealthAndSafetyModel, IEnvironmentalImpactModel);
 			mockolateMaker.addEventListener(Event.COMPLETE, prepareCompleteHandler);
 		}
 
@@ -55,6 +58,8 @@ package strategy.controller.commands.daycycle{
 			instance.labourPriceMarket = nice(ILabourPriceMarket);
 			instance.stoneAvailabilityMarket = nice(IStoneAvailabilityMarket);
 			instance.stonePriceMarket = nice(IStonePriceMarket);
+			instance.safety = nice(IHealthAndSafetyModel);
+			instance.environmentalImpact = nice(IEnvironmentalImpactModel)
 		}
 
 		override protected function tearDown():void {

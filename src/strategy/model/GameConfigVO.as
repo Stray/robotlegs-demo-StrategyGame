@@ -16,7 +16,10 @@ package strategy.model
 		protected var _minimumLabourCost:Number;
 		protected var _maximumLabourCost:Number;
 		protected var _stoneStockCapacity:Number;
-		protected var _numberOfNormalDaysAtStart:uint;
+		protected var _numberOfNormalDaysAtStart:uint;     
+		
+		protected var _dailySafetyImpact:Number;
+		protected var _dailyEnvironmentalImpact:Number;
 		
 		protected var _minimumStoneAvailability:Number = 30;
 		protected var _maximumStoneAvailability:Number = 300;
@@ -122,7 +125,18 @@ package strategy.model
 		public function get stoneSurpriseEventProbability():Number
 		{
 			return _stoneSurpriseEventProbability;
-		}		
+		}
+		
+		public function get dailySafetyImpact():Number
+		{
+			return _dailySafetyImpact;
+		}
+		
+		public function get dailyEnvironmentalImpact():Number
+		{
+			return _dailyEnvironmentalImpact;
+		}
+				
 
 	}
 

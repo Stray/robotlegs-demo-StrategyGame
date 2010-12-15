@@ -32,6 +32,10 @@ package strategy.controller.commands.bootstraps
 	import strategy.view.messages.GameWonViewMediator;
 	import strategy.view.decisions.DilemmaView;
 	import strategy.view.decisions.DilemmaViewMediator;
+	import strategy.view.status.SafetyStatusView;
+	import strategy.view.status.SafetyStatusViewMediator;
+	import strategy.view.status.EnvironmentStatusView;
+	import strategy.view.status.EnvironmentStatusViewMediator;
 
 
 	public class BootstrapViewMediators extends Command
@@ -45,6 +49,8 @@ package strategy.controller.commands.bootstraps
 		    mediatorMap.mapView(CashStatusView, CashStatusViewMediator);
 			mediatorMap.mapView(TeamStatusView, TeamStatusViewMediator);
 			mediatorMap.mapView(CalendarStatusView, CalendarStatusViewMediator);
+			mediatorMap.mapView(SafetyStatusView, SafetyStatusViewMediator);
+			mediatorMap.mapView(EnvironmentStatusView, EnvironmentStatusViewMediator);
 			mediatorMap.mapView(StoneOfferView, StoneOfferViewMediator);
 			mediatorMap.mapView(StoneDilemmaView, StoneOfferViewMediator, StoneOfferView);
 			mediatorMap.mapView(NoStoneView, NoStoneViewMediator);

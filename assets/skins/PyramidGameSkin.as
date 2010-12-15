@@ -11,7 +11,13 @@ package skins {
 		public static var ProgressStatusSkin:Class; 
 		
 		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_stone_stocks")]
-		public static var StoneStockStatusSkin:Class;
+		public static var StoneStockStatusSkin:Class;      
+		
+		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_safety")]
+		public static var SafetyStatusSkin:Class;      
+		
+		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_environment")]
+		public static var EnvironmentStatusSkin:Class;      
 		
 		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_stone_delivery_normal")]
 		public static var StoneDeliveryNormalSkin:Class;
