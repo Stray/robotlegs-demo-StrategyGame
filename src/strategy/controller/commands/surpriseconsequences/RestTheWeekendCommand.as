@@ -6,6 +6,8 @@ package strategy.controller.commands.surpriseconsequences
 	import strategy.model.resources.ILabourModel;
 	import strategy.model.IGameConfig;
 	import strategy.controller.events.DayCycleEvent;
+	import org.robotlegs.base.OptionEvent;
+	import strategy.model.gameplay.dilemmas.DilemmaConfig;
 	
 	public class RestTheWeekendCommand extends Command
 	{
@@ -17,14 +19,31 @@ package strategy.controller.commands.surpriseconsequences
 		
 		[Inject]
 		public var config:IGameConfig;
-		
+
+		[Inject]
+		public var optionEvent:OptionEvent;
+        
 		override public function execute():void 
+		{
+			updateCalendarToSkipWeekend();     
+			
+			restWorkers();
+			
+			var evt:DayCycleEvent = new DayCycleEvent(DayCycleEvent.DAY_ENDED);
+			dispatch(evt);
+		}
+		
+		protected function updateCalendarToSkipWeekend():void
 		{
 			var restDays:Number = 7 - config.workingDaysPerWeek;
 			calendarModel.adjustByValue(-restDays);
-			labourModel.adjustTeamEnergy(10);
-			var evt:DayCycleEvent = new DayCycleEvent(DayCycleEvent.DAY_ENDED);
-			dispatch(evt);
+		}
+		
+		protected function restWorkers():void
+		{
+			var dilemmaConfig:DilemmaConfig = optionEvent.payload as DilemmaConfig;
+			labourModel.adjustTeamEnergy(dilemmaConfig.productivity);
 		} 
+		
 	}
 }

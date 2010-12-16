@@ -4,6 +4,7 @@ package strategy.view.decisions {
 	
 	import org.robotlegs.mvcs.SignalMediator;
 	import org.robotlegs.base.OptionEvent;
+	import strategy.model.gameplay.dilemmas.DilemmaConfig;
 	
 	public class DilemmaViewMediator extends SignalMediator {
 		
@@ -46,10 +47,10 @@ package strategy.view.decisions {
 		//
 		//--------------------------------------------------------------------------
 		 
-		private function optionSubmittedHandler(optionID:uint):void
+		private function optionSubmittedHandler(optionID:uint, payload:DilemmaConfig):void
 		{
 			var optionLookup:String = "OPTION_" + optionID.toString();
-			var evt:OptionEvent = new OptionEvent(OptionEvent[optionLookup]);
+			var evt:OptionEvent = new OptionEvent(OptionEvent[optionLookup], payload);
 			dispatch(evt);
 			view.dispose();
 		}

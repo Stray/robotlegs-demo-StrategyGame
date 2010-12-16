@@ -44,6 +44,7 @@ package {
 	import strategy.model.base.GameFactorModelTest;
 	import strategy.model.base.MarketVariationModelTest;
 	import strategy.model.FirstGameConfigTest;
+	import strategy.model.gameplay.dilemmas.DilemmaConfigBuilderTest;
 	import strategy.model.gameplay.dilemmas.WeekendWorkingDilemmaTest;
 	import strategy.model.gameplay.DilemmaVOTest;
 	import strategy.model.gameplay.OptionVOTest;
@@ -140,6 +141,7 @@ package {
 			addTest(new strategy.model.base.GameFactorModelTest());
 			addTest(new strategy.model.base.MarketVariationModelTest());
 			addTest(new strategy.model.FirstGameConfigTest());
+			addTest(new strategy.model.gameplay.dilemmas.DilemmaConfigBuilderTest());
 			addTest(new strategy.model.gameplay.dilemmas.WeekendWorkingDilemmaTest());
 			addTest(new strategy.model.gameplay.DilemmaVOTest());
 			addTest(new strategy.model.gameplay.OptionVOTest());

@@ -25,9 +25,13 @@ package strategy.controller.commands.surpriseconsequences {
 	import flash.events.IEventDispatcher;
 	import flash.events.EventDispatcher;
 	import strategy.controller.events.DayCycleEvent;
+	import strategy.model.gameplay.dilemmas.DilemmaConfig;
+	import org.robotlegs.base.OptionEvent;
+	import strategy.model.gameplay.dilemmas.DilemmaConfigBuilder;
 
 	public class WorkTheWeekendCommandTest extends TestCase {
 		private var instance:WorkTheWeekendCommand;
+		private const PRODUCTIVITY:Number = -10;
 
 		public function WorkTheWeekendCommandTest(methodName:String=null) {
 			super(methodName)
@@ -48,6 +52,10 @@ package strategy.controller.commands.surpriseconsequences {
 			instance = new WorkTheWeekendCommand();
 			instance.labourModel = nice(ILabourModel);
 			instance.eventDispatcher = new EventDispatcher();
+
+			var dilemmaConfig:DilemmaConfig = new DilemmaConfigBuilder().withProductivity(PRODUCTIVITY).build();
+			var evt:OptionEvent = new OptionEvent(OptionEvent.OPTION_1, dilemmaConfig);
+			instance.optionEvent = evt;
 		}
 
 		override protected function tearDown():void {
@@ -69,7 +77,7 @@ package strategy.controller.commands.surpriseconsequences {
 		
 		public function test_execute_adjusts_energy_levels():void {
 			instance.execute();
-		    verify(instance.labourModel).method('adjustTeamEnergy').args(equalTo(-10));
+		    verify(instance.labourModel).method('adjustTeamEnergy').args(equalTo(PRODUCTIVITY));
 		}
 		
 		public function test_execute_dispatches_workingDayStarted_event():void {

@@ -8,6 +8,7 @@ package strategy.model.gameplay {
 		private const ID:uint = 3;                
 		private const TITLE:String = "Test title";
 		private const CONSEQUENCES:Vector.<Class> = new Vector.<Class>();
+		private const PAYLOAD:Object = new Object();
 
 		public function OptionVOTest(methodName:String=null) {
 			super(methodName)
@@ -15,7 +16,7 @@ package strategy.model.gameplay {
 
 		override protected function setUp():void {
 			super.setUp();
-			instance = new OptionVO(ID, TITLE, CONSEQUENCES);
+			instance = new OptionVO(ID, TITLE, CONSEQUENCES, PAYLOAD);
 		}
 
 		override protected function tearDown():void {
@@ -41,6 +42,10 @@ package strategy.model.gameplay {
 		
 		public function test_get_consequences():void {
 			assertEquals("Get consequences", CONSEQUENCES, instance.consequences);
+		}
+		
+		public function test_get_payload():void {
+			assertEquals("Get payload", PAYLOAD, instance.payload);
 		}
 		
 	}

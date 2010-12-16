@@ -1,6 +1,6 @@
 package strategy.model.gameplay.dilemmas
 {
-	public class DilemmaConfig extends Object
+	public class DilemmaConfig 
 	{
 		protected var _cash:Number;
 		protected var _days:Number;
@@ -26,8 +26,18 @@ package strategy.model.gameplay.dilemmas
 		                              progress:Number,
 		                              target:Number)
 		{
-			super();
-		}
+			_cash = cash;
+			_days = days;
+		    _safety = safety;
+		    _environment = environment;
+		    _stone = stone;
+		    _stoneCapacity = stoneCapacity;
+		    _dailySafetyChange = dailySafetyChange;
+		    _dailyEnvironmentChange = dailyEnvironmentChange;
+		    _productivity = productivity;
+		    _progress = progress;
+		    _target = target;
+   		}
 	
 		public function get cash():Number { return _cash; }
 	

@@ -9,6 +9,7 @@ package strategy.view.decisions {
 	import flash.events.MouseEvent;
 	import flash.display.SimpleButton;
 	import strategy.model.gameplay.IOptionVO;
+	import strategy.model.gameplay.dilemmas.DilemmaConfig;
 	
 	public class DilemmaView extends Sprite {
 		
@@ -35,7 +36,7 @@ package strategy.view.decisions {
 		
 		public function get optionSubmittedSignal():Signal
 		{
-			return _submitSignal ||= new Signal(uint);
+			return _submitSignal ||= new Signal(uint, DilemmaConfig);
 		}
 		
 		public function get clearSignal():Signal
@@ -90,17 +91,16 @@ package strategy.view.decisions {
 		
 		protected function prepButton(btn:SimpleButton, option:IOptionVO, labelFieldName:String):void
 		{
-			btn.addEventListener(MouseEvent.CLICK, submitClickedHandler);
-			_idsByButton[btn] = option.id;
 			setFieldValue(labelFieldName, option.title); 
+
+			var submitClickedHandler:Function = function(e:MouseEvent):void
+			{
+				optionSubmittedSignal.dispatch(option.id, option.payload);
+			}
+			
+			btn.addEventListener(MouseEvent.CLICK, submitClickedHandler);
 		}
-	
-		protected function submitClickedHandler(e:MouseEvent):void
-		{
-			var optionID:uint = _idsByButton[e.target] as uint;
-			optionSubmittedSignal.dispatch(optionID);
-		}
-		
+	    
 		protected function addImage(image:Sprite):void
 		{
 			addChild(image);

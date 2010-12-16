@@ -9,10 +9,12 @@ package strategy.view.decisions {
 	import strategy.model.gameplay.IDilemmaVO;
 	import strategy.model.gameplay.DilemmaVOSupport;
 	import strategy.model.gameplay.dilemmas.WeekendWorkingDilemma;
+	import strategy.model.gameplay.IOptionVO;
 
 	public class DilemmaViewTest extends TestCase {
 		private var instance:DilemmaView;
 		private var optionSubmitted:uint;
+		private var payloadSubmitted:*;
 		private var dilemmaVO:IDilemmaVO;
 
 		public function DilemmaViewTest(methodName:String=null) {
@@ -24,6 +26,7 @@ package strategy.view.decisions {
 			dilemmaVO = new WeekendWorkingDilemma();
 			instance = new DilemmaView(dilemmaVO);
 			optionSubmitted = 0;
+			payloadSubmitted = null;
 		}
 
 		override protected function tearDown():void {
@@ -53,10 +56,18 @@ package strategy.view.decisions {
 		
 		public function test_clicking_either_submit_btn_dispatches_optionSubmittedSignal():void {
 			instance.optionSubmittedSignal.add(optionSubmittedHandler);
-			UnitHelpers.clickItem(option1Button);
-			assertEquals("optionSubmittedSignal fired with correct payload", 1, optionSubmitted);
+			UnitHelpers.clickItem(option1Button);    
+			
+			var options:Vector.<IOptionVO> = dilemmaVO.options;
+			var payload1:* = options[0].payload;
+			var payload2:* = options[1].payload;
+			
+			assertEquals("optionSubmittedSignal fired with correct id", 1, optionSubmitted);
+			assertEquals("optionSubmittedSignal fired with correct payload", payload1, payloadSubmitted);
 			UnitHelpers.clickItem(option2Button);
-			assertEquals("optionSubmittedSignal fired with correct payload", 2, optionSubmitted);
+			assertEquals("optionSubmittedSignal fired with correct id", 2, optionSubmitted);
+			assertEquals("optionSubmittedSignal fired with correct payload", payload2, payloadSubmitted);
+			
 		}
 		
 		public function test_adds_image():void {
@@ -70,9 +81,10 @@ package strategy.view.decisions {
 			removeChild(instance);
 		}                                       
 		
-		private function optionSubmittedHandler(optionID:uint):void
+		private function optionSubmittedHandler(optionID:uint, payload:Object):void
 		{
 			optionSubmitted = optionID;
+			payloadSubmitted = payload;
 		}
 		
 		private function get titleField():TextField {

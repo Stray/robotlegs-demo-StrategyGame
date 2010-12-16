@@ -7,6 +7,7 @@ package strategy.model.gameplay {
 		function get id():uint;
 		
 		function get consequences():Vector.<Class>;
-		
+		 
+		function get payload():*;
 	}
 }

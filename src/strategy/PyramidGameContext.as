@@ -3,16 +3,19 @@ package strategy {
 	import flash.display.DisplayObjectContainer;
 	
 	import org.robotlegs.base.ContextEvent;
-	import org.robotlegs.mvcs.Context;
+	import org.robotlegs.base.GuardedCommandMap;
+	import org.robotlegs.base.OptionCommandMap;
+	import org.robotlegs.base.RelaxedEventMap;
+	import org.robotlegs.core.ICommandMap;
+	import org.robotlegs.core.IGuardedCommandMap;
+	import org.robotlegs.core.IOptionCommandMap;
 	import org.robotlegs.core.IRelaxedEventContext;
 	import org.robotlegs.core.IRelaxedEventMap;
-	import org.robotlegs.base.RelaxedEventMap;
+	import org.robotlegs.mvcs.Context;
 	import strategy.controller.commands.bootstraps.BootstrapGameStartup;
+	import strategy.controller.commands.RestartGameCommand;
 	import strategy.controller.commands.StartGameCommand;
 	import strategy.controller.events.GameEvent;
-	import strategy.controller.commands.RestartGameCommand;
-	import org.robotlegs.core.IOptionCommandMap;
-	import org.robotlegs.base.OptionCommandMap;
 	
 	public class PyramidGameContext extends Context implements IRelaxedEventContext {
 		
@@ -59,26 +62,10 @@ package strategy {
 			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartGameCommand, ContextEvent, true);
 			commandMap.mapEvent(GameEvent.GAME_RESTARTED, RestartGameCommand, GameEvent, true);
 			
-			// Dependency injection for models, services and values
-			// injector.mapSingleton(whenAskedFor:Class, named:String = null);
-			// injector.mapClass(whenAskedFor:Class, instantiateClass:Class, named:String = null);
-			// injector.mapValue(whenAskedFor:Class, useValue:Object, named:String = null);
-			// injector.mapSingletonOf(whenAskedFor:Class, useSingletonOf:Class, named:String = null);
-			
-			// Bind Mediators to Views
-			// The mediators are created automatically when the view is added to stage (within contextView)
-
-			// or - if your view is already on stage
-			// mediatorMap.createMediator(viewObject);
-			
 			// and we're done
 			super.startup();
 		}
-		//---------------------------------------
-		// IRelaxedEventContext Implementation
-		//---------------------------------------
 
-		//import org.robotlegs.core.IRelaxedEventContext;
 		
 		protected var _relaxedEventMap:IRelaxedEventMap;
 		
@@ -99,18 +86,24 @@ package strategy {
 			return _optionCommandMap ||= new OptionCommandMap(eventDispatcher, injector, reflector);
 		}
 		
-		public function set optionCommandMap(value:IOptionCommandMap):void
+		protected var _guardedCommandMap:IGuardedCommandMap;
+		
+		public function get guardedCommandMap():IGuardedCommandMap
 		{
-			_optionCommandMap = value;
-		}      
+			return _guardedCommandMap ||= new GuardedCommandMap(eventDispatcher, injector, reflector);
+		}
 		
 		override protected function mapInjections():void
 		{
 			super.mapInjections();
 			injector.mapValue(IRelaxedEventMap, relaxedEventMap);
 			injector.mapValue(IOptionCommandMap, optionCommandMap);
+			injector.mapValue(IGuardedCommandMap, guardedCommandMap);
 		}
 		
-		
+		override protected function get commandMap():ICommandMap
+		{
+			return _commandMap ||= guardedCommandMap;
+		}
 	}
 }

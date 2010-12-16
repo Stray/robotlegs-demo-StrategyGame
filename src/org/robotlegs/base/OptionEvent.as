@@ -37,7 +37,8 @@ package org.robotlegs.base {
 		/**
 		 *	@constructor
 		 */
-		public function OptionEvent(type:String, bubbles:Boolean=true, cancelable:Boolean=false ){
+		public function OptionEvent(type:String, payload:Object=null, bubbles:Boolean=true, cancelable:Boolean=false ){
+			_payload = payload;
 			super(type, bubbles, cancelable);		
 		}
 		
@@ -45,12 +46,20 @@ package org.robotlegs.base {
 		//  GETTER/SETTERS
 		//--------------------------------------
 		
+		protected var _payload:Object;
+
+		public function get payload():Object
+		{
+			return _payload;
+		}
+		
+		
 		//--------------------------------------
 		//  PUBLIC METHODS
 		//--------------------------------------
 
 		override public function clone() : Event {
-			return new OptionEvent(type, bubbles, cancelable);
+			return new OptionEvent(type, _payload, bubbles, cancelable);
 		}
 		
 		//--------------------------------------
