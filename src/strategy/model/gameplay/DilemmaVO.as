@@ -10,6 +10,7 @@ package strategy.model.gameplay {
 		protected var _image:Sprite;
 		
 		public function DilemmaVO(title:String, question:String, options:Vector.<IOptionVO>, image:Sprite) {
+			trace("DilemmaVO::()",  title, question, options, image);
 			_title = title;
 			_question = question;
 			_options = options;

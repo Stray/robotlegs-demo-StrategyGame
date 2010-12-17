@@ -39,6 +39,8 @@ package strategy.model
 		function get maximumStonePrice():Number;
 		
 		function get stoneSurpriseEventProbability():Number;
+
+		function get dilemmaSurpriseEventProbability():Number;
 		
 		function get dailySafetyImpact():Number;
 		

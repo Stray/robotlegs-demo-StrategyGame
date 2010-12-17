@@ -27,6 +27,7 @@ package strategy.model
 		protected var _maximumStonePrice:Number = 25; 
 		
 		protected var _stoneSurpriseEventProbability:Number = 15;
+		protected var _dilemmaSurpriseEventProbability:Number = 80;
 		
 		public function GameConfigVO()
 		{
@@ -125,6 +126,11 @@ package strategy.model
 		public function get stoneSurpriseEventProbability():Number
 		{
 			return _stoneSurpriseEventProbability;
+		}
+
+		public function get dilemmaSurpriseEventProbability():Number
+		{
+			return _dilemmaSurpriseEventProbability;
 		}
 		
 		public function get dailySafetyImpact():Number

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>src/strategy/controller/commands/daycycle/OfferLabourCommand.as</string>
+	<string>assets/config/surprisesConfig.xml</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -21,6 +21,34 @@
 	<integer>403</integer>
 	<key>metaData</key>
 	<dict>
+		<key>assets/config/surprisesConfig.xml</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>12</integer>
+				<key>line</key>
+				<integer>159</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>assets/skins/SurprisesSkin.as</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>27</integer>
+				<key>line</key>
+				<integer>19</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>lib/greensock/gs/easing/Elastic.as</key>
 		<dict>
 			<key>caret</key>
@@ -49,34 +77,48 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>src/strategy/controller/commands/daycycle/OfferLabourCommand.as</key>
+		<key>src/strategy/controller/surprises/DilemmaSurpriseEventCaster.as</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
 				<integer>30</integer>
+				<key>line</key>
+				<integer>68</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>40</integer>
+		</dict>
+		<key>src/strategy/model/gameplay/dilemmas/DilemmaConfig.as</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>32</integer>
+				<key>line</key>
+				<integer>16</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>19</integer>
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>45</integer>
 				<key>line</key>
-				<integer>19</integer>
+				<integer>26</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>32</integer>
 				<key>line</key>
-				<integer>30</integer>
+				<integer>16</integer>
 			</dict>
 		</dict>
 		<key>src/strategy/model/markets/StoneAvailabilityMarket.as</key>
@@ -96,7 +138,10 @@
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>src/strategy/controller/commands/daycycle/OfferLabourCommand.as</string>
+		<string>assets/config/surprisesConfig.xml</string>
+		<string>src/strategy/model/gameplay/dilemmas/DilemmaConfig.as</string>
+		<string>src/strategy/controller/surprises/DilemmaSurpriseEventCaster.as</string>
+		<string>assets/skins/SurprisesSkin.as</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>

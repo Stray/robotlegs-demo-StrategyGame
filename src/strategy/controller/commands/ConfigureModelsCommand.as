@@ -15,6 +15,7 @@ package strategy.controller.commands
 	import strategy.model.markets.ILabourAvailabilityMarket;
 	import strategy.model.resources.IHealthAndSafetyModel;
 	import strategy.model.resources.IEnvironmentalImpactModel;
+	import strategy.controller.surprises.IDilemmaSurpriseEventCaster;
 	
 	public class ConfigureModelsCommand extends Command
 	{
@@ -55,7 +56,10 @@ package strategy.controller.commands
 		public var safety:IHealthAndSafetyModel;
 		
 		[Inject]
-		public var environmentalImpact:IEnvironmentalImpactModel;
+		public var environmentalImpact:IEnvironmentalImpactModel;  
+		
+		[Inject]
+		public var dilemmaSurpriseEventCaster:IDilemmaSurpriseEventCaster;
 		
 		
 		override public function execute():void 
@@ -91,7 +95,10 @@ package strategy.controller.commands
 			stonePriceMarket.max = gameConfig.maximumStonePrice;
 			
 			stoneSurpriseEventCaster.surprisePercentageProbability = gameConfig.stoneSurpriseEventProbability;
-			stoneSurpriseEventCaster.primeSurpriseEvents();
+			stoneSurpriseEventCaster.primeSurpriseEvents();  
+			
+			dilemmaSurpriseEventCaster.surprisePercentageProbability = gameConfig.dilemmaSurpriseEventProbability;
+			dilemmaSurpriseEventCaster.primeSurpriseEvents();
 
 			safety.currentValue = 100;
 			environmentalImpact.currentValue = 100;

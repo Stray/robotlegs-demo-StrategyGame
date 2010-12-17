@@ -9,15 +9,10 @@ package strategy.controller.commands.daycycle
 	
 	public class OfferWeekendWorkingCommand extends Command
 	{
-		[Inject]
-		public var optionCommandMapper:IOptionCommandMapper;
-		
 		override public function execute():void 
 		{
 			var weekendDilemma:IDilemmaVO = new WeekendWorkingDilemma();
 			
-			optionCommandMapper.mapDilemmaOptions(weekendDilemma.options);
-						
 			var evt:DilemmaEvent = new DilemmaEvent(DilemmaEvent.DILEMMA_PRESENTED, weekendDilemma);
 			dispatch(evt);
 		}

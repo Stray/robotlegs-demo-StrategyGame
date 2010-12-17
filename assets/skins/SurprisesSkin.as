@@ -5,7 +5,7 @@ package skins
 	{
 	
 		[Embed(source="PyramidGame/GameIncidentsSkin.swf", symbol="mc_cats_in_stone")]
-		public static var CatsinStone:Class;
+		public static var CatsInStone:Class;
 		                     
 		[Embed(source="PyramidGame/GameIncidentsSkin.swf", symbol="mc_environment_campaigners")]
 		public static var EnvironmentCampaigners:Class;
@@ -17,13 +17,13 @@ package skins
 		public static var Graffiti:Class;
 		                        
 		[Embed(source="PyramidGame/GameIncidentsSkin.swf", symbol="mc_hammer_on_head")]
-		public static var HammeronHead:Class;
+		public static var HammerOnHead:Class;
 		                    
 		[Embed(source="PyramidGame/GameIncidentsSkin.swf", symbol="mc_hammered_thumb")]
 		public static var HammeredThumb:Class;
 		                  
 		[Embed(source="PyramidGame/GameIncidentsSkin.swf", symbol="mc_health_and_safety_assessment")]
-		public static var HealthandSafetyAssessment:Class;
+		public static var HealthAndSafetyAssessment:Class;
 		       
 		[Embed(source="PyramidGame/GameIncidentsSkin.swf", symbol="mc_heat_stroke")]
 		public static var HeatStroke:Class;
@@ -47,7 +47,7 @@ package skins
 		public static var PharoahVisit:Class;
 		                    
 		[Embed(source="PyramidGame/GameIncidentsSkin.swf", symbol="mc_plague_of_locusts")]
-		public static var PlagueofLocusts:Class;
+		public static var PlagueOfLocusts:Class;
 		                 
 		[Embed(source="PyramidGame/GameIncidentsSkin.swf", symbol="mc_pollution")]
 		public static var Pollution:Class;

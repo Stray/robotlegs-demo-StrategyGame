@@ -84,6 +84,18 @@ package strategy.model.gameplay.dilemmas {
 		{
 			_target = target;
 			return this;
+		}
+		
+		public function withDailySafetyChange(dailySafetyChange:Number):DilemmaConfigBuilder
+		{
+			_dailySafetyChange = dailySafetyChange;
+			return this;
+		}    
+
+		public function withDailyEnvironmentChange(dailyEnvironmentChange:Number):DilemmaConfigBuilder
+		{
+			_dailyEnvironmentChange = dailyEnvironmentChange;
+			return this;
 		}    
 				 
 	}

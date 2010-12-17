@@ -4,6 +4,9 @@ package strategy.controller.commands.daycycle {
 	
 	import org.robotlegs.mvcs.Command;
 	import strategy.controller.events.DilemmaEvent;
+	import strategy.model.gameplay.dilemmas.WeekendWorkingDilemma;
+	import strategy.model.gameplay.IDilemmaVO;
+	import org.robotlegs.core.IOptionCommandMapper;
 
 	import asunit.errors.AssertionFailedError;     
 
@@ -22,22 +25,17 @@ package strategy.controller.commands.daycycle {
 	
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
-	import org.robotlegs.core.IOptionCommandMap;
-	import flash.events.EventDispatcher;
-	import strategy.model.gameplay.dilemmas.WeekendWorkingDilemma;
-	import strategy.controller.commands.surpriseconsequences.WorkTheWeekendCommand;
-	import strategy.controller.commands.surpriseconsequences.RestTheWeekendCommand;
-	import org.robotlegs.mvcs.OptionCommandMapper;
 
-	public class OfferWeekendWorkingCommandTest extends TestCase {
-		private var instance:OfferWeekendWorkingCommand;
+	public class MapDilemmaConsequencesCommandTest extends TestCase {
+		private var instance:MapDilemmaConsequencesCommand;
+        private var dilemmaVO:IDilemmaVO;
 
-		public function OfferWeekendWorkingCommandTest(methodName:String=null) {
+		public function MapDilemmaConsequencesCommandTest(methodName:String=null) {
 			super(methodName)
 		}
 
 		override public function run():void{
-			var mockolateMaker:IEventDispatcher = prepare(IOptionCommandMap);
+			var mockolateMaker:IEventDispatcher = prepare(IOptionCommandMapper);
 			mockolateMaker.addEventListener(Event.COMPLETE, prepareCompleteHandler);
 		}
 
@@ -48,8 +46,10 @@ package strategy.controller.commands.daycycle {
 
 		override protected function setUp():void {
 			super.setUp();
-			instance = new OfferWeekendWorkingCommand();
-			instance.eventDispatcher = new EventDispatcher();
+			instance = new MapDilemmaConsequencesCommand();
+			dilemmaVO = new WeekendWorkingDilemma();
+			instance.dilemmaEvent = new DilemmaEvent(DilemmaEvent.DILEMMA_PRESENTED, dilemmaVO);
+			instance.optionCommandMapper = nice(IOptionCommandMapper);
 		}
 
 		override protected function tearDown():void {
@@ -58,7 +58,7 @@ package strategy.controller.commands.daycycle {
 		}
 
 		public function testInstantiated():void {
-			assertTrue("instance is OfferWeekendWorkingCommand", instance is OfferWeekendWorkingCommand);
+			assertTrue("instance is MapDilemmaConsequencesCommand", instance is MapDilemmaConsequencesCommand);
 		}
 		
 		public function testIsCommand():void{
@@ -69,16 +69,9 @@ package strategy.controller.commands.daycycle {
 			assertTrue("Failing test", true);
 		}
 		
-		public function test_execute_dispatches_dilemma_event():void {
-			var handler:Function = addAsync(check_execute_dispatches_dilemma_event, 50);
-			instance.eventDispatcher.addEventListener(DilemmaEvent.DILEMMA_PRESENTED, handler);
-			
+		public function test_execute_mapsOptionConsequences_on_optionCommandMap():void {
 			instance.execute();
+			verify(instance.optionCommandMapper).method('mapDilemmaOptions').args(equalTo(dilemmaVO.options));
 		}
-
-		private function check_execute_dispatches_dilemma_event(e:DilemmaEvent):void {
-			assertTrue("Contains weekend dilemmaVO", e.dilemmaVO is WeekendWorkingDilemma);
-		}
-		
 	}
 }

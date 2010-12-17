@@ -14,6 +14,9 @@ package strategy.controller.commands.bootstraps
 	import strategy.controller.commands.daycycle.CheckStoneStockCommand;
 	import strategy.controller.commands.daycycle.CheckForWeekendCommand;
 	import strategy.controller.commands.daycycle.OfferWeekendWorkingCommand;
+	import strategy.controller.commands.daycycle.CastRandomEventsCommand;
+	import strategy.controller.events.DilemmaEvent;
+	import strategy.controller.commands.daycycle.MapDilemmaConsequencesCommand;
 
 	public class BootstrapDayCycleCommands extends Command
 	{
@@ -29,7 +32,10 @@ package strategy.controller.commands.bootstraps
 			commandMap.mapEvent(LabourSupplyEvent.WORKERS_HIRED, HireWorkersCommand, LabourSupplyEvent);
 			commandMap.mapEvent(LabourSupplyEvent.NO_WORKERS_OFFERED, SkipHireWorkersCommand, LabourSupplyEvent);
 			commandMap.mapEvent(LabourSupplyEvent.NO_WORKERS_HIRED, SkipHireWorkersCommand, LabourSupplyEvent);
-			commandMap.mapEvent(DayCycleEvent.LABOUR_HIRE_COMPLETED, ProcessDayEndCommand, DayCycleEvent);
+			commandMap.mapEvent(DayCycleEvent.LABOUR_HIRE_COMPLETED, CastRandomEventsCommand, DayCycleEvent);
+			commandMap.mapEvent(DilemmaEvent.DILEMMA_PRESENTED, MapDilemmaConsequencesCommand, DilemmaEvent);
+			commandMap.mapEvent(DayCycleEvent.RANDOM_EVENTS_COMPLETED, ProcessDayEndCommand, DayCycleEvent);
+			
 			commandMap.mapEvent(DayCycleEvent.DAY_ENDED, ProcessDayStartCommand, DayCycleEvent); 
 		}
 	

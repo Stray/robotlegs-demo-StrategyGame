@@ -33,6 +33,10 @@ package strategy.controller.commands.bootstraps
 	import strategy.model.resources.EnvironmentalImpactModel;
 	import strategy.model.resources.IHealthAndSafetyModel;
 	import strategy.model.resources.HealthAndSafetyModel;
+	import strategy.controller.surprises.IDilemmaSurpriseEventCaster;
+	import strategy.controller.surprises.DilemmaSurpriseEventCaster;
+	import config.ISurprisesXMLImporter;
+	import config.SurprisesXMLImporter;
 
 	public class BootstrapModels extends Command
 	{
@@ -62,7 +66,10 @@ package strategy.controller.commands.bootstraps
 			injector.mapSingletonOf(IStonePriceMarket, StonePriceMarket);
 			injector.mapSingletonOf(IStoneSurpriseEventCaster, StoneSurpriseEventCaster);
 			
+			injector.mapSingletonOf(ISurprisesXMLImporter, SurprisesXMLImporter);
+			
 			injector.mapSingletonOf(ILabourSurpriseEventCaster, LabourSurpriseEventCaster);
+			injector.mapSingletonOf(IDilemmaSurpriseEventCaster, DilemmaSurpriseEventCaster);
 		}
 	
 	} 

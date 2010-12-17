@@ -16,6 +16,7 @@ package strategy.controller.events {
 		public static const LABOUR_HIRE_COMPLETED:String = "DayCycleEvent.labourHireCompleted";
 		public static const PROGRESS_CALCULATED:String = "DayCycleEvent.progressCalculated";
 		public static const DAY_ENDED:String = "DayCycleEvent.dayEnded";
+		public static const RANDOM_EVENTS_COMPLETED:String = "DayCycleEvent.randomEventsCompleted";
 		                    
 		
 		//--------------------------------------

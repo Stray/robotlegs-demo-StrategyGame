@@ -38,13 +38,13 @@ package strategy.controller.commands.surpriseconsequences {
 		
 		public function test_execute_dispatches_dayEndedEvent():void {
 			var handler:Function = addAsync(check_execute_dispatches_dayEndedEvent, 50);
-			instance.eventDispatcher.addEventListener(DayCycleEvent.DAY_ENDED, handler);
+			instance.eventDispatcher.addEventListener(DayCycleEvent.RANDOM_EVENTS_COMPLETED, handler);
 			
 			instance.execute();
 		}
 
 		private function check_execute_dispatches_dayEndedEvent(e:DayCycleEvent):void {
-			assertEquals('event is correct type', DayCycleEvent.DAY_ENDED, e.type);
+			assertEquals('event is correct type', DayCycleEvent.RANDOM_EVENTS_COMPLETED, e.type);
 			
 		}
 	}

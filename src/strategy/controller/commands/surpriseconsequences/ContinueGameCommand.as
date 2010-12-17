@@ -9,7 +9,7 @@ package strategy.controller.commands.surpriseconsequences
 		
 		override public function execute():void 
 		{
-			var evt:DayCycleEvent = new DayCycleEvent(DayCycleEvent.DAY_ENDED);
+			var evt:DayCycleEvent = new DayCycleEvent(DayCycleEvent.RANDOM_EVENTS_COMPLETED);
 			dispatch(evt);
 		} 
 	}

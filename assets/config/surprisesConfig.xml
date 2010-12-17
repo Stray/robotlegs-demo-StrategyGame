@@ -1,0 +1,366 @@
+<?xml version="1.0"?>
+<surprises>
+	<dilemma category="RESOURCES" id="1">
+		<title>Want some more stone storage?</title>
+		<message>A merchant is offering you an extra stone storage shed, for |CASH| coins you can double your current capacity. What would you like to do?</message>
+		<options>
+			<option title="Buy shed" consequences="DoubleStoneStorageCommand->ContinueGameCommand"/>
+			<option title="No thank you" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Cash" base="-500" variance="-1000"/>
+			<item id="StoneCapacity" base="500" variance="0"/>
+		</config>
+		<imageClass className="SecureShed"/>
+	</dilemma>
+	<dilemma category="RESOURCES" id="2">
+		<title>The builders want some extra equipment</title>
+		<message>The master builder thinks some extra scaffolding would help them work faster. The scaffolding costs |CASH| coins. What would you like to do?</message>
+		<options>
+			<option title="Buy equipment" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+			<option title="No thank you" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Cash" base="-1500" variance="-500"/>
+			<item id="Productivity" base="8" variance="4"/>
+		</config>
+		<imageClass className="WorkerSuggestion"/>
+	</dilemma>
+	<dilemma category="OTHER" id="3">
+		<title>It's a good omen!</title>
+		<message>The builders have discovered that a cat has had kittens in the stone shed. They don't want to disturb them today. Instead of building they suggest tidying the site. What would you like to do?</message>
+		<options>
+			<option title="Tidy the site" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+			<option title="Keep building" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Safety" base="20" variance="10"/>
+			<item id="Productivity" base="-10" variance="-3"/>
+		</config>
+		<imageClass className="CatsInStone"/>
+	</dilemma>
+	<dilemma category="ENVIRONMENT" id="4">
+		<title>Trouble at the site</title>
+		<message>Some environment campaigners are camped out by the gate protesting that your project might harm the environment. The builders have to stop work today.</message>
+		<options>
+			<option title="Continue" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Days" base="1" variance="0"/>
+			<item id="Productivity" base="0" variance="0"/>
+		</config>
+		<imageClass className="EnvironmentCampaigners"/>
+	</dilemma>
+	<dilemma category="ENVIRONMENT" id="5">
+		<title>An environmental assessment</title>
+		<message>A company are offering to undertake an environmental impact assessment and help you to run your project in the greenest way possible. Their service costs |CASH| coins. It will also take some of the teams time today. Do you want to take this offer?</message>
+		<options>
+			<option title="Yes please" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+			<option title="No thank you" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Cash" base="-2000" variance="-1000"/>
+			<item id="Productivity" base="-20" variance="10"/>
+			<item id="Environment" base="100" variance="0"/>
+			<item id="DailyEnvironmentChange" base="0" variance="0"/>
+		</config>
+		<imageClass className="EnvironmentalAssessment"/>
+	</dilemma>
+	<dilemma category="OTHER" id="6">
+		<title>There is a problem</title>
+		<message>It seems the site was vandalised during the night - the builders are going to have to rip out the damaged blocks and replace them.</message>
+		<options>
+			<option title="Continue" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Progress" base="-200" variance="-100"/>
+		</config>
+		<imageClass className="Graffiti"/>
+	</dilemma>
+	<dilemma category="SAFETY" id="7">
+		<title>There was an accident</title>
+		<message>A hammer fell from the scaffolding and hit another worker on the head. He was not wearing a safety hat. He will be off work for a week, and you will have to pay him |CASH| coins in compensation.</message>
+		<options>
+			<option title="Continue" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Days" base="-7" variance="0"/>
+			<item id="Cash" base="-2000" variance="-1000"/>
+		</config>
+		<imageClass className="HammerOnHead"/>
+	</dilemma>
+	<dilemma category="SAFETY" id="8">
+		<title>There was an accident</title>
+		<message>One of the workers has hammered his thumb. He will be off work for |DAYS| days, and you will have to pay him |CASH| coins in compensation.</message>
+		<options>
+			<option title="Continue" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Days" base="-2" variance="-2"/>
+			<item id="Cash" base="-2000" variance="-1000"/>
+		</config>
+		<imageClass className="HammeredThumb"/>
+	</dilemma>
+	<dilemma category="SAFETY" id="9">
+		<title>There was an accident</title>
+		<message>One of the workers has tripped on the site and hurt his foot. He will be off work for |DAYS| days, and you will have to pay him |CASH| coins in compensation.</message>
+		<options>
+			<option title="Continue" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Days" base="-3" variance="-2"/>
+			<item id="Cash" base="-1000" variance="-1000"/>
+		</config>
+		<imageClass className="HurtFoot"/>
+	</dilemma>
+	<dilemma category="SAFETY" id="10">
+		<title>There was an accident</title>
+		<message>One of the workers has fallen from a ladder that was not stable. He will be off work for |DAYS| days, and you will have to pay him |CASH| coins in compensation.</message>
+		<options>
+			<option title="Continue" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Days" base="-4" variance="-2"/>
+			<item id="Cash" base="-2000" variance="-1000"/>
+		</config>
+		<imageClass className="LadderFall"/>
+	</dilemma>
+	<dilemma category="SAFETY" id="11">
+		<title>There was an accident</title>
+		<message>One of the workers has tripped over stones that were left lying around. He will be off work for |DAYS| days, and you will have to pay him |CASH| coins in compensation.</message>
+		<options>
+			<option title="Continue" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Days" base="-2" variance="-1"/>
+			<item id="Cash" base="-500" variance="-500"/>
+		</config>
+		<imageClass className="Tripping"/>
+	</dilemma>
+	<dilemma category="SAFETY" id="12">
+		<title>An Health and Safety assessment</title>
+		<message>A company are offering to undertake a risk assessment on your site and help you run your project in the safest way possible. Their service costs |CASH| coins. It will also take some of the team's time today. Do you want to take this offer?</message>
+		<options>
+			<option title="Yes please" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+			<option title="No thank you" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Cash" base="-3000" variance="-500"/>
+			<item id="Productivity" base="-20" variance="10"/>
+			<item id="Safety" base="100" variance="0"/>
+			<item id="DailySafetyChange" base="0" variance="0"/>
+		</config>
+		<imageClass className="HealthAndSafetyAssessment"/>
+	</dilemma>
+	<dilemma category="SAFETY" id="13">
+		<title>Protection equipment for the team?</title>
+		<message>The master builder wants you to buy Personal Protective Equipment (PPE) for the team. It will cost |CASH| coins. What do you want to do?</message>
+		<options>
+			<option title="Buy PPE" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+			<option title="No thank you" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Cash" base="-2000" variance="-500"/>
+			<item id="DailySafetyChange" base="0" variance="0"/>
+		</config>
+		<imageClass className="PPE"/>
+	</dilemma>
+	<dilemma category="SAFETY" id="14">
+		<title>A worker has been taken ill</title>
+		<message>One of the team has developed heatstroke. He will be off sick for |DAYS| days while he recovers.</message>
+		<options>
+			<option title="Continue" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Days" base="-2" variance="-1"/>
+		</config>
+		<imageClass className="HeatStroke"/>
+	</dilemma>
+	<dilemma category="SAFETY" id="15">
+		<title>A worker has been taken ill</title>
+		<message>One of the team has developed hypothermia. He will be off sick for |DAYS| days while he recovers.</message>
+		<options>
+			<option title="Continue" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Days" base="-2" variance="-1"/>
+		</config>
+		<imageClass className="Hypothermia"/>
+	</dilemma>
+	<dilemma category="WEATHER" id="16">
+		<title>Phew, it is hot!</title>
+		<message>There is a heatwave - the temperature is through the roof! Do you want to close the site today, or carry on working?</message>
+		<options>
+			<option title="Close the site" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+			<option title="Keep working" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Productivity" base="-50" variance="-20"/>
+		</config>
+		<imageClass className="Heatwave"/>
+	</dilemma>
+	<dilemma category="OTHER" id="17">
+		<title>The Pharoah called</title>
+		<message>The Pharoah had another dream, and wants to make a modification to the design. It means you need to build an extra |TARGET| bricks, and unfortunately there is no extra budget.</message>
+		<options>
+			<option title="Continue" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Target" base="400" variance="200"/>
+		</config>
+		<imageClass className="PharoahSuggestion"/>
+	</dilemma>
+	<dilemma category="OTHER" id="18">
+		<title>The Pharoah visits</title>
+		<message>The Pharoah has decided to visit the site. He is very pleased with your progress, but the workers have been held up by his presence.</message>
+		<options>
+			<option title="Continue" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Productivity" base="-80" variance="70"/>
+		</config>
+		<imageClass className="PharoahVisit"/>
+	</dilemma>
+	<dilemma category="WEATHER" id="19">
+		<title>Where did they come from?</title>
+		<message>The site has been struck by a plague of locusts! No more work will be done today.</message>
+		<options>
+			<option title="Continue" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Productivity" base="-80" variance="70"/>
+		</config>
+		<imageClass className="PlagueOfLocusts"/>
+	</dilemma>
+	<dilemma category="WEATHER" id="20">
+		<title>Snow in Egypt?</title>
+		<message>The site has been hit by an uncharacteristic blizzard. What do you want to do?</message>
+		<options>
+			<option title="Keep working" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+			<option title="Stop working" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Productivity" base="-80" variance="70"/>
+			<item id="Safety" base="60" variance="0"/>
+		</config>
+		<imageClass className="Snow"/>
+	</dilemma>
+	<dilemma category="WEATHER" id="21">
+		<title>A tornado has hit town!</title>
+		<message>The site has been struck by a tornado! No more work will be done today.</message>
+		<options>
+			<option title="Continue" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Productivity" base="-80" variance="70"/>
+		</config>
+		<imageClass className="Tornado"/>
+	</dilemma>
+	<dilemma category="WEATHER" id="22">
+		<title>It's raining frogs!</title>
+		<message>Yes, really. It's raining frogs on the site - what do you want the workers to do?</message>
+		<options>
+			<option title="Close the site" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+			<option title="Keep working" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Productivity" base="-80" variance="70"/>
+		</config>
+		<imageClass className="RainingFrogs"/>
+	</dilemma>
+	<dilemma category="WEATHER" id="23">
+		<title>It's raining!</title>
+		<message>The scaffolding is getting wet and slippery - what do you want the workers to do?</message>
+		<options>
+			<option title="Close the site" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+			<option title="Keep working" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Productivity" base="-80" variance="70"/>
+		</config>
+		<imageClass className="Rain"/>
+	</dilemma>
+	<dilemma category="ENVIRONMENT" id="24">
+		<title>Bad News</title>
+		<message>The cement the builders are using on site has been washing into a nearby river, causing serious pollution. You have been fined |CASH| coins, and the site is suspended for |DAYS| days.</message>
+		<options>
+			<option title="Continue" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Cash" base="-7000" variance="-3000"/>
+			<item id="Days" base="-2" variance="-2"/>
+		</config>
+		<imageClass className="Pollution"/>
+	</dilemma>
+	<dilemma category="ENVIRONMENT" id="25">
+		<title>Casting a shadow...</title>
+		<message>The pyramid is casting a shadow over neighbouring crops. You need to pay the farmer damages of |CASH| coins.</message>
+		<options>
+			<option title="Continue" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Cash" base="-200" variance="-200"/>
+		</config>
+		<imageClass className="PyramidShadow"/>
+	</dilemma>
+	<dilemma category="OTHER" id="26">
+		<title>Worried about stone theft?</title>
+		<message>Would you like to take out insurance against stone theft? It costs |CASH| coins. Any stolen stone will be immediately replaced.</message>
+		<options>
+			<option title="Buy insurance" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+			<option title="No thanks" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Cash" base="-800" variance="-500"/>
+		</config>
+		<imageClass className="StoneInsurance"/>
+	</dilemma>
+	<dilemma category="OTHER" id="26">
+		<title>Stop Building!</title>
+		<message>The local planning authority need to check your paperwork. No building today.</message>
+		<options>
+			<option title="Buy insurance" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+			<option title="No thanks" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Productivity" base="0" variance="0"/>
+		</config>
+		<imageClass className="StopBuilding"/>
+	</dilemma>
+	<dilemma category="OTHER" id="27">
+		<title>Whoosh!</title>
+		<message>Strong winds have blown some tools and equipment off site. It will cost |COINS| coins to replace it. Do you want to buy the replacements?</message>
+		<options>
+			<option title="Buy replacements" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+			<option title="No thanks" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Productivity" base="-10" variance="-4"/>
+			<item id="Cash" base="-300" variance="-200"/>
+		</config>
+		<imageClass className="ToolsBlewAway"/>
+	</dilemma>
+	<dilemma category="ENVIRONMENT" id="28">
+		<title>Bad news</title>
+		<message>The pyramid has caused a wind tunnel effect. You need to pay for additional building to solve the problem.</message>
+		<options>
+			<option title="Continue" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Cash" base="-1000" variance="-1000"/>
+		</config>
+		<imageClass className="WindTunnel"/>
+	</dilemma>
+	<dilemma category="OTHER" id="29">
+		<title>Hey, Boss...</title>
+		<message>The master builder has an idea to create cavities in the pyramid walls and reduce the number of total blocks that need to be built. Do you want him to go ahead with the change?</message>
+		<options>
+			<option title="Yes" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+			<option title="No" consequences="NullConsequenceCommand->ContinueGameCommand"/>
+		</options>
+		<config>
+			<item id="Target" base="-3000" variance="-1000"/>
+		</config>
+		<imageClass className="WorkerSuggestion"/>
+	</dilemma>
+</surprises>
