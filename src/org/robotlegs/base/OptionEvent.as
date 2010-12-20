@@ -29,6 +29,7 @@ package org.robotlegs.base {
 		public static const OPTION_19:String = "OptionEvent.option19";
 		public static const OPTION_20:String = "OptionEvent.option20";
 		
+		public static const OPTIONS_COMPLETED:String = "OptionEvent.optionsCompleted";
 		
 		//--------------------------------------
 		//  CONSTRUCTOR

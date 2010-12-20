@@ -16,25 +16,37 @@ package strategy.controller.surprises {
 	import flash.utils.getDefinitionByName;
 	import config.ISurprisesXMLImporter;
 	import flash.utils.Dictionary;
+	import strategy.model.resources.IHealthAndSafetyModel;
+	import strategy.model.resources.IEnvironmentalImpactModel;
+	import flash.events.Event;
+	import org.robotlegs.base.OptionEvent;
 	
 	public class DilemmaSurpriseEventCaster extends BaseSurpriseEventCaster implements IDilemmaSurpriseEventCaster {
 		
 		[Inject]
 		public var surprisesXMLImporter:ISurprisesXMLImporter;
 		
+		[Inject]
+		public var safety:IHealthAndSafetyModel;
+		
+		[Inject]
+		public var environment:IEnvironmentalImpactModel;
+		
 		protected var _possibleEvents:Vector.<DilemmaEvent>;     
 		protected var _eventsByCategory:Dictionary;
 		protected var _dilemmaConfigBuilder:DilemmaConfigBuilder;
-		
+		protected var _queuedEvent:Event; 
+
 		// classes intended just to ensure that dynamically grabbed classes are compiled
 		private var importSurprisesSkin:SurprisesSkin;
 		private var surprisesClassesImporter:SurprisesClassImporter;
 		
-		private const RESOURCES:String = "resources";
 		private const SAFETY:String = "safety";
 		private const ENVIRONMENT:String = "environment";
-		private const WEATHER:String = "weather";
+		private const WEATHER:String = "weather"; 
+		private const ASSESSMENT:String = 'assessment';
 		private const OTHER:String = "other";
+		private const NORMAL:String = "normal";
 		
 		protected const SURPRISES_PACKAGE:String = 'strategy.controller.commands.surpriseconsequences.';
 		
@@ -48,6 +60,33 @@ package strategy.controller.surprises {
 				return;
 			}         
 			createSurpriseEvents();
+		} 
+		
+		public function castAccidentWithPercentageProbability(probability:Number):void
+		{
+			_queuedEvent = new DayCycleEvent(DayCycleEvent.RANDOM_EVENTS_COMPLETED);
+			
+			if(Math.random() < (probability/100))
+			{
+				_queuedEvent = takeRandomEventFrom(_eventsByCategory[SAFETY]);
+			}
+		   
+			dispatchAfterOptionsCompleted();
+		}                                
+		
+		protected function dispatchAfterOptionsCompleted():void
+		{
+			eventDispatcher.addEventListener(OptionEvent.OPTIONS_COMPLETED, optionsCompletedHandler);
+		}
+		
+		protected function optionsCompletedHandler(e:OptionEvent):void
+		{
+			if(_queuedEvent != null)
+			{
+				dispatch(_queuedEvent);
+				_queuedEvent = null;
+			} 
+			eventDispatcher.removeEventListener(OptionEvent.OPTIONS_COMPLETED, optionsCompletedHandler);
 		}
 		
 		protected override function dispatchNormalEvent():void
@@ -58,9 +97,98 @@ package strategy.controller.surprises {
 		
 		override protected function dispatchSurpriseEvent():void
 		{
-			var eventIndex:uint = Math.floor(Math.random() * _possibleEvents.length);
-			var chosenEvent:DilemmaEvent = _possibleEvents.splice(eventIndex, 1)[0];
+			var chosenEvent:DilemmaEvent = perhapsCreateSafetyEvent() 
+			
+			if(chosenEvent == null)
+			{
+				chosenEvent = perhapsCreateEnvironmentEvent();
+			} 
+			
+			if(chosenEvent == null)
+			{
+				chosenEvent = perhapsCreateAssessmentEvent();
+			} 
+			
+			if(chosenEvent == null)
+			{
+				chosenEvent = perhapsCreateWeatherEvent();
+			}
+			
+			if(chosenEvent == null)
+			{
+				chosenEvent = createOtherEvent();
+			}
+			
+			if(chosenEvent == null)
+			{
+				chosenEvent = createNormalEvent();
+			}
+			
 			dispatch(chosenEvent);
+		}
+		
+		protected function perhapsCreateSafetyEvent():DilemmaEvent
+		{
+			var chanceOfAnAccident:Number = (100 - safety.currentPercentage)/100;
+			if(Math.random() < chanceOfAnAccident)
+			{
+				return takeRandomEventFrom(_eventsByCategory[SAFETY]);
+			}
+			return null;
+		} 
+		
+		protected function takeRandomEventFrom(events:Vector.<DilemmaEvent>):DilemmaEvent
+		{
+			if(events.length == 0)
+			{
+				return null;
+			}
+			var randomIndex:uint = Math.floor(Math.random() * events.length);
+			var chosenEvent:DilemmaEvent = events.splice(randomIndex,1)[0];
+			return chosenEvent;
+		}  
+		
+		protected function perhapsCreateEnvironmentEvent():DilemmaEvent
+		{
+			var chanceOfAProblem:Number = (100 - environment.currentPercentage)/100;
+			if(Math.random() < chanceOfAProblem)
+			{
+				return takeRandomEventFrom(_eventsByCategory[ENVIRONMENT]);
+			}
+			return null;
+		}
+		
+		protected function perhapsCreateAssessmentEvent():DilemmaEvent
+		{
+			var chanceOfAnAssessment:Number = 0.75;
+			if(Math.random() < chanceOfAnAssessment)
+			{
+				return takeRandomEventFrom(_eventsByCategory[ASSESSMENT]);
+			}
+			return null;
+		}   
+		
+		protected function perhapsCreateWeatherEvent():DilemmaEvent
+		{
+			var chanceOfBadWeather:Number = 0.2;
+			if(Math.random() < chanceOfBadWeather)
+			{
+				return takeRandomEventFrom(_eventsByCategory[WEATHER]);
+			}
+			return null;
+		}
+		
+		protected function createOtherEvent():DilemmaEvent
+		{
+			return takeRandomEventFrom(_eventsByCategory[OTHER]);
+		}
+		
+		protected function createNormalEvent():DilemmaEvent
+		{
+			var randomIndex:uint = Math.floor(Math.random() * _eventsByCategory[NORMAL].length);
+			var normalEvent:DilemmaEvent = _eventsByCategory[NORMAL][randomIndex];
+			
+			return normalEvent;
 		}
 		
 		protected function createSurpriseEvents():void
@@ -80,7 +208,7 @@ package strategy.controller.surprises {
 				
 				var dilemmaCategory:String = this[dilemma.@category];
 
-				var categoryEventSet:Array = (_eventsByCategory[dilemmaCategory] ||= new Array());
+				var categoryEventSet:Vector.<DilemmaEvent> = (_eventsByCategory[dilemmaCategory] ||= new Vector.<DilemmaEvent>());
 				categoryEventSet.push(dilemmaEvent);
 			}
 			
@@ -146,6 +274,7 @@ package strategy.controller.surprises {
 			
 			return optionsVector;
 		}
+		
 		
 	}
 }

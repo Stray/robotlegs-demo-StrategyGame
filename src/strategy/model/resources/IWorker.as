@@ -18,5 +18,9 @@ package strategy.model.resources {
 		
 		function set pay(value:Number):void;
 		
+		function suspendForDays(days:int):void;
+		
+		function get isSuspended():Boolean;
+		
 	}
 }

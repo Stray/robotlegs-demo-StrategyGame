@@ -34,6 +34,8 @@ package strategy.controller.commands.daycycle{
 		
 		private const BLOCKS_BUILT:Number = 234;
 		private const COST:Number = 3456;
+		private const LIMITED_BLOCKS:Number = 200;
+		private const PLENTY_OF_BLOCKS:Number = 500;
 
 		public function ProcessDayEndCommandTest(methodName:String=null) {
 			super(methodName)
@@ -80,7 +82,7 @@ package strategy.controller.commands.daycycle{
 	    public function test_dispatches_progress_summary_event():void {
 	    	stub(instance.labour).property("currentValue").returns(BLOCKS_BUILT);
 			stub(instance.labour).property("teamCost").returns(COST);
-	
+	        stub(instance.stoneSupply).property("currentValue").returns(PLENTY_OF_BLOCKS);
 			var handler:Function = addAsync(check_dispatches_progress_summary_event, 50);
 	    	instance.eventDispatcher.addEventListener(DailyProgressEvent.PROGRESS_CALCULATED, handler);
 	    	
@@ -92,6 +94,29 @@ package strategy.controller.commands.daycycle{
 	    	assertEquals('event carries correct block count', BLOCKS_BUILT, e.productivityVO.stonesBuilt);
 	    	assertEquals('event carries correct cost', COST, e.productivityVO.wagesPaid);
 	    }
+	
+		public function test_restricted_by_stone_supply():void {
+	    	stub(instance.labour).property("currentValue").returns(BLOCKS_BUILT);
+			stub(instance.labour).property("teamCost").returns(COST);
+	        stub(instance.stoneSupply).property("currentValue").returns(LIMITED_BLOCKS);
+	
+			instance.execute();
+			
+			verify(instance.stoneSupply).method("adjustByValue").args(equalTo(-LIMITED_BLOCKS));
+			
+		}
+
+		public function test_restricted_by_labour_output():void {
+	    	stub(instance.labour).property("currentValue").returns(BLOCKS_BUILT);
+			stub(instance.labour).property("teamCost").returns(COST);
+	        stub(instance.stoneSupply).property("currentValue").returns(PLENTY_OF_BLOCKS);
+	
+			instance.execute();
+			
+			verify(instance.stoneSupply).method("adjustByValue").args(equalTo(-BLOCKS_BUILT));
+			
+		}
+		
 		
 	}
 }

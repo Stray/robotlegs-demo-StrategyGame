@@ -10,7 +10,14 @@ package strategy.model.resources {
 		public function BuildingProgressModel() 
 		{
 			updateType = ResourceStatusEvent.BUILDING_PROGRESS_UPDATED;
+			_currentValue = 0;
 		}
+		
+		override public function set max(value:Number):void
+		{
+			super.max = value;
+			dispatchUpdateEvent();
+		}   
 		
 		override protected function checkBoundaries():void
 		{

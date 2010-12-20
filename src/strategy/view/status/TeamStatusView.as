@@ -24,6 +24,7 @@ package strategy.view.status {
 		
 		public function updateTeamSize(teamSize:uint):void
 		{
+			trace("updateTeamSize: " + teamSize);
 			var iLength:uint = workers.length;
 			for (var i:int = 0; i < iLength; i++)
 			{
@@ -31,6 +32,16 @@ package strategy.view.status {
 			}
 		}
 		
+		public function updateSuspensions(suspensions:Vector.<Boolean>):void
+		{
+			trace("TeamStatusView::updateSuspensions(): " + suspensions);
+			var iLength:uint = Math.min(workers.length, suspensions.length);
+			for (var i:int = 0; i < iLength; i++)
+			{
+				workers[i].suspended = suspensions[i];
+			}
+		}
+		    
 		protected function init(skinClass:Class):void
 		{
 			var skin:Sprite = new skinClass() as Sprite;

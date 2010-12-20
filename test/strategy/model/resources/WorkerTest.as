@@ -70,6 +70,29 @@ package strategy.model.resources {
 			}
 			
 	    }
+	
+		public function test_suspendForDays_returns_0_productivity_for_x_days():void {
+			var minValue:Number = 30;
+			var maxValue:Number = 80;
+			
+			instance.energyLevel = 100;
+			
+			instance.min = minValue;
+			instance.max = maxValue;
+			
+			assertTrue("stays within adjusted level min", minValue <= instance.currentValue);
+			assertTrue("stays within adjusted level max", maxValue >= instance.currentValue);
+			
+			instance.suspendForDays(-2);
+			assertEquals("suspended worker returns 0", 0, instance.currentValue);
+			instance.move();
+			assertEquals("suspended worker returns 0", 0, instance.currentValue);
+			instance.move();
+
+			assertTrue("stays within adjusted level min", minValue <= instance.currentValue);
+			assertTrue("stays within adjusted level max", maxValue >= instance.currentValue);			
+		}
+		
 	    
 	}
 }

@@ -53,13 +53,13 @@ package strategy.view.decisions {
 		protected function setPrice(value:Number):void
 		{
 			_priceText.text = Math.round(value).toString() + " coins";
-			_price = value;
+			_price = Math.round(value);
 		}
 		
 		protected function setAvailability(value:Number):void
 		{
 			_availabilityText.text = Math.round(value).toString();
-			_availability = value;
+			_availability = Math.round(value);
 		}
 		
 		protected function zeroQuantityAndCost():void

@@ -64,6 +64,5 @@ package strategy.view.status {
 		}
 		
 		
-		
 	}
 }

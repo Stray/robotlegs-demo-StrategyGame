@@ -63,8 +63,11 @@ package org.robotlegs.base
 		{
 			routeEventToCommand(event, commandClass, oneshot, originalEventClass);
 			
-			if (noMoreCommandsForEvent(event.type, originalEventClass)) unmapAllOptions();
-			
+			if (noMoreCommandsForEvent(event.type, originalEventClass)) 
+			{
+				unmapAllOptions();
+				eventDispatcher.dispatchEvent(new OptionEvent(OptionEvent.OPTIONS_COMPLETED, null));
+			}
 			return void;
 		}
 		

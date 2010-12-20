@@ -73,6 +73,34 @@ package strategy.model.resources {
 			assertEquals('value has been adjusted', valueBefore+impact, instance.currentValue);
 		}
 		
+		public function test_adjust_value_restricts_to_max():void {
+			instance.max = 100;
+			instance.currentValue = 90;
+			instance.adjustByValue(12);
+			assertEquals("value restricted to max", instance.max, instance.currentValue);
+		}
+		
+		public function test_adjust_value_restricts_to_min():void {
+			instance.min = 0;
+			instance.currentValue = 20;
+			instance.adjustByValue(-22);
+			assertEquals("value restricted to min", instance.min, instance.currentValue);
+		}
+		
+		public function test_adjust_percentage_restricts_to_max():void {
+			instance.max = 100;
+			instance.currentValue = 90;
+			instance.adjustByPercentage(150);
+			assertEquals("value restricted to max", instance.max, instance.currentValue);
+		}
+		
+		public function test_adjust_percentage_restricts_to_min():void {
+			instance.min = 0;
+			instance.currentValue = 20;
+			instance.adjustByPercentage(-200);
+			assertEquals("value restricted to min", instance.min, instance.currentValue);
+		}
+		
 		
 	}
 }

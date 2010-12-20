@@ -44,7 +44,7 @@ package skins {
 		public static var LabourOfferSkin:Class;
 		
 		[Embed(source="PyramidGame/GameSkin.swf", symbol="temp_bg")]
-		public static var BackgroundSkin:Class;   
+		public static var PyramidProgressSkin:Class;   
 		
 		[Embed(source="PyramidGame/GameSkin.swf", symbol="temp_foreground")]
 		public static var ForegroundSkin:Class;
@@ -57,6 +57,9 @@ package skins {
 		
 		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_dilemma")]
 		public static var DilemmaSkin:Class;  
+		
+		[Embed(source="PyramidGame/GameSkin.swf", symbol="mc_sky")]
+		public static var SkySkin:Class;
 		
 	}
 }

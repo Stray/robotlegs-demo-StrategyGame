@@ -18,8 +18,9 @@ package strategy.controller.events {
 		/**
 		 *	@constructor
 		 */
-		public function StoneStockCheckEvent(type:String, quantity:Number, bubbles:Boolean=true, cancelable:Boolean=false ){
+		public function StoneStockCheckEvent(type:String, quantity:Number, isInsured:Boolean = false, bubbles:Boolean=true, cancelable:Boolean=false ){
 			_quantity = quantity;
+			_isInsured = isInsured;
 			super(type, bubbles, cancelable);		
 		}
 		
@@ -32,15 +33,21 @@ package strategy.controller.events {
 		public function get quantity():Number
 		{
 			return _quantity;
+		} 
+		
+		protected var _isInsured:Boolean;
+
+		public function get isInsured():Boolean
+		{
+			return _isInsured;
 		}
-		
-		
+				
 		//--------------------------------------
 		//  PUBLIC METHODS
 		//--------------------------------------
 
 		override public function clone() : Event {
-			return new StoneStockCheckEvent(type, _quantity, bubbles, cancelable);
+			return new StoneStockCheckEvent(type, _quantity, _isInsured, bubbles, cancelable);
 		}
 		
 		//--------------------------------------

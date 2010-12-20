@@ -30,7 +30,12 @@ package strategy.model.base
 			currentValue = currentValue + _dailyImpact;
 		}
 
-		
+		override public function set currentValue(value:Number):void
+		{
+			value = Math.min(value, max);
+			value = Math.max(value, min);
+			super.currentValue = value;
+		}
 	
 	}
  

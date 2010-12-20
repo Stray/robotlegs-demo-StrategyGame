@@ -90,6 +90,7 @@ package strategy.controller.commands
 			
 			stoneAvailabilityMarket.min = gameConfig.minimumStoneAvailability;
 			stoneAvailabilityMarket.max = gameConfig.maximumStoneAvailability;
+			stoneAvailabilityMarket.volatility = gameConfig.stoneAvailabilityVariability;
 			
 			stonePriceMarket.min = gameConfig.minimumStonePrice;
 			stonePriceMarket.max = gameConfig.maximumStonePrice;

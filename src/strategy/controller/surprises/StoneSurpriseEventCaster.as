@@ -18,7 +18,7 @@ package strategy.controller.surprises {
 		public var stonePriceMarket:IStonePriceMarket;
 		
 		public function StoneSurpriseEventCaster() {
-			
+			_surprisePercentageProbability = 20;
 		}
 		
 		override public function primeSurpriseEvents():void
@@ -39,6 +39,10 @@ package strategy.controller.surprises {
 		
 		override protected function dispatchSurpriseEvent():void
 		{
+			if(_possibleEvents.length == 0)
+			{
+				dispatchNormalEvent();
+			}
 			var eventIndex:uint = Math.floor(Math.random() * _possibleEvents.length);
 			var chosenEvent:StoneSupplyEvent = _possibleEvents.splice(eventIndex, 1)[0];
 			dispatch(chosenEvent);

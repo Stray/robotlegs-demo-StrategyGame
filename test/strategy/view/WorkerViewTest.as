@@ -12,7 +12,7 @@ package strategy.view {
 
 		override protected function setUp():void {
 			super.setUp();
-			workerView = new WorkerView(new Sprite());
+			workerView = new WorkerView(workerSprite);
 		}
 
 		override protected function tearDown():void {
@@ -26,6 +26,15 @@ package strategy.view {
 
 		public function testFailure():void {
 			assertTrue("Failing test", true);
+		}
+		
+		private function get workerSprite():Sprite
+		{
+			var parentSprite:Sprite = new Sprite();
+			var childSprite:Sprite = new Sprite();
+			childSprite.name = 'suspended';
+			parentSprite.addChild(childSprite);
+			return parentSprite;
 		}
 	}
 }

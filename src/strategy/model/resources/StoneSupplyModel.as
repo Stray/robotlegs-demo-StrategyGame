@@ -19,5 +19,20 @@ package strategy.model.resources {
 			}
 		}
 		
+		private var _isInsured:Boolean;
+
+		public function get isInsured():Boolean
+		{
+			return _isInsured;
+		}
+
+		public function set isInsured(value:Boolean):void
+		{
+			if (value !== _isInsured)
+			{
+				_isInsured = value;
+			}
+		}
+		
 	}
 }

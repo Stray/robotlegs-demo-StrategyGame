@@ -33,7 +33,11 @@ package strategy.controller.commands.daycycle
 			
 			labour.move();
 			var blocksBuilt:Number = labour.currentValue;
+			var blocksAvailable:Number = stoneSupply.currentValue;
+			blocksBuilt = Math.min(blocksBuilt, blocksAvailable);
+			
 			buildingProgress.adjustByValue(blocksBuilt); 
+			
 			stoneSupply.adjustByValue(-blocksBuilt);
 			
 			var costOfLabour:Number = labour.teamCost;

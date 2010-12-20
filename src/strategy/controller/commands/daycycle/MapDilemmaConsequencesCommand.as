@@ -16,7 +16,9 @@ package strategy.controller.commands.daycycle
 		
 		override public function execute():void 
 		{
+			trace("MapDilemmaConsequencesCommand::execute()");
 			var dilemmaVO:IDilemmaVO = dilemmaEvent.dilemmaVO;
+			trace("dilemma: " + dilemmaVO.title);
 			optionCommandMapper.mapDilemmaOptions(dilemmaVO.options);
 		} 
 	}

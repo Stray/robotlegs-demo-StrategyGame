@@ -4,6 +4,7 @@ package strategy.view.status {
 	
 	import org.robotlegs.mvcs.Mediator;
 	import strategy.controller.events.ResourceStatusEvent;
+	import strategy.controller.events.LabourSuspensionEvent;
 	
 	public class TeamStatusViewMediator extends Mediator {
 		
@@ -38,6 +39,7 @@ package strategy.view.status {
 		override public function onRegister():void
 		{			
 			eventMap.mapListener(eventDispatcher, ResourceStatusEvent.TEAM_SIZE_UPDATED, teamSizeUpdatedHandler);
+			eventMap.mapListener(eventDispatcher, LabourSuspensionEvent.WORKER_SUSPENSIONS_UPDATED, suspensionsUpdatedHandler);
 		}
 		
 		//--------------------------------------------------------------------------
@@ -49,6 +51,11 @@ package strategy.view.status {
 		public function teamSizeUpdatedHandler(e:ResourceStatusEvent):void
 		{
 			view.updateTeamSize(e.value);
+		} 
+		
+		public function suspensionsUpdatedHandler(e:LabourSuspensionEvent):void
+		{
+			view.updateSuspensions(e.workerStatus);
 		}
 		
 	}

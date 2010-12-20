@@ -17,8 +17,8 @@ package strategy.view.messages {
 		
 		public function DaySummaryView(blocksBuilt:Number, wagesPaid:Number) {			
 			init(PyramidGameSkin.DailyProgressSummarySkin);
-			setFieldValue('quantity_txt', blocksBuilt.toString());
-			setFieldValue('cost_txt', wagesPaid.toString() + " coins");
+			setFieldValue('quantity_txt', Math.round(blocksBuilt).toString());
+			setFieldValue('cost_txt', Math.round(wagesPaid).toString() + " coins");
 		} 
 	    
 	}

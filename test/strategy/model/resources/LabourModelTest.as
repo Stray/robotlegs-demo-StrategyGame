@@ -80,6 +80,19 @@ package strategy.model.resources {
 			
 		}
 		
+		public function test_adjusting_team_size_down_fires_update_event():void {
+			instance.teamSize = NEW_TEAM_SIZE;
+			var handler:Function = addAsync(check_adjusting_team_size_down_fires_update_event, 50);
+			instance.eventDispatcher.addEventListener(ResourceStatusEvent.TEAM_SIZE_UPDATED, handler);
+			
+			instance.teamSize = NEW_TEAM_SIZE-1;
+		}
+
+		private function check_adjusting_team_size_down_fires_update_event(e:ResourceStatusEvent):void {
+			assertEquals('correct team size sent', NEW_TEAM_SIZE-1, e.value);
+			
+		}
+		
 		public function test_appendWorkers_changes_team_size():void { 
 			var startTeamSize:uint = 3;
 			instance.teamSize = startTeamSize;
@@ -124,6 +137,35 @@ package strategy.model.resources {
 			}
 			
 		}
+		
+		public function test_suspendWorkerForDays_suspends_worker():void {
+			instance.teamSize = 3;
+			instance.suspendWorkerForDays(2);
+			var team:Vector.<IWorker> = instance.team;
+			var worker:IWorker = team[0];
+			assertTrue("Worker is suspended", worker.isSuspended);
+			instance.move();
+			assertTrue("Worker is suspended", worker.isSuspended);
+			instance.move();
+			assertFalse("Worker is no longer suspended", worker.isSuspended);
+		} 
+		
+		public function test_changeTodaysProductivityBy_adjusts_productivity():void {
+			instance.teamSize = 3;
+			instance.min = 60;
+			instance.max = 60;
+			instance.move();
+			var productivityBefore:Number = instance.currentValue;
+			trace("productivityBefore: " + productivityBefore);
+			instance.changeTodaysProductivityBy(-20);    
+			instance.move();
+			assertEquals("has changed productivity appropriately", productivityBefore * 0.8, instance.currentValue);
+			instance.move();
+			
+			assertTrue("Value back within bounds", (instance.min * instance.teamSize) <= instance.currentValue);
+			assertTrue("Value back within bounds", (instance.max * instance.teamSize) >= instance.currentValue);
+		}
+		
 		
 		
 	}

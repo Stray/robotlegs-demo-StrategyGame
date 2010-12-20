@@ -140,9 +140,9 @@ package strategy {
 		
 		public function test_stockStolen_passes_values_to_view():void {                   
 			var quantity:Number = 523;
-			var evt:StoneStockCheckEvent = new StoneStockCheckEvent(StoneStockCheckEvent.STOCK_STOLEN , quantity);
+			var evt:StoneStockCheckEvent = new StoneStockCheckEvent(StoneStockCheckEvent.STOCK_STOLEN , quantity, true);
 			instanceMediator.eventDispatcher.dispatchEvent(evt);
-			verify(instanceMediator.view).method('showStoneStockCheck').args(equalTo(quantity));
+			verify(instanceMediator.view).method('showStoneStockCheck').args(equalTo(quantity), equalTo(true));
 		}
 		
 		public function test_stockCheckCompleted_removes_stoneStockCheck_from_view():void {

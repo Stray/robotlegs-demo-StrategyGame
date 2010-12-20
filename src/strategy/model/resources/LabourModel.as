@@ -9,14 +9,20 @@ package strategy.model.resources {
 	import strategy.controller.events.ResourceStatusEvent;
 	import strategy.model.resources.TempWorker;
 	import strategy.model.transactions.WorkerProductivityVO;
+	import strategy.controller.events.LabourSuspensionEvent;
 	
 	public class LabourModel extends MarketVariationModel implements ILabourModel {
 		
 		protected var _team:Vector.<IWorker>;
 		
-		protected var _labourPriceMarket:ILabourPriceMarket;
+		protected var _labourPriceMarket:ILabourPriceMarket; 
+		
+		protected var _productivityAdjustment:Number;
+		protected var _nextProductivityAdjustment:Number;
 		
 		public function LabourModel() {
+			_productivityAdjustment = 100;
+			_nextProductivityAdjustment = 100;
 		}            
 		
 		//---------------------------------------
@@ -65,6 +71,10 @@ package strategy.model.resources {
 					team.pop();
 				}
 			}
+			if(team.length != iLength)
+			{
+				dispatchTeamUpdate();
+			}
 		}
 
 		public override function get currentValue():Number
@@ -78,18 +88,25 @@ package strategy.model.resources {
 				totalBuilt += nextWorker.currentValue;
 			}
 			
+			totalBuilt = totalBuilt * (_productivityAdjustment/100);
+			
 			return totalBuilt;
 		}
 		
 		public override function move():void
 		{
+			_productivityAdjustment = _nextProductivityAdjustment;
+			_nextProductivityAdjustment = 100;
+			
 			var iLength:uint = team.length;
 			for (var i:int = 0; i < iLength; i++)
 		   	{
 		   		var nextWorker:IWorker = team[i];
 				configureWorker(nextWorker);
 				nextWorker.move();
-		   	}
+		   	} 
+		
+			reportWorkerSuspensions();
 		}
 		
 		public function get team():Vector.<IWorker>
@@ -125,6 +142,39 @@ package strategy.model.resources {
 			_labourPriceMarket = value;
 		}
 		
+		public function suspendWorkerForDays(days:uint):void
+		{
+			var iLength:uint = _team.length;
+			for (var i:int = 0; i < iLength; i++)
+			{
+				var worker:IWorker = _team[i];
+				if(worker.isSuspended == false)
+				{
+					worker.suspendForDays(days);
+					return;
+				}
+			} 
+		}
+		
+		public function changeTodaysProductivityBy(value:Number):void
+		{
+			_nextProductivityAdjustment = 100 + value;
+		}
+		
+		protected function reportWorkerSuspensions():void
+		{
+			var workerSuspensions:Vector.<Boolean> = new Vector.<Boolean>();
+			
+			var iLength:uint = team.length;
+			for (var i:int = 0; i < iLength; i++)
+			{
+				var worker:IWorker = team[i];
+				workerSuspensions.push(worker.isSuspended);
+			}
+			
+			var evt:LabourSuspensionEvent = new LabourSuspensionEvent(LabourSuspensionEvent.WORKER_SUSPENSIONS_UPDATED, workerSuspensions);
+			dispatch(evt);
+		}
 		
 		protected function adjustTeamSize(requiredTeamSize:uint):void
 		{

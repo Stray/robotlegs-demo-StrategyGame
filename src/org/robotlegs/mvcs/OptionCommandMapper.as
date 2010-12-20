@@ -22,7 +22,7 @@ package org.robotlegs.mvcs
     
 		public function mapDilemmaOptions(options:Vector.<IOptionVO>):void
 		{
-			for each (var option:IOptionVO in options)
+   			for each (var option:IOptionVO in options)
 			{
 				var id:uint = option.id;
 				for each (var consequenceCommand:Class in option.consequences)

@@ -182,7 +182,7 @@ package strategy {
 		public function test_showStoneStockCheck_adds_view_with_correct_values():void {
 			var childrenBefore:uint = instance.numChildren;
 			var quantity:Number = 99;
-		    instance.showStoneStockCheck(quantity);
+		    instance.showStoneStockCheck(quantity, true);
 			assertEquals("Has added one more child", childrenBefore+1, instance.numChildren);
 			var topItem:Sprite = instance.getChildAt(childrenBefore) as Sprite;
 			assertTrue("Has added the correct type of view", topItem is StoneStockCheckView);
@@ -191,7 +191,7 @@ package strategy {
 		}
 		
 	    public function test_removeStoneStockCheck_removes_from_screen_if_present():void {
-			instance.showStoneStockCheck(1);
+			instance.showStoneStockCheck(1, false);
 			instance.removeStoneStockCheck();
 			assertFalse("no instance of StoneStockCheckView in the view", containsA(StoneStockCheckView));
 		}

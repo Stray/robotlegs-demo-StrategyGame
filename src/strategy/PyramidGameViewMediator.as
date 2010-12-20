@@ -76,7 +76,7 @@ package strategy {
 		
 		private function stockStolenHandler(e:StoneStockCheckEvent):void
 		{
-			view.showStoneStockCheck(e.quantity);
+			view.showStoneStockCheck(e.quantity, e.isInsured);
 		}
 		
 		private function stoneOfferedHandler(e:StoneSupplyEvent):void

@@ -22,5 +22,9 @@ package strategy.model.resources {
 		function removeTempWorkers():void;
 		
 		function adjustTeamEnergy(value:Number):void;
+		
+		function suspendWorkerForDays(days:uint):void;
+		
+		function changeTodaysProductivityBy(value:Number):void;
 	}
 }

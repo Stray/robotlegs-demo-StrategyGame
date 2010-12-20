@@ -34,6 +34,8 @@ package strategy.model
 		
 		function get maximumStoneAvailability():Number;
 		
+		function get stoneAvailabilityVariability():Number;
+		
 		function get minimumStonePrice():Number;
 		
 		function get maximumStonePrice():Number;

@@ -34,8 +34,11 @@ package strategy.controller.commands.daycycle
 		{
 			var excessStone:Number = stoneSupply.currentValue - stoneSupply.max;
 			var stoneStolen:Number = Math.round(excessStone * Math.random());
-			stoneSupply.adjustByValue(-stoneStolen);
-			var evt:StoneStockCheckEvent = new StoneStockCheckEvent(StoneStockCheckEvent.STOCK_STOLEN, stoneStolen);
+			if(!stoneSupply.isInsured)
+			{
+				stoneSupply.adjustByValue(-stoneStolen);
+			}
+			var evt:StoneStockCheckEvent = new StoneStockCheckEvent(StoneStockCheckEvent.STOCK_STOLEN, stoneStolen, stoneSupply.isInsured);
 			dispatch(evt);
 		} 
 	}

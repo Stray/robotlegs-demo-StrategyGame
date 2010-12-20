@@ -18,7 +18,7 @@ package strategy.view.messages {
 
 		override protected function setUp():void {
 			super.setUp();
-			instance = new StoneStockCheckView(QUANTITY);
+			instance = new StoneStockCheckView(QUANTITY, true);
 		}
 
 		override protected function tearDown():void {
@@ -60,6 +60,13 @@ package strategy.view.messages {
 		private function get submitButton():SimpleButton {
 			return UnitHelpers.findInstanceOf(instance, SimpleButton, 3) as SimpleButton;
 		}
+		
+		public function test_verified_visually():void { 
+			addChild(instance);
+			assertTrue("Verified visually", true);
+			removeChild(instance);
+		}
+		
 		
 	}
 }

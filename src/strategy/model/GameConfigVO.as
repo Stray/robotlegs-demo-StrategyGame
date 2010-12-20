@@ -23,6 +23,7 @@ package strategy.model
 		
 		protected var _minimumStoneAvailability:Number = 30;
 		protected var _maximumStoneAvailability:Number = 300;
+		protected var _stoneAvailabilityVariability:Number = 50;
 		protected var _minimumStonePrice:Number = 8;
 		protected var _maximumStonePrice:Number = 25; 
 		
@@ -111,6 +112,11 @@ package strategy.model
 		public function get maximumStoneAvailability():Number
 		{
 			return _maximumStoneAvailability;
+		}
+		
+		public function get stoneAvailabilityVariability():Number
+		{
+			return _stoneAvailabilityVariability;
 		}
 		
 		public function get minimumStonePrice():Number

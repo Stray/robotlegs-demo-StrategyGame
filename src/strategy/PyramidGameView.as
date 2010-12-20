@@ -24,6 +24,7 @@ package strategy {
 	import strategy.model.gameplay.IDilemmaVO;
 	import strategy.view.status.SafetyStatusView;
 	import strategy.view.status.EnvironmentStatusView;
+	import strategy.view.PyramidProgressView;
 	
 	public class PyramidGameView extends Sprite {
 		
@@ -73,9 +74,9 @@ package strategy {
 			introduce(labourOffer);
 		}
 		
-		public function showStoneStockCheck(quantity:Number):void
+		public function showStoneStockCheck(quantity:Number, withInsurance:Boolean):void
 		{
-			var stoneStockCheck:StoneStockCheckView = new StoneStockCheckView(quantity);
+			var stoneStockCheck:StoneStockCheckView = new StoneStockCheckView(quantity, withInsurance);
 			introduce(stoneStockCheck);
 		}
 		
@@ -153,6 +154,9 @@ package strategy {
 		
 		protected function init():void
 		{
+			var pyramidProgressView:Sprite = new PyramidProgressView();
+			addChild(pyramidProgressView);
+			
 			var progressView:Sprite = new ProgressStatusView();
 			addChild(progressView);
 			

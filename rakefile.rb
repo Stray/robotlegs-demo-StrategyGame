@@ -31,7 +31,8 @@ project_model :model do |m|
   m.compiler_gem_version  = '>= 4.0.0'
   m.source_path           << "#{m.lib_dir}/robotlegs"
   m.source_path           << "#{m.lib_dir}/greensock"
-  m.source_path           << "#{m.lib_dir}/robotlegs_utilities_OptionCommandMap"
+  m.source_path           << "#{m.lib_dir}/robotlegs_utilities_OptionCommandMap"    
+  m.library_path           << "lib/FlMotionClasses.swc"
   m.library_path          << 'lib/as3-signals.swc'
   m.endtoend_test_dir     = 'test/strategy/xendtoendtests'
   m.support_dir           = 'support'  

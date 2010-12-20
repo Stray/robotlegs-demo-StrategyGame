@@ -77,6 +77,18 @@ package strategy.model.resources {
 			assertEquals('event is correct type', ResourceBoundaryEvent.TARGET_REACHED, e.type);
 		}
 		
+		public function test_changing_max_dispatches_update_event():void {
+			instance.currentPercentage = 60;
+			var handler:Function = addAsync(check_changing_max_dispatches_update_event, 50);
+			instance.eventDispatcher.addEventListener(ResourceStatusEvent.BUILDING_PROGRESS_UPDATED, handler);
+			instance.max = instance.max*2;
+		}
+
+		private function check_changing_max_dispatches_update_event(e:ResourceStatusEvent):void {
+			assertEquals('event is correct type', ResourceStatusEvent.BUILDING_PROGRESS_UPDATED, e.type);
+			assertEquals("percentage is half what it was before target doubled", 30, e.percentage);
+		}
+		
 		
 	}
 }

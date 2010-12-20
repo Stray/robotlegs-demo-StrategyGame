@@ -5,12 +5,24 @@ package strategy.controller.surprises
 	public class SurprisesClassImporter extends Object
 	{
 	
-		private var buyExtraEquipment:BuyExtraEquipmentCommand;
-		private var continueGame:ContinueGameCommand;
-		private var doubleStoneStorage:DoubleStoneStorageCommand;
-		private var nullConsequence:NullConsequenceCommand;
-		private var restTheWeekend:RestTheWeekendCommand;
-		private var workTheWeekend:WorkTheWeekendCommand;
+		private var importedClasses:Array = new Array(
+														AdjustDayProductivityCommand,
+														AdjustEnvironmentalImpactCommand,
+														AdjustProgressCommand,
+														AdjustSafetyCommand,
+														AdjustTargetCommand,
+														AdjustTeamProductivityCommand,
+														ApplyStoneInsuranceCommand,
+														ContinueGameCommand,
+														DoubleStoneStorageCommand,
+														NullConsequenceCommand,
+														RestTheWeekendCommand,
+														RiskAccidentCommand,
+														SpendMoneyCommand,
+														SuspendWorkerCommand,
+														WorkTheWeekendCommand
+														)
+	   
 	
 	}
 
